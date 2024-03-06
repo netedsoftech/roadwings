@@ -1,0 +1,38 @@
+body{
+    font-family: "Roboto", sans-serif;
+    background-color: #f0f8ffc2;
+}
+
+.nav-link{
+    color: #143e8b;
+}
+
+.aside-hr{
+    border-bottom: 1px solid #143e8b1f;
+    display: block;
+}
+
+.sidebar{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 12px;
+    padding: 10px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 15.625rem !important;
+}
+
+.card.card-plain {
+    border-color: transparent;
+}
+
+.text-xs {
+    font-size: 0.75rem !important;
+}
+
+.bottom-bar{
+    position: absolute;
+    bottom: 20%;
+}
