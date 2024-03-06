@@ -3,8 +3,14 @@ body{
     background-color: #f0f8ffc2;
 }
 
+h1,h2,h3,h4,h5,p,span,small,a,label{
+    color: #143e8b!important;
+}
+
+/* sidebar start */
 .nav-link{
-    color: #143e8b;
+    /* color: #143e8b; */
+    font-size: 14px;
 }
 
 .aside-hr{
@@ -17,11 +23,13 @@ body{
     border-radius: 12px;
     padding: 10px;
     background-color: #fff;
-    position: fixed;
+    /* position: fixed;
     top: 0;
     bottom: 0;
     width: 100%;
-    max-width: 15.625rem !important;
+    max-width: 15.625rem !important; */
+    width: 100%;
+    max-width: 12rem;
 }
 
 .card.card-plain {
@@ -34,5 +42,113 @@ body{
 
 .bottom-bar{
     position: absolute;
-    bottom: 20%;
+    bottom: 0%;
 }
+
+.nav-link.active {
+    background-color: #f6f9fc;
+    box-shadow: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 4px;
+}
+.nav {
+    display: block;
+}
+/* sidebar end */
+
+/* main section start */
+
+/* .main-content {
+    margin-left: 18.125rem!important;
+    
+} */
+
+.main-header{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 12px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.rounded-pill{
+    background-color: #36ad53;
+    padding: 5px 20px 5px 20px;
+}
+
+/* form start */
+sub{
+    color: red;
+}
+
+.form-group > .btn{
+    background-color: #15457b;
+    color: #fff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.form-group > .btn:hover {
+    background-color: #bd1f29;
+    color: #fff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+/* form end */
+
+.left-content {
+    /* background-color: #2E323B; */
+  
+    background-position: center;
+    background-size: cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+      url(https://img.freepik.com/free-photo/truck-road-ai-generated-image_268835-6519.jpg?t=st=1709617675~exp=1709621275~hmac=01bd45e42a4b717ab8b77fedb0b53d51f6ea3db106c957d800969360e9ee1d39&w=1380);
+    background-position: center;
+    background-size: cover;
+    font-family: "Oswald", sans-serif;
+    width: 100%;
+    padding: 20px 20px 20px 20px;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .left-content > a{
+    background-color: #f0f8ff36;
+  }
+
+  .scrollbar-main{
+    height: 300px;
+    overflow: overlay;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 12px;
+    padding: 10px;
+    background-color: #fff;
+  }
+
+    /* scroll bar start */
+  /* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #15457b; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+  .scrollerContent{
+    border: 1px dashed #b4b4b4;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  /* scroll bar end */
+/* main section end */
