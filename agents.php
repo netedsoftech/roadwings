@@ -158,10 +158,14 @@
 
 
           <div class="col-lg-4"></div>
-          <div class="col-lg-4"></div>
-          <div class="col-lg-4 text-end">
+          <div class="col-lg-4 text-end px-3">
+    <div class="form-group ">
+              <button class="btn bg-danger">Delete Agent</button>
+            </div>
+</div>
+          <div class="col-lg-4 text-start">
             <div class="form-group ">
-              <button class="btn ">Submit Details</button>
+              <button class="btn bg-success">Update Info</button>
             </div>
           </div>
          </div>
