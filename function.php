@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Function to authenticate user login
 function authenticateUser($mysqli, $username, $password) {
     // Define variables and initialize with empty values
@@ -21,7 +22,7 @@ function authenticateUser($mysqli, $username, $password) {
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT id, username, password FROM login WHERE username = '$username'";
+        $sql = "SELECT id, email, password,agentrole FROM login WHERE email = '$username'";
 
         $result = $mysqli->query($sql);
 
@@ -38,7 +39,8 @@ function authenticateUser($mysqli, $username, $password) {
                     // Store data in session variables
                     $_SESSION["loggedin"] = true;
                     $_SESSION["id"] = $row['id'];
-                    $_SESSION["username"] = $row['username'];
+                    $_SESSION["email"] = $row['email'];
+                    $_SESSION["agentrole"] = $row['agentrole'];
 
                     // Redirect user to welcome page
                     header("location: index.php");

@@ -2,7 +2,7 @@
 // Include the function.php file
 require_once "config.php";
 require_once "function.php";
-
+//echo "<pre>"; print_r($_SESSION);die;
 // Check if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the form data
@@ -55,7 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo $message;
               }?>
               <!-- Button trigger modal -->
+              <?php if(($_SESSION['agentrole'] == "Manager") || ($_SESSION['agentrole'] == "Admin")) { ?>
               <span class="rounded-pill shadow text-white"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New Agent</span>
+            <?php } ?>
 
 
 <!-- Modal -->
@@ -244,11 +246,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                               <td class="align-middle text-center">
                                 <span class="text-secondary text-xs font-weight-bold"><?php echo date('Y-m-d',strtotime($row['createdat'])); ?></span>
                               </td>
+                              <?php 
+                              if(($_SESSION['agentrole'] == "Manager") || ($_SESSION['agentrole'] == "Admin")) {
+                                ?>
                               <td class="align-middle">
                                 <a href="javascript:" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
                                   Edit
                                 </a>
                               </td>
+                            <?php } ?>
                             </tr>
                             <?php } ?>
                           </tbody>
