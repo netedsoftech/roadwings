@@ -78,7 +78,7 @@ function getAgents($mysqli) {
     $data = array();
 
     // Perform SQL query to fetch data
-    $result = $mysqli->query("SELECT * FROM login where agentrole<>'admin'");
+    $result = $mysqli->query("SELECT * FROM login where agentrole<>'admin' order by id desc");
 
     // Fetch data and store in array
     while ($row = $result->fetch_assoc()) {
