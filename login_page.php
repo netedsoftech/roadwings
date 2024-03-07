@@ -29,6 +29,9 @@
                                             For Logistics</h4>
                                     </div>
                                     <div class="right-content">
+                                        <?php if(!empty($errorMessage)): ?>
+                                            <div class="alert alert-danger"><?php echo $errorMessage; ?></div>
+                                        <?php endif; ?>
                                         <h3 class="form-title">Login</h3>
                                         <form class="form-horizontal" method="post" action="login.php">
                                             <div class="form-group">
@@ -39,6 +42,7 @@
                                             <label>Password</label>
                                                 <input type="password" name="password" class="form-control">
                                             </div>
+
                                             <button type="submit" name="login" class="btn signin">Login</button>
 
                                             
