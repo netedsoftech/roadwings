@@ -22,6 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         header("location: login_page.php");
     }
 }
+//echo $errorMessage; die("here i am working");
 
 
 // Close connection (moved inside the authenticateUser function)

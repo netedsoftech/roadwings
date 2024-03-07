@@ -1,3 +1,33 @@
+<?php
+session_start();
+
+// Check if the user is already logged in, if yes, redirect to homepage
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header("location: index.php");
+    exit;
+}
+
+// Include config file
+require_once "config.php";
+// Include functions file
+require_once "function.php";
+$errorMessage = "";
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    // Call the authenticateUser function
+    $loginResult = authenticateUser($mysqli, $_POST["username"], $_POST["password"]);
+    if ($loginResult !== true) {
+        // Display error message if login failed
+        $errorMessage = $loginResult;
+        
+    }
+}
+//echo $errorMessage; die("here i am working");
+
+
+// Close connection (moved inside the authenticateUser function)
+//$mysqli->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,13 +57,12 @@
                                         <!-- <h3 class="title">RoadWings <span>Logistics</span> </h3> -->
                                         <h4 class="sub-title">Better solution
                                             For Logistics</h4>
+                                           
                                     </div>
                                     <div class="right-content">
-                                        <?php if(!empty($errorMessage)): ?>
-                                            <div class="alert alert-danger"><?php echo $errorMessage; ?></div>
-                                        <?php endif; ?>
+                                        
                                         <h3 class="form-title">Login</h3>
-                                        <form class="form-horizontal" method="post" action="login.php">
+                                        <form class="form-horizontal" method="post" >
                                             <div class="form-group">
                                             <label>Username / Email</label>
                                                 <input type="email" name="username" class="form-control">
@@ -45,7 +74,9 @@
 
                                             <button type="submit" name="login" class="btn signin">Login</button>
 
-                                            
+                                             <?php if(!empty($errorMessage)){ ?>
+                                            <div class="alert alert-danger"><?php echo $errorMessage; ?></div>
+                                        <?php } ?>
                                           
                                         </form>
                                     
