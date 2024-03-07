@@ -56,4 +56,36 @@ function authenticateUser($mysqli, $username, $password) {
         }
     }
 }
+
+function insertData($mysqli, $agentname, $email, $password,$agentphoneno,$agentrole) {
+    // Hash the password
+    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+    // Construct the SQL query
+    $sql = "INSERT INTO login (agentname, email, password,agentphoneno,agentrole) VALUES ('$agentname', '$email', '$password_hash','$agentphoneno','$agentrole')";
+    
+    // Execute the query
+    if ($mysqli->query($sql) === TRUE) {
+        return true; // Insertion successful
+    } else {
+        return false; // Insertion failed
+    }
+}
+
+function getAgents($mysqli) {
+    $data = array();
+
+    // Perform SQL query to fetch data
+    $result = $mysqli->query("SELECT * FROM login");
+
+    // Fetch data and store in array
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+
+    // Free result set
+    $result->free();
+
+    return $data;
+}
 ?>
