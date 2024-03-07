@@ -57,12 +57,12 @@ function authenticateUser($mysqli, $username, $password) {
     }
 }
 
-function insertData($mysqli, $agentname, $email, $password,$agentphoneno,$agentrole) {
+function insertData($mysqli, $agentname, $email, $password,$agentphoneno,$agentrole,$date) {
     // Hash the password
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     // Construct the SQL query
-    $sql = "INSERT INTO login (agentname, email, password,agentphoneno,agentrole) VALUES ('$agentname', '$email', '$password_hash','$agentphoneno','$agentrole')";
+    $sql = "INSERT INTO login (agentname, email, password,agentphoneno,agentrole,createdat) VALUES ('$agentname', '$email', '$password_hash','$agentphoneno','$agentrole','".$date."')";
     
     // Execute the query
     if ($mysqli->query($sql) === TRUE) {
@@ -76,7 +76,7 @@ function getAgents($mysqli) {
     $data = array();
 
     // Perform SQL query to fetch data
-    $result = $mysqli->query("SELECT * FROM login");
+    $result = $mysqli->query("SELECT * FROM login where agentrole<>'admin'");
 
     // Fetch data and store in array
     while ($row = $result->fetch_assoc()) {

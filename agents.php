@@ -11,10 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $agentrole = $_POST["agentrole"];
     $email = $_POST["email"];
     $password = $_POST["password"];
+    $date = date('Y-m-d, H:i:s');
 
     // Call the insertData function
     // Assuming $mysqli is your database connection object
-    $insertResult = insertData($mysqli, $agentname, $email, $password,$agentphoneno,$agentrole);
+    $insertResult = insertData($mysqli, $agentname, $email, $password,$agentphoneno,$agentrole,$date);
 
     // Check the result of the insertion
     $message = "";
@@ -244,7 +245,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <span class="text-secondary text-xs font-weight-bold"><?php echo date('Y-m-d',strtotime($row['createdat'])); ?></span>
                               </td>
                               <td class="align-middle">
-                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+                                <a href="javascript:" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
                                   Edit
                                 </a>
                               </td>
