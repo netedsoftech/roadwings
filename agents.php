@@ -3,7 +3,10 @@
 require_once "config.php";
 require_once "function.php";
 //echo "<pre>"; print_r($_SESSION);die;
-// Check if the form was submitted
+if(!($_SESSION)){
+    header("location: login_page.php");
+  }
+  // Check if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the form data
     $agentname = $_POST["agentname"];
