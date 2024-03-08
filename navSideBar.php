@@ -1,7 +1,7 @@
 <nav class="col-lg-2 col-md-2 d-none d-md-block sidebar mt-4">
             <div class="logo-img text-center mb-3 p-3">
               <img
-                src="./assets/img/logo_img.png"
+                src="/assets/img/logo_img.png"
                 alt="main_logo" class="w-100"
               />
             </div>
@@ -21,7 +21,7 @@
                   </a>
                 </li>
                 <li class="nav-item mt-2 mb-2">
-                  <a class="nav-link" href="agents.php">
+                  <a class="nav-link " href="agents.html">
                     <img
                       width="18"
                       height="18"
@@ -29,11 +29,11 @@
                       alt="person-male"
                       class="mx-2"
                     />
-                    Agents
+                    Agents Info
                   </a>
                 </li>
                 <li class="nav-item mt-2 mb-2">
-                  <a class="nav-link" href="#">
+                  <a class="nav-link " href="shipment_leads.html">
                     <img
                       width="18"
                       height="18"
@@ -46,7 +46,7 @@
                 </li>
 
                 <li class="nav-item mt-2 mb-2">
-                  <a class="nav-link" href="#">
+                  <a class="nav-link" href="add_company.html">
                     <img
                       width="18"
                       height="18"
@@ -54,7 +54,7 @@
                       alt="external-Desk-Calender-stationery-goofy-line-kerismaker"
                       class="mx-2"
                     />
-                    Tables
+                    Add Compnay 
                   </a>
                 </li>
 
@@ -90,7 +90,7 @@
                   <li class="nav-item text-center mt-4">
                     <img
                       class="w-50 mx-auto "
-                      src="./assets/img/icon-documentation.svg"
+                      src="/assets/img/icon-documentation.svg"
                       alt="sidebar_illustration"
                     />
 

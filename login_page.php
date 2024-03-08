@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                                 <div class="form-container rounded">
                                     <div class="left-content rounded">
-                                        <img class="title" src="./assets/img/logo_img.png">
+                                        <img class=" title w-50" src="./assets/img/logo_img.png">
                                         <!-- <h3 class="title">RoadWings <span>Logistics</span> </h3> -->
                                         <h4 class="sub-title">Better solution
                                             For Logistics</h4>
