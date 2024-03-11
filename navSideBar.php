@@ -21,7 +21,7 @@
                   </a>
                 </li>
                 <li class="nav-item mt-2 mb-2">
-                  <a class="nav-link " href="agents.html">
+                  <a class="nav-link " href="agents.php">
                     <img
                       width="18"
                       height="18"
@@ -33,7 +33,7 @@
                   </a>
                 </li>
                 <li class="nav-item mt-2 mb-2">
-                  <a class="nav-link " href="shipment_leads.html">
+                  <a class="nav-link " href="shipment_leads.php">
                     <img
                       width="18"
                       height="18"
@@ -41,12 +41,12 @@
                       alt="external-Desk-Calender-stationery-goofy-line-kerismaker"
                       class="mx-2"
                     />
-                    Shipment Leads
+                    Com Listing
                   </a>
                 </li>
 
                 <li class="nav-item mt-2 mb-2">
-                  <a class="nav-link" href="add_company.html">
+                  <a class="nav-link" href="add_company.php">
                     <img
                       width="18"
                       height="18"
@@ -59,7 +59,7 @@
                 </li>
 
                 <li class="nav-item mt-2 mb-2">
-                  <a class="nav-link" href="#">
+                  <a class="nav-link" href="">
                     <img width="18" height="18" src="https://img.icons8.com/fluency-systems-regular/18/143e8b/bill.png" alt="bill"  class="mx-2" />
                     Biling
                   </a>

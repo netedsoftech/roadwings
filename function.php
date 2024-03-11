@@ -90,4 +90,30 @@ function getAgents($mysqli) {
 
     return $data;
 }
+
+function addCompany($mysqli, $sessionid, $companyname, $companyemailid, $companymanagername, $companyaddress, $companypostalcode, $companycity, $companystate, $companystatus, $paymentterm, $companypaymentlimit, $createdat) {
+    // Escape inputs to prevent SQL injection
+    $companyname = mysqli_real_escape_string($mysqli, $companyname);
+    $companyemailid = mysqli_real_escape_string($mysqli, $companyemailid);
+    $companymanagername = mysqli_real_escape_string($mysqli, $companymanagername);
+    $companyaddress = mysqli_real_escape_string($mysqli, $companyaddress);
+    $companypostalcode = mysqli_real_escape_string($mysqli, $companypostalcode);
+    $companycity = mysqli_real_escape_string($mysqli, $companycity);
+    $companystate = mysqli_real_escape_string($mysqli, $companystate);
+    $companystatus = mysqli_real_escape_string($mysqli, $companystatus);
+    $paymentterm = mysqli_real_escape_string($mysqli, $paymentterm);
+    $companypaymentlimit = mysqli_real_escape_string($mysqli, $companypaymentlimit);
+    $createdat = mysqli_real_escape_string($mysqli, $createdat);
+
+    // Prepare SQL statement
+    $sql = "INSERT INTO company (createdby, comapnyname, companyemailid, companymanagername, companyaddress, companypostalcode, companycity, companystate, companystatus, paymentterm, companypaymentlimit, createdat) 
+            VALUES ('$sessionid', '$companyname', '$companyemailid', '$companymanagername', '$companyaddress', '$companypostalcode', '$companycity', '$companystate', '$companystatus', '$paymentterm', '$companypaymentlimit', '$createdat')";
+
+    // Execute SQL query
+    if ($mysqli->query($sql) === TRUE) {
+        return "Company added successfully";
+    } else {
+        return "Error adding company: " . $mysqli->error;
+    }
+}
 ?>
