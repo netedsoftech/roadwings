@@ -1,30 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="assets/style.css" />
-
-    <!-- font style start -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,300&family=Prata&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <!-- font style end -->
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
-  </head>
+<?php
+// Include the function.php file
+require_once "config.php";
+require_once "function.php";
+//echo "<pre>"; print_r($_SESSION);die;
+if(!($_SESSION)){
+    header("location: login_page.php");
+  }
+  include("header.php");
+?>
   <body>
     <section class="main">
       <div class="container-fluid">
@@ -44,161 +27,78 @@
                     <table class="table align-items-center mb-0">
                       <thead>
                         <tr>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Company Name</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Company E-mail ID</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Name</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> E-mail ID</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Manager Name</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Contact Number</th>
-                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Company Full Address</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ph. Number</th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"> Address</th>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Postal Code</th>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">City</th>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">state</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Company Status</th>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Status</th>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Payment Terms ( 1 - 45 days)</th>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Limit Assign</th>
                           <th class="text-secondary opacity-7"></th>
                         </tr>
                       </thead>
                       <tbody>
+                         <?php
+                            $companyData = getCompanies($mysqli);
+                            foreach($companyData as $row){ 
+                            ?>
                         <tr>
                             <td>
                               <div class="d-flex px-2 py-1">
                                 
                                 <div class="d-flex flex-column justify-content-center">
-                                  <h6 class="mb-0 text-sm">Morissette</h6>
+                                  <h6 class="mb-0 text-sm"><?php echo ucfirst($row['comapnyname']); ?></h6>
                                   
                                 </div>
                               </div>
                             </td>
-                            <td>
-                              <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
-                                                          </td>
+                            <!-- <td>
+                              <p class="text-xs text-secondary mb-0"><?php echo ucfirst($row['comapnyname']); ?></p>
+                                                          </td> -->
                             <td class="align-middle text-center text-sm">
-                              <p class="text-xs font-weight-bold mb-0">Takesn</p>
+                              <p class="text-xs font-weight-bold mb-0"><?php echo $row['companyemailid']; ?></p>
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">8596748596</span>
+                              <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['companymanagername']); ?></span>
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">99248 Carli Points</span>
+                              <span class="text-secondary text-xs font-weight-bold"><?php echo $row['companycontactno']; ?></span>
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">85479</span>
+                              <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['companyaddress']); ?></span>
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">Port Danielafort</span>
+                              <span class="text-secondary text-xs font-weight-bold"><?php echo $row['companypostalcode']; ?></span>
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">New York</span>
+                              <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['companycity']); ?></span>
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">Working</span>
+                              <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['companystate']); ?></span>
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">25 days</span>
+                              <span class="text-secondary text-xs font-weight-bold"><?php if($row['companystatus']==1){
+                                echo "working";
+                              }else if($row['companystatus']==2){ echo "Approved";}else if($row['companystatus']==3){ echo "Pending";}
+                              else if($row['companystatus']==4){ echo "High Risk";} ?></span>
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">2000</span>
+                              <span class="text-secondary text-xs font-weight-bold"><?php echo $row['paymentterm']; ?></span>
                             </td>
+                            <td>
+                              <p class="text-xs text-secondary mb-0"><?php echo ucfirst($row['companypaymentlimit']); ?></p>
+                                                          </td> 
                             <td class="align-middle">
                               <a href="javascript:;" class="text-secondary font-weight-bold text-xs"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 Edit
                               </a>
                             </td>
                           </tr>
-
-                          <tr>
-                            <td>
-                              <div class="d-flex px-2 py-1">
-                                
-                                <div class="d-flex flex-column justify-content-center">
-                                  <h6 class="mb-0 text-sm">Morissette</h6>
-                                  
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
-                                                          </td>
-                            <td class="align-middle text-center text-sm">
-                              <p class="text-xs font-weight-bold mb-0">Takesn</p>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">8596748596</span>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">99248 Carli Points</span>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">85479</span>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">Port Danielafort</span>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">New York</span>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">Working</span>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">25 days</span>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">2000</span>
-                            </td>
-                            <td class="align-middle">
-                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                Edit
-                              </a>
-                            </td>
-                          </tr>
-
-                          <tr>
-                            <td>
-                              <div class="d-flex px-2 py-1">
-                                
-                                <div class="d-flex flex-column justify-content-center">
-                                  <h6 class="mb-0 text-sm">Morissette</h6>
-                                  
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
-                                                          </td>
-                            <td class="align-middle text-center text-sm">
-                              <p class="text-xs font-weight-bold mb-0">Takesn</p>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">8596748596</span>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">99248 Carli Points</span>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">85479</span>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">Port Danielafort</span>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">New York</span>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">Working</span>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">25 days</span>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">2000</span>
-                            </td>
-                            <td class="align-middle">
-                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                Edit
-                              </a>
-                            </td>
-                          </tr>
+                          <?php } ?>
                       </tbody>
                     </table>
                   </div>

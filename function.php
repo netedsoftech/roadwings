@@ -32,7 +32,7 @@ function authenticateUser($mysqli, $username, $password) {
 
                 $row = $result->fetch_assoc();
                 
-                if(md5($password) == $row['password']){
+                if (password_verify($password, $row['password'])) {
                     // Password is correct, start a new session
                     session_start();
 
@@ -61,7 +61,7 @@ function authenticateUser($mysqli, $username, $password) {
 
 function insertData($mysqli, $agentname, $email, $password,$agentphoneno,$agentrole,$date) {
     // Hash the password
-    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+   echo $password_hash = password_hash($password, PASSWORD_DEFAULT); die;
 
     // Construct the SQL query
     $sql = "INSERT INTO login (agentname, email, password,agentphoneno,agentrole,createdat) VALUES ('$agentname', '$email', '$password_hash','$agentphoneno','$agentrole','".$date."')";
@@ -91,8 +91,19 @@ function getAgents($mysqli) {
     return $data;
 }
 
-function addCompany($mysqli, $sessionid, $companyname, $companyemailid, $companymanagername, $companyaddress, $companypostalcode, $companycity, $companystate, $companystatus, $paymentterm, $companypaymentlimit, $createdat) {
+function getCompanies($mysqli){
+    $data = array();
+    $result = $mysqli->query("select company.*,login.agentname from company left join login on company.createdby = login.id order by company.id desc");
+    while($row = $result->fetch_assoc()){
+        $data[] = $row;
+    }
+    $result->free();
+    return $data;
+}
+
+function addCompany($mysqli, $sessionid, $companyname, $companyemailid, $companymanagername, $companyaddress, $companypostalcode, $companycity, $companystate, $companystatus, $paymentterm, $companypaymentlimit, $createdat,$companycontactno) {
     // Escape inputs to prevent SQL injection
+
     $companyname = mysqli_real_escape_string($mysqli, $companyname);
     $companyemailid = mysqli_real_escape_string($mysqli, $companyemailid);
     $companymanagername = mysqli_real_escape_string($mysqli, $companymanagername);
@@ -104,10 +115,11 @@ function addCompany($mysqli, $sessionid, $companyname, $companyemailid, $company
     $paymentterm = mysqli_real_escape_string($mysqli, $paymentterm);
     $companypaymentlimit = mysqli_real_escape_string($mysqli, $companypaymentlimit);
     $createdat = mysqli_real_escape_string($mysqli, $createdat);
-
+    $companycontactno = mysqli_real_escape_string($mysqli, $companycontactno);
+  
     // Prepare SQL statement
-    $sql = "INSERT INTO company (createdby, comapnyname, companyemailid, companymanagername, companyaddress, companypostalcode, companycity, companystate, companystatus, paymentterm, companypaymentlimit, createdat) 
-            VALUES ('$sessionid', '$companyname', '$companyemailid', '$companymanagername', '$companyaddress', '$companypostalcode', '$companycity', '$companystate', '$companystatus', '$paymentterm', '$companypaymentlimit', '$createdat')";
+    $sql = "INSERT INTO company (createdby, comapnyname, companyemailid, companymanagername, companyaddress, companypostalcode, companycity, companystate, companystatus, paymentterm, companypaymentlimit, createdat,companycontactno) 
+            VALUES ('$sessionid', '$companyname', '$companyemailid', '$companymanagername', '$companyaddress', '$companypostalcode', '$companycity', '$companystate', '".$companystatus."', '".$paymentterm."', '$companypaymentlimit', '$createdat','$companycontactno')";
 
     // Execute SQL query
     if ($mysqli->query($sql) === TRUE) {

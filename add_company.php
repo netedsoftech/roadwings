@@ -7,6 +7,7 @@ if(!($_SESSION)){
 
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //echo "<pre>"; print_r($_POST);die;
     // Get the form data
     $sessionid = $_SESSION['id'];
     $comapnyname = $_POST["comapnyname"];
@@ -16,14 +17,15 @@ if(!($_SESSION)){
     $companypostalcode = $_POST["companypostalcode"];
     $companycity = $_POST['companycity'];
     $companystate = $_POST['companystate'];
-    $companystatus = $_POST['companystatus'];
+    $companystatus = $_POST['companyStatus'];
     $paymentterm = $_POST['paymentterm'];
     $companypaymentlimit = $_POST['companypaymentlimit'];
+    $companycontactno = $_POST['companycontactno'];
     $createdat = date('Y-m-d, H:i:s');
 
     // Call the insertData function
     // Assuming $mysqli is your database connection object
-    $insertResult = addCompany($mysqli, $sessionid, $comapnyname, $companyemailid,$companymanagername,$companyaddress,$companypostalcode,$companycity,$companystate,$companystatus,$paymentterm,$companypaymentlimit,$createdat);
+    $insertResult = addCompany($mysqli, $sessionid, $comapnyname, $companyemailid,$companymanagername,$companyaddress,$companypostalcode,$companycity,$companystate,$companystatus,$paymentterm,$companypaymentlimit,$createdat,$companycontactno);
 
     // Check the result of the insertion
     $message = "";
@@ -144,12 +146,12 @@ if(!($_SESSION)){
                     <div class="col-md-4">
                       <div class="form-group mb-4">
                         <label for="example-text-input"  class="form-control-label mb-2">Payment Terms ( 1 - 45 days)</label>
-                        <select name="companyStatus"  class="form-control">
-                          <option value="1 days">1</option>
-                          <option value="10 days">10</option>
-                          <option value="15 days">15</option>
-                          <option value="20 days">20</option>
-                          <option value="25 days">25</option>
+                        <select name="paymentterm"  class="form-control">
+                          <option value="1">1</option>
+                          <option value="10">10</option>
+                          <option value="15">15</option>
+                          <option value="20">20</option>
+                          <option value="25">25</option>
                         </select>
                       </div>
                     </div>
