@@ -68,11 +68,11 @@
 
               <div >
                 <ul class="nav ">
-                  <li class="nav-item ">
+                  <!-- <li class="nav-item ">
                     <a class="nav-link " href="#">
                       <h6 class="text-xs text-black mt-4 mb-2">ACCOUNT PAGES</h6>
                     </a>
-                  </li>
+                  </li> -->
   
                   <li class="nav-item">
                     <a class="nav-link" href="logout.php">
@@ -87,18 +87,7 @@
                     </a>
                   </li>
 
-                  <li class="nav-item text-center mt-4">
-                    <img
-                      class="w-50 mx-auto "
-                      src="/assets/img/icon-documentation.svg"
-                      alt="sidebar_illustration"
-                    />
-
-                    <h6 class="mb-0">Need help?</h6>
-                    <p class="text-xs font-weight-bold mb-0">
-                      Please check our docs
-                    </p>
-                  </li>
+                 
                   <!-- <div class="card card-plain shadow-none" id="sidenavCard">
                     <img
                       class="w-50 mx-auto"
