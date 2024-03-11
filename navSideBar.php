@@ -75,7 +75,7 @@
                   </li>
   
                   <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="logout.php">
                       <img
                         width="18"
                         height="18"
