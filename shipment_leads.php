@@ -20,6 +20,10 @@
       rel="stylesheet"
     />
     <!-- font style end -->
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
   </head>
   <body>
     <section class="main">
@@ -373,6 +377,12 @@
       </div>
     </div>
     <!-- modal end -->
+
+    <script type="text/javascript">
+      $(document).ready( function () {
+          $('.table').DataTable();
+      });
+  </script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
