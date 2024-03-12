@@ -93,7 +93,7 @@ if(!($_SESSION)){
                               <p class="text-xs text-secondary mb-0"><?php echo ucfirst($row['companypaymentlimit']); ?></p>
                                                           </td> 
                             <td class="align-middle">
-                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                              <a href="javascript:;" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 Edit
                               </a>
                             </td>
@@ -160,14 +160,14 @@ if(!($_SESSION)){
         <div class="modal-content">
           <div class="modal-header">
             <!-- <h1 class="modal-title fs-5" >Modal title</h1> -->
-            <h5 class="mt-2 " id="staticBackdropLabel">Edit Agent Details</h5>
+            <!-- <h5 class="mt-2 " id="staticBackdropLabel">Company</h5> -->
     
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <form>
-              <h5 class="mt-2 mb-5">Edit Company Details</h5>
-             <h6 class="mt-2 mb-4">COMPANY INFORMATION</h6>
+              <h5 class="mt-2 mb-5">Edit Company</h5>
+             <h6 class="mt-2 mb-4"></h6>
              <div class="row">
               <div class="col-md-6">
                 <div class="form-group mb-4">
@@ -284,6 +284,8 @@ if(!($_SESSION)){
       });
   </script>
 
+  
+<script src="addlivefeed.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
