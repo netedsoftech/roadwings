@@ -38,7 +38,10 @@ if(!($_SESSION)){
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Status</th>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Payment Terms ( 1 - 45 days)</th>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Limit Assign</th>
+                           <?php if($_SESSION['agentrole'] == "Agent"): ?>
+                            <?php else: ?>
                           <th class="text-secondary opacity-7"></th>
+                          <?php endif; ?>
                         </tr>
                       </thead>
                       <tbody>
@@ -91,12 +94,18 @@ if(!($_SESSION)){
                             </td>
                             <td>
                               <p class="text-xs text-secondary mb-0"><?php echo ucfirst($row['companypaymentlimit']); ?></p>
-                                                          </td> 
-                            <td class="align-middle">
+                                                        </td> 
+                            <?php if($_SESSION['agentrole'] == "Agent"): ?>
+                            <?php else: ?>
+                            
+
+                             <td class="align-middle">  
                               <a href="javascript:;" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 Edit
                               </a>
-                            </td>
+                             </td>
+                             <?php endif; ?>
+                            
                           </tr>
                           <?php } ?>
                       </tbody>
@@ -284,7 +293,7 @@ if(!($_SESSION)){
       });
   </script>
 
-  
+
 <script src="addlivefeed.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
