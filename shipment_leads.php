@@ -95,7 +95,7 @@ if(!($_SESSION)){
                             <td>
                               <p class="text-xs text-secondary mb-0"><?php echo ucfirst($row['companypaymentlimit']); ?></p>
                                                         </td> 
-                            <?php if($_SESSION['agentrole'] == "Agent"): ?>
+                            <?php if($_SESSION['agentrole'] == "Agent" || $_SESSION['agentrole'] == "Team leader"): ?>
                             <?php else: ?>
                             
 

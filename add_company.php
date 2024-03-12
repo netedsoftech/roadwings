@@ -136,7 +136,7 @@ if(!($_SESSION)){
                       <div class="form-group mb-4">
                         <label for="example-text-input"  class="form-control-label mb-2">Company Status</label>
                         <select name="companyStatus"  class="form-control">
-                         <?php if($_SESSION['agentrole'] == "Agent"): ?>
+                         <?php if($_SESSION['agentrole'] == "Agent" || $_SESSION['agentrole'] == "Team leader"): ?>
                               <option value="3">Pending</option>
                           <?php else: ?>
                               <option value="1">Working</option>
