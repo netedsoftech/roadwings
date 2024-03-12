@@ -5,6 +5,8 @@ if(!($_SESSION)){
     header("location: login_page.php");
   }
 
+  //echo "<pre>"; print_r($_SESSION);die;
+
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //echo "<pre>"; print_r($_POST);die;
@@ -134,11 +136,15 @@ if(!($_SESSION)){
                       <div class="form-group mb-4">
                         <label for="example-text-input"  class="form-control-label mb-2">Company Status</label>
                         <select name="companyStatus"  class="form-control">
-                          <option value="1">Working</option>
-                          <option value="2">Approved</option>
-                          <option value="3">Pending</option>
-                          <option value="4">Rejected</option>
-                          <option value="4">High Risk</option>
+                         <?php if($_SESSION['agentrole'] == "Agent"): ?>
+                              <option value="3">Pending</option>
+                          <?php else: ?>
+                              <option value="1">Working</option>
+                              <option value="2">Approved</option>
+                              <option value="3">Pending</option>
+                              <option value="4">Rejected</option>
+                              <option value="5">High Risk</option>
+                          <?php endif; ?>
                         </select>
                       </div>
                     </div>
