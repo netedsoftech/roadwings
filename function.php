@@ -61,7 +61,7 @@ function authenticateUser($mysqli, $username, $password) {
 
 function insertData($mysqli, $agentname, $email, $password,$agentphoneno,$agentrole,$date) {
     // Hash the password
-   echo $password_hash = password_hash($password, PASSWORD_DEFAULT); die;
+    $password_hash = password_hash($password, PASSWORD_DEFAULT); 
 
     // Construct the SQL query
     $sql = "INSERT INTO login (agentname, email, password,agentphoneno,agentrole,createdat) VALUES ('$agentname', '$email', '$password_hash','$agentphoneno','$agentrole','".$date."')";
