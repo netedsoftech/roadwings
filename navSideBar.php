@@ -1,3 +1,18 @@
+<?php
+$urlArray = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+  $segments = explode('/', $urlArray);
+  $numSegments = count($segments); 
+  $currentSegment = $segments[$numSegments - 1];
+  $activeclass = "";
+
+// Define an array of page names
+$pages = array("index.php", "agents.php", "shipment_leads.php", "add_company.php", "billing.php");
+
+// Check if the current segment is in the array of page names
+if (in_array($currentSegment, $pages)) {
+    $activeclass = "active";
+}
+?>
 <nav class="col-lg-2 col-md-2 d-none d-md-block sidebar mt-4">
             <div class="logo-img text-center mb-3 p-3">
               <img
@@ -9,7 +24,7 @@
             <div >
               <ul class="nav flex-column">
                 <li class="nav-item mt-2 mb-2">
-                  <a class="nav-link active " href="index.php">
+                  <a class="nav-link <?php echo $currentSegment == 'index.php' ? 'active' : ''; ?> " href="index.php">
                     <img
                       width="18"
                       height="18"
@@ -21,7 +36,7 @@
                   </a>
                 </li>
                 <li class="nav-item mt-2 mb-2">
-                  <a class="nav-link " href="agents.php">
+                  <a class="nav-link <?php echo $currentSegment == 'agents.php' ? 'active' : ''; ?> " href="agents.php">
                     <img
                       width="18"
                       height="18"
@@ -33,7 +48,7 @@
                   </a>
                 </li>
                 <li class="nav-item mt-2 mb-2">
-                  <a class="nav-link " href="shipment_leads.php">
+                  <a class="nav-link <?php echo $currentSegment == 'shipment_leads.php' ? 'active' : ''; ?> " href="shipment_leads.php">
                     <img
                       width="18"
                       height="18"
@@ -46,7 +61,7 @@
                 </li>
 
                 <li class="nav-item mt-2 mb-2">
-                  <a class="nav-link" href="add_company.php">
+                  <a class="nav-link <?php echo $currentSegment == 'add_company.php' ? 'active' : ''; ?> " href="add_company.php">
                     <img
                       width="18"
                       height="18"
@@ -59,7 +74,7 @@
                 </li>
 
                 <li class="nav-item mt-2 mb-2">
-                  <a class="nav-link" href="">
+                  <a class="nav-link <?php echo $currentSegment == 'billing.php' ? 'active' : ''; ?>" href="billing.php">
                     <img width="18" height="18" src="https://img.icons8.com/fluency-systems-regular/18/143e8b/bill.png" alt="bill"  class="mx-2" />
                     Biling
                   </a>

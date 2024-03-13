@@ -103,6 +103,12 @@ if(!($_SESSION)){
                               <a href="javascript:;" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 Edit
                               </a>
+                              <?php 
+                                if($_SESSION['agentrole'] == "Admin"):
+                              ?>
+                               <a href="deletecompany.php"  class="text-secondary font-weight-bold text-xs" >Delete</a>
+                             
+                               <?php endif; ?>
                              </td>
                              <?php endif; ?>
                             

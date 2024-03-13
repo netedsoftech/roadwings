@@ -256,6 +256,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <a href="javascript:" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
                                   Edit
                                 </a>
+                                <?php if($_SESSION['agentrole'] == "Admin"){?>
+                                <a href="delete.php" class="text-secondary font-weight-bold text-xs" >
+                                  Delete
+                                </a>
+                              <?php }?>
                               </td>
                             <?php } ?>
                             </tr>
