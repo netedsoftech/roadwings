@@ -9,6 +9,19 @@ if(!($_SESSION)){
   include("header.php");
 ?>
   <body>
+    <style>
+      @media (max-width:1300px){
+        .text-th {
+  font-size: 8px!important;
+}
+      }
+
+      @media (min-width:1400){
+        .text-th {
+  font-size: 11px!important;
+}
+      }
+    </style>
     <section class="main">
       <div class="container-fluid">
         <div class="row">
@@ -27,17 +40,17 @@ if(!($_SESSION)){
                     <table class="table align-items-center mb-0">
                       <thead>
                         <tr>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Name</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> E-mail ID</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Manager Name</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ph. Number</th>
-                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"> Address</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Postal Code</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">City</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">state</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Status</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Payment Terms ( 1 - 45 days)</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Limit Assign</th>
+                            <th class="text-uppercase text-secondary text-th font-weight-bolder opacity-7"> Name</th>
+                            <th class="text-uppercase text-secondary text-th font-weight-bolder opacity-7"> E-mail ID</th>
+                            <th class="text-uppercase text-secondary text-th font-weight-bolder opacity-7">Manager Name</th>
+                            <th class="text-uppercase text-secondary text-th font-weight-bolder opacity-7">Ph. Number</th>
+                          <th class="text-uppercase text-secondary text-th font-weight-bolder opacity-7 ps-2"> Address</th>
+                          <th class="text-center text-uppercase text-secondary text-th font-weight-bolder opacity-7">Postal Code</th>
+                          <th class="text-center text-uppercase text-secondary text-th font-weight-bolder opacity-7">City</th>
+                          <th class="text-center text-uppercase text-secondary text-th font-weight-bolder opacity-7">state</th>
+                          <th class="text-center text-uppercase text-secondary text-th font-weight-bolder opacity-7"> Status</th>
+                          <th class="text-center text-uppercase text-secondary text-th font-weight-bolder opacity-7">Payment Terms</th>
+                          <th class="text-center text-uppercase text-secondary text-th font-weight-bolder opacity-7">Limit Assign</th>
                            <?php if($_SESSION['agentrole'] == "Agent"): ?>
                             <?php else: ?>
                           <th class="text-secondary opacity-7"></th>
@@ -54,7 +67,7 @@ if(!($_SESSION)){
                               <div class="d-flex px-2 py-1">
                                 
                                 <div class="d-flex flex-column justify-content-center">
-                                  <h6 class="mb-0 text-sm"><?php echo ucfirst($row['comapnyname']); ?></h6>
+                                  <a href="company_shipment_leads.php" class="mb-0 text-xs"><?php echo ucfirst($row['comapnyname']); ?></a>
                                   
                                 </div>
                               </div>
@@ -85,14 +98,14 @@ if(!($_SESSION)){
                             </td>
                             <td class="align-middle text-center">
                               <span class="text-secondary text-xs font-weight-bold"><?php if($row['companystatus']==1){
-                                echo "working";
-                              }else if($row['companystatus']==2){ echo "Approved";}else if($row['companystatus']==3){ echo "Pending";}
-                              else if($row['companystatus']==4){ echo "High Risk";} ?></span>
+                                echo '<img width="15" height="15" src="https://img.icons8.com/external-others-inmotus-design/15/f14f81ab/external-Dot-atm-others-inmotus-design.png" alt="external-Dot-atm-others-inmotus-design"/>';
+                              }else if($row['companystatus']==2){ echo '<img width="15" height="15" src="https://img.icons8.com/external-flat-icons-inmotus-design/15/external-green-political-signs-flat-icons-inmotus-design.png" alt="external-green-political-signs-flat-icons-inmotus-design"/>';}else if($row['companystatus']==3){ echo '<img width="15" height="15" src="https://img.icons8.com/emoji/15/yellow-circle-emoji.png" alt="yellow-circle-emoji"/>';}
+                              else if($row['companystatus']==4){ echo '<img width="15" height="15" src="https://img.icons8.com/emoji/15/red-circle-emoji.png" alt="red-circle-emoji"/>';} ?></span>
                             </td>
                             <td class="align-middle text-center">
                               <span class="text-secondary text-xs font-weight-bold"><?php echo $row['paymentterm']; ?></span>
                             </td>
-                            <td>
+                            <td class="align-middle text-center">
                               <p class="text-xs text-secondary mb-0"><?php echo ucfirst($row['companypaymentlimit']); ?></p>
                                                         </td> 
                             <?php if($_SESSION['agentrole'] == "Agent" || $_SESSION['agentrole'] == "Team leader"): ?>

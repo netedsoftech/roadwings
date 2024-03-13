@@ -59,10 +59,16 @@ h1,h2,h3,h4,h5,p,span,small,a,label{
 
 /* main section start */
 
-/* .main-content {
-  margin-left: 18.125rem!important;
+.main-content {
+  margin-left: 12.125rem;
   
-} */
+}
+
+nav{
+  position: absolute;
+    bottom: 0px;
+    top: 0px;
+}
 
 .main-header{
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -150,5 +156,14 @@ sub{
   border-radius: 10px;
 }
 
+
+.dataTables_wrapper .dataTables_filter input {
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 5px;
+  background-color: transparent;
+  margin-left: 3px;
+  margin-bottom: 20px;
+}
 /* scroll bar end */
 /* main section end */
