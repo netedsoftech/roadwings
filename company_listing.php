@@ -113,13 +113,13 @@ if(!($_SESSION)){
                             
 
                              <td class="align-middle">  
-                              <a href="javascript:;" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                Edit
+                              <a href="javascript:;" title="Edit" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                              <img width="30" height="30" src="https://img.icons8.com/dotty/30/143e8b/create-new.png" alt="create-new"/>
                               </a>
                               <?php 
                                 if($_SESSION['agentrole'] == "Admin"):
                               ?>
-                               <a href="deletecompany.php"  class="text-secondary font-weight-bold text-xs" >Delete</a>
+                               <a href="deletecompany.php" title="Delete" class="text-secondary font-weight-bold text-xs" > <img width="30" height="30" src="https://img.icons8.com/dotty/30/ff0000/delete-forever.png" alt="delete-forever"/></a>
                              
                                <?php endif; ?>
                              </td>

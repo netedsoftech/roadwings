@@ -65,13 +65,7 @@ if (in_array($currentSegment, $pages)) {
 
                 <li class="nav-item mt-2 mb-2">
                   <a class="nav-link <?php echo $currentSegment == 'add_company.php' ? 'active' : ''; ?> " href="add_company.php">
-                    <img
-                      width="18"
-                      height="18"
-                      src="https://img.icons8.com/external-goofy-line-kerismaker/18/143e8b/external-Desk-Calender-stationery-goofy-line-kerismaker.png"
-                      alt="external-Desk-Calender-stationery-goofy-line-kerismaker"
-                      class="mx-2"
-                    />
+                  <img width="18" height="18" src="https://img.icons8.com/ios/18/143e8b/company--v1.png" alt="company--v1" class="mx-2"/>
                     Add Compnay 
                   </a>
                 </li>
@@ -185,9 +179,9 @@ if (in_array($currentSegment, $pages)) {
 </div>
 
 
-<div class="modal">
-        <div class="modal-content">
-            <span class="modal-close-button">&times;</span>
+<div class="chatBox">
+        <div class="chatBox-content">
+            <span class="chatBox-close-button">&times;</span>
             <h1>Add What you want here.</h1>
         </div>
     </div>
@@ -363,7 +357,7 @@ if (in_array($currentSegment, $pages)) {
   top: 18px;
 }
 
-.modal {
+.chatBox {
   position: fixed;
   left: 0;
   top: 0;
@@ -376,7 +370,7 @@ if (in_array($currentSegment, $pages)) {
   transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
 
-.modal-content {
+.chatBox-content {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -387,7 +381,7 @@ if (in_array($currentSegment, $pages)) {
   border-radius: 0.5rem;
 }
 
-.modal-close-button {
+.chatBox-close-button {
   float: right;
   width: 1.5rem;
   line-height: 1.5rem;
@@ -401,7 +395,7 @@ if (in_array($currentSegment, $pages)) {
   background-color: darkgray;
 }
 
-.show-modal {
+.show-chatBox {
   opacity: 1;
   visibility: visible;
   transform: scale(1);
@@ -415,7 +409,7 @@ if (in_array($currentSegment, $pages)) {
   }
 }
     </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <script>
       $('.chat-button').on('click' , function(){
 	$('.chat-button').css({"display": "none"});
@@ -430,11 +424,11 @@ $('.chat-box .chat-box-header p').on('click' , function(){
 
 $("#addExtra").on("click" , function(){
 		
-		$(".modal").toggleClass("show-modal");
+		$(".chatBox").toggleClass("show-chatBox");
 })
 
-$(".modal-close-button").on("click" , function(){
-	$(".modal").toggleClass("show-modal");
+$(".chatBox-close-button").on("click" , function(){
+	$(".chatBox").toggleClass("show-chatBox");
 })
     </script>
  <!-- chat box end -->

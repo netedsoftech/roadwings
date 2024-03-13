@@ -206,8 +206,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
              <div class="row mt-4 ">
               <div class="col-lg-9">
-                <div class="main-header p-3 ">
-                  <div class="card mb-4">
+                <div class="p-3 ">
+                  <div class=" mb-4">
                     <div class="card-header pb-0">
                       <h6>Listing</h6>
                     </div>
@@ -253,12 +253,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                               if(($_SESSION['agentrole'] == "Manager") || ($_SESSION['agentrole'] == "Admin")) {
                                 ?>
                               <td class="align-middle">
-                                <a href="javascript:" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
-                                  Edit
+                                <a href="javascript:" title="Edit" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+                                 <img width="30" height="30" src="https://img.icons8.com/dotty/30/143e8b/create-new.png" alt="create-new"/>
                                 </a>
                                 <?php if($_SESSION['agentrole'] == "Admin"){?>
-                                <a href="delete.php" class="text-secondary font-weight-bold text-xs" >
-                                  Delete
+                                <a href="delete.php" title="Delete" class="text-secondary font-weight-bold text-xs" >
+                                <img width="30" height="30" src="https://img.icons8.com/dotty/30/ff0000/delete-forever.png" alt="delete-forever"/>
                                 </a>
                               <?php }?>
                               </td>
