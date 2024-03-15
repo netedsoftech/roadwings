@@ -292,7 +292,9 @@ background: #fff!important;
                               <th class="text-uppercase text-uppercase text-th">DESIGNATION</th>
                               <th class="text-center text-uppercase text-th">Contact Number</th>
                               <th class="text-center text-uppercase text-th">Joined Date</th>
+                              <?php if(($_SESSION['agentrole'] == "Manager") || ($_SESSION['agentrole'] == "MANAGER") || ($_SESSION['agentrole'] == "Admin")) {?>
                               <th class="text-secondary opacity-7"></th>
+                            <?php } ?>
                             </tr>
                           </thead>
                           <tbody>
@@ -340,7 +342,7 @@ background: #fff!important;
                                 <span class="text-secondary text-xs font-weight-bold"><?php echo date('Y-m-d',strtotime($row['createdat'])); ?></span>
                               </td>
                               <?php 
-                              if(($_SESSION['agentrole'] == "Manager") || ($_SESSION['agentrole'] == "Admin")) {
+                              if(($_SESSION['agentrole'] == "Manager") || ($_SESSION['agentrole'] == "MANAGER") || ($_SESSION['agentrole'] == "Admin")) {
                                 ?>
                               <td class="align-middle">
                                 <a href="javascript:" title="Edit" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
