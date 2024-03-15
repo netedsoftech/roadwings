@@ -492,7 +492,9 @@ function addCompany($mysqli, $sessionid, $companyname, $companyemailid, $company
 }
 
 function createPassword($mysqli, $email, $password){
-    $sql = "UPDATE login set password = '$password' where email='$email'";
+    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+    $sql = "UPDATE login set password = '$password_hash' where email='$email'";
+
     if($mysqli->query($sql)){
         return "Password create successfully.";
     }else{
