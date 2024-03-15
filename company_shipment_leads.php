@@ -1,5 +1,6 @@
 <?php
 // Include the function.php file
+session_start();
 require_once "config.php";
 require_once "function.php";
 //echo "<pre>"; print_r($_SESSION);die;
