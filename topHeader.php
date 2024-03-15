@@ -5,33 +5,32 @@
             <!-- <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li> -->
             
               <?php
-              $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-              // Parse the URL
-              $url_components = parse_url($actual_link);
+                // Parse the URL
+                $url_components = parse_url($actual_link);
 
-              // Get the path from the URL
-              $path = isset($url_components['path']) ? $url_components['path'] : '';
+                // Get the path from the URL
+                $path = isset($url_components['path']) ? $url_components['path'] : '';
 
-              // Split the path into segments
-              $path_segments = explode('/', trim($path, '/'));
+                // Split the path into segments
+                $path_segments = explode('/', trim($path, '/'));
 
-              // Generate the breadcrumb trail
-              $breadcrumbs = array();
-              $breadcrumb_url = '';
-              foreach ($path_segments as $segment) {
-                  $breadcrumb_url .= '/' . $segment;
-                  $breadcrumbs[$breadcrumb_url] = ucfirst($segment); // Use ucfirst to capitalize the segment
-              }
+                // Generate the breadcrumb trail
+                $breadcrumbs = array();
+                $breadcrumb_url = '';
+                foreach ($path_segments as $segment) {
+                    $breadcrumb_url .= '/' . $segment;
+                    // Remove the .php extension from the segment if present
+                    $segment_name = pathinfo($segment, PATHINFO_FILENAME);
+                    $breadcrumbs[$breadcrumb_url] = ucfirst($segment_name); // Use ucfirst to capitalize the segment
+                }
 
-              // Display the breadcrumb trail
-            
-              foreach ($breadcrumbs as $url => $name) {
-                  echo '<li class="breadcrumb-item text-sm text-white active"  aria-current="page"><a href=" ' . $url . '" class="text-white">' . $name . '</a></li>';
-              }
-             
-              
-              ?>
+                // Display the breadcrumb trail
+                foreach ($breadcrumbs as $url => $name) {
+                    echo '<li class="breadcrumb-item text-sm text-white active"  aria-current="page"><a href="' . $url . '" class="text-white">' . $name . '</a></li>';
+                }
+                ?>
             
           </ol>
          <!--  <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6> -->
