@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Include the function.php file
 require_once "config.php";
 require_once "function.php";
