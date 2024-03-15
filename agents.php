@@ -135,7 +135,7 @@ background: #fff!important;
             
 
             <div class="form-group mb-4 ">
-              <input required="" class="form-control" name="agentphoneno" type="tel" minlength="10" maxlength="10" placeholder="Company Default Number *">
+              <input required="" class="form-control" name="agentphoneno" type="tel" minlength="10" maxlength="10" placeholder="+1 833 781 8686">
             </div><div class="form-group mb-4">
                 <select name="agentrole" class="form-control">
                   <!-- <option value="Manager">Manager</option>
@@ -182,8 +182,13 @@ background: #fff!important;
 
           <div class="col-lg-6">
           <div class="form-group mb-4 ">
-              <p>ROADWINGS LOGISTICS, <br> 6628 Sky Pointe Dr. Ste- 129
-              Las Vegas, NV - 89131</p>
+              <!-- <p>ROADWINGS LOGISTICS, <br> 6628 Sky Pointe Dr. Ste- 129
+              Las Vegas, NV - 89131</p> -->
+              <textarea class="form-control" rows="4" disabled>ROADWINGS LOGISTICS,
+6628 Sky Pointe Dr. Ste- 129
+Las Vegas, NV - 89131  
+P: +1 833 781 8686
+</textarea>
             </div>
           </div>
           <div class="col-lg-2"></div>
@@ -210,50 +215,88 @@ background: #fff!important;
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
-         <h6 class="mt-2 mb-4">Agent INFORMATION</h6>
+
+
+        <form method="post">
+         <h6 class="mt-2 mb-4">Agent Information</h6>
          <div class="row">
-          <div class="col-md-6">
-            <div class="form-group mb-4 form-item">
-              <label for="example-text-input" class="form-control-label mb-2">Agent Name <sub>*</sub></label>
-              <input class="form-control" type="text" placeholder="Morissette PLC">
+          <div class="col-md-4">
+            <div class="form-group mb-4">
+              <input name="agentname" required="" class="form-control" type="text" placeholder="Agent Name *">
             </div>
 
-            <div class="form-group mb-4 form-item">
-              <label for="example-text-input" class="form-control-label mb-2">Agent Username <sub>*</sub></label>
-              <input class="form-control" type="text" minlength="10" maxlength="10" placeholder="wick2@roadwings">
+            
+
+           
+            <div class="form-group mb-4">
+              <input required="" class="form-control" name="agentphoneno" type="tel" minlength="10" maxlength="10" placeholder="Contact Number *">
             </div>
 
-            <div class="form-group mb-4 form-item">
-              <label for="example-text-input" class="form-control-label mb-2">Agent Role</label>
-              <select name="companyStatus" class="form-control">
-                <option value="Manager">Manager</option>
+
+            
+
+
+          </div><div class="col-md-4">
+            
+
+            <div class="form-group mb-4 ">
+              <input required="" class="form-control" name="agentphoneno" type="tel" minlength="10" maxlength="10" placeholder="+1 833 781 8686">
+            </div><div class="form-group mb-4">
+                <select name="agentrole" class="form-control">
+                  <!-- <option value="Manager">Manager</option>
+                  <option value="Team Leader">Team Leader</option>
+                  <option value="Agent">Agent</option> -->
+  
+                  <option value=""> SELECT</option>
+                  <option value="COORDINATOR">COORDINATOR</option>
+                  <option value="MANAGER">MANAGER</option>
+                </select>
+              </div>
+
+            
+
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group mb-4">
+              <input required="" class="form-control" name="email" type="email" placeholder="Agent E-mail ID *">
+            </div>
+            <div class="form-group mb-4 ">
+              <select name="department" class="form-control">
+                <!-- <option value="Manager">Manager</option>
                 <option value="Team Leader">Team Leader</option>
-                <option value="Agent">Agent</option>
+                <option value="Agent">Agent</option> -->
+
+                <option selected="">DEPARTMENT</option>
+                <option value="DISPATCH">DISPATCH</option>
+                <option value="CUSTOMER SUPPORT">CUSTOMER SUPPORT</option>
+                <option value="ACCOUNTS">ACCOUNTS</option>
+                <option value="CMT PROFILE">CMT PROFILE</option>
 
               </select>
             </div>
 
-          </div>
-
-          <div class="col-md-6">
-            <div class="form-group mb-4 form-item">
-              <label for="example-text-input" class="form-control-label mb-2">Agent E-mail ID <sub>*</sub></label>
-              <input class="form-control" type="email" placeholder="hudson.wilhelmine@boehm.com">
-            </div>
-
-            <div class="form-group mb-4 form-item">
-              <label for="example-text-input" class="form-control-label mb-2">Contact Number <sub>*</sub></label>
-              <input class="form-control" type="tel" minlength="10" maxlength="10" placeholder="+1 (323) 916-4686">
-            </div>
+            
+            
             
           </div>
+
           <!-- <span class="aside-hr mt-3 mb-4"></span> -->
 
 
 
-          <div class="col-lg-4"></div>
-          <div class="col-lg-4 text-end px-3">
+          <div class="col-lg-4">
+          <div class="form-group mb-4 ">
+              <!-- <p>ROADWINGS LOGISTICS, <br> 6628 Sky Pointe Dr. Ste- 129
+              Las Vegas, NV - 89131</p> -->
+              <textarea class="form-control" rows="5" disabled="">ROADWINGS LOGISTICS,
+6628 Sky Pointe Dr. Ste- 129
+Las Vegas, NV - 89131  
+P: +1 833 781 8686
+</textarea>
+            </div>
+          </div>
+             <div class="col-lg-4 text-end px-3">
     <div class="form-group ">
               <button class="btn bg-danger">Delete Agent</button>
             </div>
