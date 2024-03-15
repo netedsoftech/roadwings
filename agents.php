@@ -286,10 +286,10 @@ background: #fff!important;
                           <thead>
                             <tr>
                               <th class="text-uppercase text-th ">Agents</th>
-                              <th class="text-uppercase text-uppercase text-th">DEPARTMENT</th>
-                              <th class="text-uppercase text-uppercase text-th">Company Number</th>
+                              <th class="text-center text-uppercase text-uppercase text-th">DEPARTMENT</th>
+                              <th class="text-center text-uppercase text-uppercase text-th">Company Number</th>
                              <!--  <th class="text-uppercase text-uppercase text-th">Company Address</th> -->
-                              <th class="text-uppercase text-uppercase text-th">DESIGNATION</th>
+                              <th class="text-center text-uppercase text-uppercase text-th">DESIGNATION</th>
                               <th class="text-center text-uppercase text-th">Contact Number</th>
                               <th class="text-center text-uppercase text-th">Joined Date</th>
                               <?php if(($_SESSION['agentrole'] == "Manager") || ($_SESSION['agentrole'] == "MANAGER") || ($_SESSION['agentrole'] == "Admin")) {?>
