@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 // Check if the user is already logged in, if yes, redirect to homepage
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
@@ -14,12 +13,17 @@ require_once "function.php";
 $errorMessage = "";
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+    //echo "<pre>"; print_r($_POST);die;
     // Call the authenticateUser function
-    $loginResult = authenticateUser($mysqli, $_POST["username"], $_POST["password"]);
-    if ($loginResult !== true) {
-        // Display error message if login failed
-        $errorMessage = $loginResult;
-        
+    $password = $_POST["password"];
+    $email = $_GET['email'];
+    $result = createPassword($mysqli, $email, $password);
+    $error = "";
+    $success = "";
+    if ($result=="Password create successfully.") {
+        $success = "Password create successfully.";
+    }else{
+        $error = "Create password faild.";
     }
 }
 //echo $errorMessage; die("here i am working");
@@ -37,6 +41,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="assets/style_login.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
@@ -65,9 +72,41 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 <form class="form-horizontal" method="post" onsubmit="return validatePasswords()">
+    <?php if(!empty($success)){
+        ?>
+        <script>
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Success",
+                showConfirmButton: false,
+                timer: 2000
+            }).then(function() {
+                window.location.href = "login_page.php";
+            });
+        </script>
+        <?php
+        echo $success;
+    }?>
+    <?php if(!empty($error)){
+        ?>
+         <script>
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "Error",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                </script>
+        <?php
+
+        echo $error;
+
+    }?>
     <div class="form-group">
         <label>Create Password</label>
-        <input type="password" id="createpassword" name="createpassword" class="form-control" required>
+        <input type="password" name="password" id="createpassword" name="createpassword" class="form-control" required>
     </div>
     <div class="form-group">
         <label>Confirm Password</label>

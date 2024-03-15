@@ -1,5 +1,4 @@
 <?php
-session_start();
 // Function to authenticate user login
 function authenticateUser($mysqli, $username, $password) {
     // Define variables and initialize with empty values
@@ -223,7 +222,7 @@ function insertData($mysqli, $agentname, $email, $department,$agentphoneno,$agen
                           <td align="center" style="padding:0;Margin:0;padding-top:25px;padding-left:40px;padding-right:40px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, helvetica neue, arial, verdana, sans-serif;line-height:24px;color:#666666;font-size:16px">If did not make this request, just ignore this email. Otherwise, please click the button below to create your password:</p></td>
                          </tr>
                          <tr style="border-collapse:collapse">
-                          <td align="center" style="Margin:0;padding-left:10px;padding-right:10px;padding-top:40px;padding-bottom:40px"><span class="es-button-border" style="border-style:solid;border-color:#3D5CA3;background:#FFFFFF;border-width:2px;display:inline-block;border-radius:10px;width:auto"><a href="http://localhost/roadwings_logistics/roadwings/agent_create_password_page.php" class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#3D5CA3;font-size:14px;display:inline-block;background:#FFFFFF;border-radius:10px;font-family:arial, helvetica neue, helvetica, sans-serif;font-weight:bold;font-style:normal;line-height:17px;width:auto;text-align:center;padding:15px 20px 15px 20px;mso-padding-alt:0;mso-border-alt:10px solid #FFFFFF">CREATE PASSWORD</a></span></td>
+                          <td align="center" style="Margin:0;padding-left:10px;padding-right:10px;padding-top:40px;padding-bottom:40px"><span class="es-button-border" style="border-style:solid;border-color:#3D5CA3;background:#FFFFFF;border-width:2px;display:inline-block;border-radius:10px;width:auto"><a href="http://localhost/roadwings_logistics/roadwings/agent_create_password_page.php?email='.$email.'" class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#3D5CA3;font-size:14px;display:inline-block;background:#FFFFFF;border-radius:10px;font-family:arial, helvetica neue, helvetica, sans-serif;font-weight:bold;font-style:normal;line-height:17px;width:auto;text-align:center;padding:15px 20px 15px 20px;mso-padding-alt:0;mso-border-alt:10px solid #FFFFFF">CREATE PASSWORD</a></span></td>
                          </tr>
                        </table></td>
                      </tr>
@@ -489,6 +488,15 @@ function addCompany($mysqli, $sessionid, $companyname, $companyemailid, $company
         return "Company added successfully";
     } else {
         return "Error adding company: " . $mysqli->error;
+    }
+}
+
+function createPassword($mysqli, $email, $password){
+    $sql = "UPDATE login set password = '$password' where email='$email'";
+    if($mysqli->query($sql)){
+        return "Password create successfully.";
+    }else{
+        return "Create password faild.";
     }
 }
 ?>
