@@ -1,4 +1,6 @@
-<?php include("header.php");
+<?php 
+session_start();
+include("header.php");
 require_once "config.php";
 require_once "function.php";
 if(!($_SESSION)){
