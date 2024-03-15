@@ -6,13 +6,15 @@ $urlArray = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
   $activeclass = "";
 
 // Define an array of page names
-$pages = array("index.php", "agents.php", "shipment_leads.php", "add_company.php", "billing.php");
+$pages = array("index.php", "agents.php", "company_shipment_leads.php", "add_customer.php", "billing.php");
 
 // Check if the current segment is in the array of page names
 if (in_array($currentSegment, $pages)) {
     $activeclass = "active";
 }
 ?>
+  <div class="working"></div>
+
 <nav class="col-lg-2 col-md-2 d-none d-md-block sidebar mt-4">
             <div class="logo-img text-center mb-3 p-3">
               <img
@@ -59,14 +61,14 @@ if (in_array($currentSegment, $pages)) {
                       alt="external-Desk-Calender-stationery-goofy-line-kerismaker"
                       class="mx-2"
                     />
-                 Company Lists
+                    Customer Lists
                   </a>
                 </li>
 
                 <li class="nav-item mt-2 mb-2">
-                  <a class="nav-link <?php echo $currentSegment == 'add_company.php' ? 'active' : ''; ?> " href="add_company.php">
+                  <a class="nav-link <?php echo $currentSegment == 'add_customer.php' ? 'active' : ''; ?> " href="add_customer.php">
                   <img width="18" height="18" src="https://img.icons8.com/ios/18/143e8b/company--v1.png" alt="company--v1" class="mx-2"/>
-                    Add Compnay 
+                    Add Customer 
                   </a>
                 </li>
 
@@ -327,7 +329,7 @@ if (in_array($currentSegment, $pages)) {
 
 .chat-button {
   padding: 25px 16px;
-  background: #2c50ef;
+  background: #124483;
   width: 150px;
   position: absolute;
   bottom: 0;
@@ -338,6 +340,7 @@ if (in_array($currentSegment, $pages)) {
   border-bottom-left-radius: 25px;
   box-shadow: 0 2px 15px rgba(44, 80, 239, 0.21);
   cursor: pointer;
+  z-index: 999;
 }
 .chat-button span::before {
   content: "";
@@ -432,3 +435,4 @@ $(".chatBox-close-button").on("click" , function(){
 })
     </script>
  <!-- chat box end -->
+ 

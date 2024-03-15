@@ -31,6 +31,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <?php include("header.php")?>
+<style>
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current{
+color: #fff!important;
+background: #124483!important;
+border-radius: 50%!important;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px!important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+color: #124483!important;
+background: #fff!important;
+}
+
+
+</style>
   <body>
     <section class="main">
       <div class="container-fluid">
@@ -41,6 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <?php include("navSideBar.php");?>
           <!-- Sidebar end -->
           <div class="col-lg-10 col-md-10 main-content mt-4">
+          <?php include("topHeader.php");?>
+          
              <div class="d-flex justify-content-between p-3 main-header ">
               <h5 class="text-break">Agent Listing</h5>
               <?php if(!empty($message)){
@@ -65,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <!-- <h1 class="modal-title fs-5" >Modal title</h1> -->
@@ -74,50 +91,81 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="post">
+      <form method="post">
          <h6 class="mt-2 mb-4">Agent INFORMATION</h6>
          <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="form-group mb-4">
-              <label for="example-text-input" class="form-control-label mb-2">Agent Name <sub>*</sub></label>
-              <input name="agentname" required class="form-control" type="text" placeholder="Morissette PLC">
+              <input name="agentname" required="" class="form-control" type="text" placeholder="Agent Name *">
             </div>
 
+            
+
+           
             <div class="form-group mb-4">
-              <label for="example-text-input" class="form-control-label mb-2">Agent Password <sub>*</sub></label>
-              <input name="password" required class="form-control" type="password"  placeholder="************">
+              <input required="" class="form-control" name="agentphoneno" type="tel" minlength="10" maxlength="10" placeholder="Contact Number *">
             </div>
 
+
+            
+
+
+          </div><div class="col-md-4">
+            
+
+            <div class="form-group mb-4 ">
+              <input required="" class="form-control" name="agentphoneno" type="tel" minlength="10" maxlength="10" placeholder="Company Default Number *">
+            </div><div class="form-group mb-4">
+                <select name="agentrole" class="form-control">
+                  <!-- <option value="Manager">Manager</option>
+                  <option value="Team Leader">Team Leader</option>
+                  <option value="Agent">Agent</option> -->
+  
+                  <option selected="">DESIGNATION</option>
+                  <option value="COORDINATOR">COORDINATOR</option>
+                  <option value="MANAGER">MANAGER</option>
+                </select>
+              </div>
+
+            
+
+          </div>
+
+          <div class="col-md-4">
             <div class="form-group mb-4">
-              <label for="example-text-input" class="form-control-label mb-2">Agent Role</label>
+              <input required="" class="form-control" name="email" type="email" placeholder="Agent E-mail ID *">
+            </div>
+            <div class="form-group mb-4 ">
               <select name="agentrole" class="form-control">
-                <option value="Manager">Manager</option>
+                <!-- <option value="Manager">Manager</option>
                 <option value="Team Leader">Team Leader</option>
-                <option value="Agent">Agent</option>
+                <option value="Agent">Agent</option> -->
+
+                <option selected="">DEPARTMENT</option>
+                <option value="DISPATCH">DISPATCH</option>
+                <option value="CUSTOMER SUPPORT">CUSTOMER SUPPORT</option>
+                <option value="ACCOUNTS">ACCOUNTS</option>
+                <option value="CMT PROFILE">CMT PROFILE</option>
 
               </select>
             </div>
 
-          </div>
-
-          <div class="col-md-6">
-            <div class="form-group mb-4">
-              <label for="example-text-input" class="form-control-label mb-2">Agent E-mail ID <sub>*</sub></label>
-              <input required class="form-control" name="email" type="email" placeholder="hudson.wilhelmine@boehm.com">
-            </div>
-
-            <div class="form-group mb-4">
-              <label for="example-text-input" class="form-control-label mb-2">Contact Number <sub>*</sub></label>
-              <input required class="form-control" name="agentphoneno" type="tel" minlength="10" maxlength="10" placeholder="+1 (323) 916-4686">
-            </div>
+            
+            
             
           </div>
+
           <!-- <span class="aside-hr mt-3 mb-4"></span> -->
 
 
 
-          <div class="col-lg-4"></div>
-          <div class="col-lg-4"></div>
+          <div class="col-lg-6">
+          <div class="form-group mb-4 ">
+              <p>ROADWINGS LOGISTICS, <br> 6628 Sky Pointe Dr. Ste- 129
+Las Vegas, NV - 89131</p>
+            </div>
+          </div>
+          <div class="col-lg-2"></div>
           <div class="col-lg-4 text-end">
             <div class="form-group ">
               <button class="btn ">Submit Details</button>
@@ -132,7 +180,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <!-- <h1 class="modal-title fs-5" >Modal title</h1> -->
@@ -145,17 +193,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          <h6 class="mt-2 mb-4">Agent INFORMATION</h6>
          <div class="row">
           <div class="col-md-6">
-            <div class="form-group mb-4">
+            <div class="form-group mb-4 form-item">
               <label for="example-text-input" class="form-control-label mb-2">Agent Name <sub>*</sub></label>
               <input class="form-control" type="text" placeholder="Morissette PLC">
             </div>
 
-            <div class="form-group mb-4">
+            <div class="form-group mb-4 form-item">
               <label for="example-text-input" class="form-control-label mb-2">Agent Username <sub>*</sub></label>
               <input class="form-control" type="text" minlength="10" maxlength="10" placeholder="wick2@roadwings">
             </div>
 
-            <div class="form-group mb-4">
+            <div class="form-group mb-4 form-item">
               <label for="example-text-input" class="form-control-label mb-2">Agent Role</label>
               <select name="companyStatus" class="form-control">
                 <option value="Manager">Manager</option>
@@ -168,12 +216,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
 
           <div class="col-md-6">
-            <div class="form-group mb-4">
+            <div class="form-group mb-4 form-item">
               <label for="example-text-input" class="form-control-label mb-2">Agent E-mail ID <sub>*</sub></label>
               <input class="form-control" type="email" placeholder="hudson.wilhelmine@boehm.com">
             </div>
 
-            <div class="form-group mb-4">
+            <div class="form-group mb-4 form-item">
               <label for="example-text-input" class="form-control-label mb-2">Contact Number <sub>*</sub></label>
               <input class="form-control" type="tel" minlength="10" maxlength="10" placeholder="+1 (323) 916-4686">
             </div>
@@ -205,21 +253,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
              </div>
 
              <div class="row mt-4 ">
-              <div class="col-lg-9">
+              <div class="col-lg-12">
                 <div class="p-3 ">
                   <div class=" mb-4">
                     <div class="card-header pb-0">
-                      <h6>Listing</h6>
+                      <h6 class="text-white">Listing</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                       <div class="table-responsive p-0">
                         <table class="table align-items-center mb-0">
                           <thead>
                             <tr>
-                              <th class="text-uppercase text-xxs ">Agents</th>
-                              <th class="text-uppercase text-uppercase text-xxs">Role</th>
-                              <th class="text-center text-uppercase text-xxs">Contact Number</th>
-                              <th class="text-center text-uppercase text-xxs">Employed</th>
+                              <th class="text-uppercase text-th ">Agents</th>
+                              <th class="text-uppercase text-uppercase text-th">DEPARTMENT</th>
+                              <th class="text-uppercase text-uppercase text-th">Company Number</th>
+                              <th class="text-uppercase text-uppercase text-th">Company Address</th>
+                              <th class="text-uppercase text-uppercase text-th">DESIGNATION</th>
+                              <th class="text-center text-uppercase text-th">Contact Number</th>
+                              <th class="text-center text-uppercase text-th">Employed</th>
                               <th class="text-secondary opacity-7"></th>
                             </tr>
                           </thead>
@@ -233,18 +284,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="d-flex px-2 py-1">
                                   
                                   <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm"><?php echo ucfirst($row['agentname']); ?></h6>
+                                    <a href="#" class="mb-0 text-sm"><?php echo ucfirst($row['agentname']); ?></a>
                                     <p class="text-xs text-secondary mb-0"><?php echo $row['email']; ?></p>
                                     <p class="text-xs text-secondary mb-0">Username: (<?php echo $row['email']; ?>)</p>
                                   </div>
                                 </div>
                               </td>
-                              <td>
-                                <p class="text-xs font-weight-bold mb-0"><?php echo ucfirst($row['agentrole']); ?></p>
-                                <p class="text-xs text-secondary mb-0"><?php echo "Roadwings" ?></p>
+                              <!-- <td>
+                                 <p class="text-xs font-weight-bold mb-0"><?php //echo ucfirst($row['agentrole']); ?></p> 
+
+                                <p class="text-xs text-secondary mb-0"><?php //echo "Roadwings" ?></p> 
+                              </td> -->
+
+                              <td class="align-middle text-center text-sm">
+                                <span class="text-secondary text-xs font-weight-bold">Dispatch </span>
+                              </td>
+
+                              <td class="align-middle text-center text-sm">
+                                <span class="text-secondary text-xs font-weight-bold">88449989929 </span>
+                              </td>
+
+                              <td class="align-middle text-center text-sm">
+                                <span class="text-secondary text-xs font-weight-bold">Roadwings 8584 </span>
+                              </td>
+
+                              <td class="align-middle text-center text-sm">
+                                <span class="text-secondary text-xs font-weight-bold">Manager</span>
                               </td>
                               <td class="align-middle text-center text-sm">
-                                <span class="badge badge-sm bg-gradient-success"><?php echo $row['agentphoneno']; ?></span>
+                              
+                                <span class="text-secondary text-xs font-weight-bold"><?php echo $row['agentphoneno']; ?></span>
                               </td>
                               <td class="align-middle text-center">
                                 <span class="text-secondary text-xs font-weight-bold"><?php echo date('Y-m-d',strtotime($row['createdat'])); ?></span>
@@ -254,11 +323,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 ?>
                               <td class="align-middle">
                                 <a href="javascript:" title="Edit" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
-                                 <img width="30" height="30" src="https://img.icons8.com/dotty/30/143e8b/create-new.png" alt="create-new"/>
+                                <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design"/>
                                 </a>
                                 <?php if($_SESSION['agentrole'] == "Admin"){?>
                                 <a href="delete.php" title="Delete" class="text-secondary font-weight-bold text-xs" >
-                                <img width="30" height="30" src="https://img.icons8.com/dotty/30/ff0000/delete-forever.png" alt="delete-forever"/>
+                                <img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"/>
                                 </a>
                               <?php }?>
                               </td>
@@ -272,7 +341,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   </div>
                  </div>
               </div>
-              <?php include("livefeed.php")?>
+              <?php// include("livefeed.php")?>
              </div>
           </div>
         </div>

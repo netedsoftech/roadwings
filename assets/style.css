@@ -61,7 +61,8 @@ h1,h2,h3,h4,h5,p,span,small,a,label{
 
 .main-content {
   margin-left: 12.125rem;
-  
+  position: absolute;
+  top: 0;
 }
 
 nav{
@@ -78,8 +79,9 @@ nav{
 }
 
 .rounded-pill{
-  background-color: #36ad53;
+  background-color: #124483;
   padding: 5px 20px 5px 20px;
+  cursor: pointer;
 }
 
 /* form start */
@@ -167,3 +169,69 @@ sub{
 }
 /* scroll bar end */
 /* main section end */
+
+ /* table code start */
+
+
+
+table.dataTable thead th, table.dataTable thead td {
+  padding: 10px 18px;
+  border-bottom: 1px solid #ddd!important;
+}
+
+table.dataTable thead .text-th {
+  font-size: 13px!important;
+  color: #7c7c7c!important;
+  font-weight: 500 !important;
+}
+
+
+table.dataTable.no-footer {
+border-bottom: 1px solid #124483 !important;
+}
+
+
+.dataTables_wrapper .dataTables_length select {
+  border: 1px solid #aaa;
+  padding: 4px;
+  color: #fff !important;
+  background: #124483 !important;
+  border-radius: 10% !important;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px!important;
+}
+
+
+.dataTables_wrapper .dataTables_length{
+  margin-bottom: 20px;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+
+  background-color: white!important;
+}
+
+li > a{
+  text-decoration: none;
+}
+
+.working{
+  min-height: 300px !important;
+  background-color: #124483 !important;
+}
+
+.dataTables_length label{
+  color: #fff!important;
+}
+
+.dataTables_filter  label{
+  color: #fff!important;
+}
+/* table code end */
+.form-control{
+  border: 1px solid #fff;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    width: 100%;
+    border-radius: 4px;
+    border-bottom: 2px solid #144084;
+}

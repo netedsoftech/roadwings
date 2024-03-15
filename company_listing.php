@@ -9,19 +9,19 @@ if(!($_SESSION)){
   include("header.php");
 ?>
   <body>
-    <style>
-      @media (max-width:1300px){
-        .text-th {
-  font-size: 8px!important;
+  <style>
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current{
+color: #fff!important;
+background: #124483!important;
+border-radius: 50%!important;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px!important;
 }
-      }
 
-      @media (min-width:1400){
-        .text-th {
-  font-size: 11px!important;
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+color: #124483!important;
+background: #fff!important;
 }
-      }
-    </style>
+</style>
     <section class="main">
       <div class="container-fluid">
         <div class="row">
@@ -29,6 +29,8 @@ if(!($_SESSION)){
           <?php include("navSideBar.php");?>
           <!-- Sidebar end -->
           <div class="col-lg-10 col-md-10 main-content mt-4">
+          <?php include("topHeader.php");?>
+
              <div class="d-flex justify-content-between p-3 main-header ">
               <h5 class="text-break">Recent Shipments</h5>
               <span class="rounded-pill shadow text-white">Assembly</span>
@@ -40,20 +42,20 @@ if(!($_SESSION)){
                     <table class="table align-items-center mb-0">
                       <thead>
                         <tr>
-                            <th class="text-uppercase text-secondary text-th font-weight-bolder opacity-7"> Name</th>
-                            <th class="text-uppercase text-secondary text-th font-weight-bolder opacity-7"> E-mail ID</th>
-                            <th class="text-uppercase text-secondary text-th font-weight-bolder opacity-7">Manager Name</th>
-                            <th class="text-uppercase text-secondary text-th font-weight-bolder opacity-7">Ph. Number</th>
-                          <th class="text-uppercase text-secondary text-th font-weight-bolder opacity-7 ps-2"> Address</th>
-                          <th class="text-center text-uppercase text-secondary text-th font-weight-bolder opacity-7">Postal Code</th>
-                          <th class="text-center text-uppercase text-secondary text-th font-weight-bolder opacity-7">City</th>
-                          <th class="text-center text-uppercase text-secondary text-th font-weight-bolder opacity-7">state</th>
-                          <th class="text-center text-uppercase text-secondary text-th font-weight-bolder opacity-7"> Status</th>
-                          <th class="text-center text-uppercase text-secondary text-th font-weight-bolder opacity-7">Payment Terms</th>
-                          <th class="text-center text-uppercase text-secondary text-th font-weight-bolder opacity-7">Limit Assign</th>
+                            <th class="text-center text-uppercase text-th "> Name</th>
+                            <th class="text-center text-uppercase text-th "> E-mail ID</th>
+                            <th class="text-center text-uppercase text-th ">Contact Name</th>
+                            <th class="text-center text-uppercase text-th ">Ph. Number</th>
+                          <th class="text-center text-uppercase text-th  ps-2"> Address</th>
+                          <th class="text-center text-uppercase text-th ">Postal Code</th>
+                          <th class="text-center text-uppercase text-th ">City</th>
+                          <th class="text-center text-uppercase text-th ">state</th>
+                          <th class="text-center text-uppercase text-th "> Status</th>
+                          <th class="text-center text-uppercase text-th ">Payment Terms</th>
+                          <th class="text-center text-uppercase text-th ">Limit Assign</th>
                            <?php if($_SESSION['agentrole'] == "Agent"): ?>
                             <?php else: ?>
-                          <th class="text-secondary opacity-7"></th>
+                          <th class="text-secondary "></th>
                           <?php endif; ?>
                         </tr>
                       </thead>
@@ -114,12 +116,12 @@ if(!($_SESSION)){
 
                              <td class="align-middle">  
                               <a href="javascript:;" title="Edit" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                              <img width="30" height="30" src="https://img.icons8.com/dotty/30/143e8b/create-new.png" alt="create-new"/>
+                              <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design"/>
                               </a>
                               <?php 
                                 if($_SESSION['agentrole'] == "Admin"):
                               ?>
-                               <a href="deletecompany.php" title="Delete" class="text-secondary font-weight-bold text-xs" > <img width="30" height="30" src="https://img.icons8.com/dotty/30/ff0000/delete-forever.png" alt="delete-forever"/></a>
+                               <a href="deletecompany.php" title="Delete" class="text-secondary font-weight-bold text-xs" ><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"/></a>
                              
                                <?php endif; ?>
                              </td>
@@ -163,7 +165,7 @@ if(!($_SESSION)){
                 </div>
 
                 <div class="form-group mb-4">
-                  <label for="example-text-input" class="form-control-label mb-2">Manager Name <sub>*</sub></label>
+                  <label for="example-text-input" class="form-control-label mb-2">Contact Name <sub>*</sub></label>
                   <input class="form-control" type="text" placeholder="XYZ Limited">
                 </div>
 

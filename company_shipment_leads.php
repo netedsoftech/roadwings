@@ -48,7 +48,7 @@ if(!($_SESSION)){
                 </div>
 
                 <div class="form-group mb-4">
-                <h6>Manager Name</h6>
+                <h6>Contact Name</h6>
                  <p class="text-xs">XYZ Limited</p>
                 
                 </div><div class="form-group mb-4">
