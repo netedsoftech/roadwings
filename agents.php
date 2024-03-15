@@ -9,24 +9,28 @@ if(!($_SESSION)){
   // Check if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the form data
+  
     $agentname = $_POST["agentname"];
     $agentphoneno = $_POST["agentphoneno"];
     $agentrole = $_POST["agentrole"];
     $email = $_POST["email"];
-    $password = $_POST["password"];
+    $department = $_POST["department"];
     $date = date('Y-m-d, H:i:s');
 
     // Call the insertData function
     // Assuming $mysqli is your database connection object
-    $insertResult = insertData($mysqli, $agentname, $email, $password,$agentphoneno,$agentrole,$date);
-
+    $insertResult = insertData($mysqli, $agentname, $email, $department,$agentphoneno,$agentrole,$date);
+   
     // Check the result of the insertion
+    $error = "";
     $message = "";
-    if ($insertResult) {
-        $message = "Agent inserted successfully.";
-    } else {
+    if ($insertResult=="This email is already in use. Please choose a different email.") {
+        $error = "<span style='color:red'>This email is already in use. Please choose a different email.</span>";
+    } else if($insertResult == "Agent inserted successfully."){
         // Insertion failed
-        $message = "Failed to insert agent.";
+        $message = "Agent inserted successfully.";
+    }else{
+      $error = "<span style='color:red'>Failed to insert agent</span>";
     }
 }
 ?>
@@ -74,6 +78,22 @@ background: #fff!important;
               <?php
                 echo $message;
               }?>
+              <?php 
+                if(!empty($error)){
+                  ?>
+                  <script>
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "$error",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                </script>
+                  <?php
+                  echo $error;
+                }
+              ?>
               <!-- Button trigger modal -->
               <?php if(($_SESSION['agentrole'] == "Manager") || ($_SESSION['agentrole'] == "Admin")) { ?>
               <span class="rounded-pill shadow text-white"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New Agent</span>
@@ -92,7 +112,7 @@ background: #fff!important;
       </div>
       <div class="modal-body">
       <form method="post">
-         <h6 class="mt-2 mb-4">Agent INFORMATION</h6>
+         <h6 class="mt-2 mb-4">Agent Information</h6>
          <div class="row">
           <div class="col-md-4">
             <div class="form-group mb-4">
@@ -121,7 +141,7 @@ background: #fff!important;
                   <option value="Team Leader">Team Leader</option>
                   <option value="Agent">Agent</option> -->
   
-                  <option selected="">DESIGNATION</option>
+                  <option value=""> SELECT</option>
                   <option value="COORDINATOR">COORDINATOR</option>
                   <option value="MANAGER">MANAGER</option>
                 </select>
@@ -136,7 +156,7 @@ background: #fff!important;
               <input required="" class="form-control" name="email" type="email" placeholder="Agent E-mail ID *">
             </div>
             <div class="form-group mb-4 ">
-              <select name="agentrole" class="form-control">
+              <select name="department" class="form-control">
                 <!-- <option value="Manager">Manager</option>
                 <option value="Team Leader">Team Leader</option>
                 <option value="Agent">Agent</option> -->
@@ -162,13 +182,13 @@ background: #fff!important;
           <div class="col-lg-6">
           <div class="form-group mb-4 ">
               <p>ROADWINGS LOGISTICS, <br> 6628 Sky Pointe Dr. Ste- 129
-Las Vegas, NV - 89131</p>
+              Las Vegas, NV - 89131</p>
             </div>
           </div>
           <div class="col-lg-2"></div>
           <div class="col-lg-4 text-end">
             <div class="form-group ">
-              <button class="btn ">Submit Details</button>
+              <button type="submit" name="submit" class="btn ">Submit Details</button>
             </div>
           </div>
          </div>
@@ -267,10 +287,10 @@ Las Vegas, NV - 89131</p>
                               <th class="text-uppercase text-th ">Agents</th>
                               <th class="text-uppercase text-uppercase text-th">DEPARTMENT</th>
                               <th class="text-uppercase text-uppercase text-th">Company Number</th>
-                              <th class="text-uppercase text-uppercase text-th">Company Address</th>
+                             <!--  <th class="text-uppercase text-uppercase text-th">Company Address</th> -->
                               <th class="text-uppercase text-uppercase text-th">DESIGNATION</th>
                               <th class="text-center text-uppercase text-th">Contact Number</th>
-                              <th class="text-center text-uppercase text-th">Employed</th>
+                              <th class="text-center text-uppercase text-th">Joined Date</th>
                               <th class="text-secondary opacity-7"></th>
                             </tr>
                           </thead>
@@ -304,9 +324,9 @@ Las Vegas, NV - 89131</p>
                                 <span class="text-secondary text-xs font-weight-bold">88449989929 </span>
                               </td>
 
-                              <td class="align-middle text-center text-sm">
+                             <!--  <td class="align-middle text-center text-sm">
                                 <span class="text-secondary text-xs font-weight-bold">Roadwings 8584 </span>
-                              </td>
+                              </td> -->
 
                               <td class="align-middle text-center text-sm">
                                 <span class="text-secondary text-xs font-weight-bold">Manager</span>

@@ -44,8 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <section>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-8">
-                <canvas id="canvas"  >Not supported Canvas!</canvas>
+                <div class="col-lg-4">
                 
             </div>
             <div class="col-lg-4">
@@ -61,29 +60,63 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     </div>
                                     <div class="right-content">
                                         
-                                        <h3 class="form-title">Login</h3>
-                                        <form class="form-horizontal" method="post" >
-                                            <div class="form-group">
-                                            <label>Create Password</label>
-                                                <input type="password" name="createpassword" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                            <label>Confirm Password</label>
-                                                <input type="password" name="confirmpassword" class="form-control">
-                                            </div>
+                                        <!-- <h3 class="form-title">Create Passw</h3> -->
+ 
 
-                                            <button type="submit" name="login" class="btn signin">Create Password</button>
 
-                                             <?php if(!empty($errorMessage)){ ?>
-                                            <div class="alert alert-danger"><?php echo $errorMessage; ?></div>
-                                        <?php } ?>
-                                          
-                                        </form>
+<form class="form-horizontal" method="post" onsubmit="return validatePasswords()">
+    <div class="form-group">
+        <label>Create Password</label>
+        <input type="password" id="createpassword" name="createpassword" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" id="confirmpassword" name="confirmpassword" class="form-control" required>
+        <span id="passwordError" style="color: red; display: none;">Passwords do not match.</span>
+    </div>
+    <div class="form-group">
+        <input type="checkbox" id="showPasswordCheckbox" onchange="togglePasswordVisibility()"> Show Password
+    </div>
+    <button type="submit" name="login" class="btn signin">Create Password</button>
+</form>
+
+<script>
+    function validatePasswords() {
+        var password1 = document.getElementById("createpassword").value;
+        var password2 = document.getElementById("confirmpassword").value;
+
+        if (password1 !== password2) {
+            document.getElementById("passwordError").style.display = "block";
+            return false;
+        } else {
+            document.getElementById("passwordError").style.display = "none";
+            return true;
+        }
+    }
+
+    function togglePasswordVisibility() {
+        var createPasswordInput = document.getElementById("createpassword");
+        var confirmPasswordInput = document.getElementById("confirmpassword");
+        var showPasswordCheckbox = document.getElementById("showPasswordCheckbox");
+
+        if (showPasswordCheckbox.checked) {
+            createPasswordInput.type = "text";
+            confirmPasswordInput.type = "text";
+        } else {
+            createPasswordInput.type = "password";
+            confirmPasswordInput.type = "password";
+        }
+    }
+</script>
+
                                     
                                     </div>
                                 </div>
                             
                 </div>
+            </div>
+            <div class="col-lg-4">
+                
             </div>
         </div>
     </div>
