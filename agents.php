@@ -96,7 +96,7 @@ background: #fff!important;
                 }
               ?>
               <!-- Button trigger modal -->
-              <?php if(($_SESSION['agentrole'] == "Manager") || ($_SESSION['agentrole'] == "Admin")) { ?>
+              <?php if(($_SESSION['agentrole'] == "Manager") || ($_SESSION['agentrole'] == "MANAGER") || ($_SESSION['agentrole'] == "Admin")) { ?>
               <span class="rounded-pill shadow text-white"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New Agent</span>
             <?php } ?>
 
