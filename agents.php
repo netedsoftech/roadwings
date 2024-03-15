@@ -349,7 +349,7 @@ background: #fff!important;
                                 <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design"/>
                                 </a>
                                 <?php if($_SESSION['agentrole'] == "Admin"){?>
-                                <a href="delete.php" title="Delete" class="text-secondary font-weight-bold text-xs" >
+                                <a href="delete.php?id=<?php echo $row['id']?>" title="Delete" class="text-secondary font-weight-bold text-xs" >
                                 <img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"/>
                                 </a>
                               <?php }?>
