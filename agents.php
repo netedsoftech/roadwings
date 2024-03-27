@@ -203,107 +203,8 @@ P: +1 833 781 8686
   </div>
 </div>
 
-<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <!-- <h1 class="modal-title fs-5" >Modal title</h1> -->
-        <h5 class="mt-2 " id="staticBackdropLabel1">Edit Agent Details</h5>
-
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-
-
-      <form method="post">
-         <h6 class="mt-2 mb-4">Agent Information</h6>
-         <div class="row">
-          <div class="col-md-4">
-            <div class="form-group mb-4">
-              <input name="agentname" required="" class="form-control" type="text" placeholder="Agent Name *">
-            </div>
-
-            
-
-           
-            <div class="form-group mb-4 ">
-              <!-- <p>ROADWINGS LOGISTICS, <br> 6628 Sky Pointe Dr. Ste- 129
-              Las Vegas, NV - 89131</p> -->
-              <textarea class="form-control" rows="4" disabled="">ROADWINGS LOGISTICS,
-6628 Sky Pointe Dr. Ste- 129
-Las Vegas, NV - 89131  
-P: +1 833 781 8686
-</textarea>
-            </div>
-
-
-            
-
-
-          </div><div class="col-md-4">
-            
-
-            <div class="form-group mb-4 ">
-              <input required="" class="form-control" name="agentphoneno" type="tel" minlength="10" maxlength="10" placeholder="Contact Number *">
-            </div><div class="form-group mb-4">
-                <select name="agentrole" class="form-control">
-                  <!-- <option value="Manager">Manager</option>
-                  <option value="Team Leader">Team Leader</option>
-                  <option value="Agent">Agent</option> -->
-  
-                  <option value=""> SELECT</option>
-                  <option value="COORDINATOR">COORDINATOR</option>
-                  <option value="MANAGER">MANAGER</option>
-                </select>
-              </div>
-
-            
-
-          </div>
-
-          <div class="col-md-4">
-            <div class="form-group mb-4">
-              <input required="" class="form-control" name="email" type="email" placeholder="Agent E-mail ID *">
-            </div>
-            <div class="form-group mb-4 ">
-              <select name="department" class="form-control">
-                <!-- <option value="Manager">Manager</option>
-                <option value="Team Leader">Team Leader</option>
-                <option value="Agent">Agent</option> -->
-
-                <option selected="">DEPARTMENT</option>
-                <option value="DISPATCH">DISPATCH</option>
-                <option value="CUSTOMER SUPPORT">CUSTOMER SUPPORT</option>
-                <option value="ACCOUNTS">ACCOUNTS</option>
-                <option value="CMT PROFILE">CMT PROFILE</option>
-
-              </select>
-            </div>
-
-            
-            
-            
-          </div>
-
-          <!-- <span class="aside-hr mt-3 mb-4"></span> -->
-
-
-
-          <div class="col-lg-6">
-          
-          </div>
-          <div class="col-lg-2"></div>
-          <div class="col-lg-4 text-end">
-            <div class="form-group ">
-              <button type="submit" name="submit" class="btn btn-success">Update Info</button>
-            </div>
-          </div>
-         </div>
-        </form>
-      </div>
-     
-    </div>
-  </div>
+<div class="abc">
+ 
 </div>
 <!-- Button trigger modal end -->
              </div>
@@ -380,7 +281,7 @@ P: +1 833 781 8686
                               if(($_SESSION['agentrole'] == "Manager") || ($_SESSION['agentrole'] == "MANAGER") || ($_SESSION['agentrole'] == "Admin")) {
                                 ?>
                               <td class="align-middle">
-                                <a href="javascript:" title="Edit" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+                                <a href="javascript:" title="Edit" atrid="<?php echo $row['id']; ?>" id="getagents" class="text-secondary font-weight-bold text-xs getagents" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
                                 <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design"/>
                                 </a>
                                 <?php if($_SESSION['agentrole'] == "Admin"){?>
@@ -410,6 +311,7 @@ P: +1 833 781 8686
           $('.table').DataTable();
       });
   </script>
+  <script src="addlivefeed.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
