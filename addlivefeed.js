@@ -71,12 +71,12 @@ $(document).ready(function(){
               <div class="col-md-6">
                 <div class="form-group mb-4">
                   <label for="example-text-input" class="form-control-label mb-2">Company Name <sub>*</sub></label>
-                  <input class="form-control" type="text" placeholder="Morissette PLC">
+                  <input class="form-control" type="text" name="comapnyname" value="${data.comapnyname}" placeholder="Morissette PLC">
                 </div>
 
                 <div class="form-group mb-4">
                   <label for="example-text-input" class="form-control-label mb-2">Contact Name <sub>*</sub></label>
-                  <input class="form-control" type="text" placeholder="XYZ Limited">
+                  <input class="form-control" type="text" value="${data.companymanagername}" name="companymanagername" placeholder="XYZ Limited">
                 </div>
 
                
@@ -85,12 +85,12 @@ $(document).ready(function(){
               <div class="col-md-6">
                 <div class="form-group mb-4">
                   <label for="example-text-input" class="form-control-label mb-2">Company E-mail ID <sub>*</sub></label>
-                  <input class="form-control" type="email" placeholder="hudson.wilhelmine@boehm.com">
+                  <input class="form-control" type="email" value="${data.companyemailid}" name="companyemailid" placeholder="hudson.wilhelmine@boehm.com">
                 </div>
 
                 <div class="form-group mb-4">
                   <label for="example-text-input" class="form-control-label mb-2">Contact Number <sub>*</sub></label>
-                  <input class="form-control" type="tel" minlength="10" maxlength="10" placeholder="+1 (323) 916-4686">
+                  <input class="form-control" type="tel" value="${data.companycontactno}" name="companycontactno" minlength="10" maxlength="10" placeholder="+1 (323) 916-4686">
                 </div>
               </div>
               <span class="aside-hr mt-3 mb-4"></span>
@@ -98,7 +98,7 @@ $(document).ready(function(){
               <div class="col-md-4">
                 <div class="form-group mb-4">
                   <label for="example-text-input" class="form-control-label mb-2">Company Full Address <sub>*</sub></label>
-                  <input class="form-control" type="text" placeholder="93229 Carli Points">
+                  <input class="form-control" value="${data.companyaddress}" name="companyaddress" type="text" placeholder="93229 Carli Points">
                 </div>
 
               </div>
@@ -106,14 +106,14 @@ $(document).ready(function(){
               <div class="col-md-4">
                 <div class="form-group mb-4">
                   <label for="example-text-input" class="form-control-label mb-2">Postal Code</label>
-                  <input class="form-control" type="text" placeholder="84073">
+                  <input class="form-control" value="${data.companypostalcode}" name="companypostalcode" type="text" placeholder="84073">
                 </div>
 
               </div>
               <div class="col-md-4">
                 <div class="form-group mb-4">
                   <label for="example-text-input" class="form-control-label mb-2">City</label>
-                  <input class="form-control" type="text" placeholder="Port Danielafort">
+                  <input class="form-control" value="${data.companycity}" name="companycity" type="text" placeholder="Port Danielafort">
                 </div>
 
               </div>
@@ -122,7 +122,7 @@ $(document).ready(function(){
                <div class="col-md-4">
                 <div class="form-group mb-4">
                   <label for="example-text-input" class="form-control-label mb-2">State</label>
-                  <input class="form-control" type="text" placeholder="Port Danielafort">
+                  <input class="form-control" value="${data.companystate}" name="companystate" type="text" placeholder="Port Danielafort">
                 </div>
 
               </div>
@@ -157,7 +157,7 @@ $(document).ready(function(){
               <div class="col-md-4">
                 <div class="form-group mb-4">
                   <label for="example-text-input" class="form-control-label mb-2">Limit Assign</label>
-                  <input class="form-control" type="tel" minlength="2" maxlength="4" placeholder="2000 USD">
+                  <input class="form-control" name="" value="${data.comapnyname}" type="tel" minlength="2" maxlength="4" placeholder="2000 USD">
                 </div>
               </div>
 
