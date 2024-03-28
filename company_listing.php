@@ -44,6 +44,7 @@ background: #fff!important;
                       <thead>
                         <tr>
                             <th class="text-center text-uppercase text-th "> Name</th>
+                            <th class="text-center text-uppercase text-th ">Added By</th>
                             <th class="text-center text-uppercase text-th "> E-mail ID</th>
                             <th class="text-center text-uppercase text-th ">Contact Name</th>
                             <th class="text-center text-uppercase text-th ">Ph. Number</th>
@@ -54,6 +55,7 @@ background: #fff!important;
                           <th class="text-center text-uppercase text-th "> Status</th>
                           <th class="text-center text-uppercase text-th ">Payment Terms</th>
                           <th class="text-center text-uppercase text-th ">Limit Assign</th>
+
                            <?php if($_SESSION['agentrole'] == "Agent"): ?>
                             <?php else: ?>
                           <th class="text-secondary "></th>
@@ -71,6 +73,15 @@ background: #fff!important;
                                 
                                 <div class="d-flex flex-column justify-content-center">
                                   <a href="company_shipment_leads.php" class="mb-0 text-xs"><?php echo ucfirst($row['comapnyname']); ?></a>
+                                  
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="d-flex px-2 py-1">
+                                
+                                <div class="d-flex flex-column justify-content-center">
+                                  <a href="company_shipment_leads.php" class="mb-0 text-xs"><?php echo ucfirst($row['agentname']); ?></a>
                                   
                                 </div>
                               </div>
@@ -269,10 +280,12 @@ background: #fff!important;
     <!-- modal end -->
 
     <script type="text/javascript">
-      $(document).ready( function () {
-          $('.table').DataTable();
-      });
-  </script>
+    $(document).ready(function () {
+        $('.table').DataTable({
+            "ordering": false // Disable sorting
+        });
+    });
+</script>
 
 
 <script src="addlivefeed.js"></script>

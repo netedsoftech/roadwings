@@ -124,7 +124,8 @@ $(document).ready(function(){
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-4 text-end">
                                         <div class="form-group">
-                                            <button type="submit" name="submit" class="btn btn-success">Update Info</button>
+                                        <input type="hidden" name="agentid" value="${data.id}">
+                                            <button type="submit" name="update" class="btn btn-success">Update Info</button>
                                         </div>
                                     </div>
                                 </form>

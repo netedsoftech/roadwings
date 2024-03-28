@@ -8,9 +8,7 @@ if(!($_SESSION)){
     header("location: login_page.php");
   }
   // Check if the form was submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the form data
-  
+if (isset($_POST["submit"])) {
     $agentname = $_POST["agentname"];
     $agentphoneno = $_POST["agentphoneno"];
     $agentrole = $_POST["agentrole"];
@@ -32,6 +30,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message = "Agent inserted successfully.";
     }else{
       $error = "<span style='color:red'>Failed to insert agent</span>";
+    }
+}
+if(isset($_POST['update'])){
+    //echo "<pre>"; print_r($_POST); die;
+    $agentname = $_POST["agentname"];
+    $agentphoneno = $_POST["agentphoneno"];
+    $agentrole = $_POST["agentrole"];
+    $email = $_POST["email"];
+    $department = $_POST["department"];
+    $updatedat = date('Y-m-d, H:i:s');
+    $id = $_POST['agentid'];
+    $updateinfo = updateData($mysqli, $agentname, $email, $department,$agentphoneno,$agentrole,$updatedat,$id);
+    $error = "";
+    $message = "";
+    if ($updateinfo=="Error updating agent") {
+        $error = "<span style='color:red'>Error updating agent</span>";
+    } else if($updateinfo == "Agent updated successfully"){
+        // Insertion failed
+        $message = "Agent updated successfully.";
+    }else{
+      $error = "<span style='color:red'>Failed to update agent</span>";
     }
 }
 ?>
@@ -268,7 +287,7 @@ P: +1 833 781 8686
                               </td> -->
 
                               <td class="align-middle text-center text-sm">
-                                <span class="text-secondary text-xs font-weight-bold">Manager</span>
+                                <span class="text-secondary text-xs font-weight-bold"><?php echo $row['agentrole']?></span>
                               </td>
                               <td class="align-middle text-center text-sm">
                               

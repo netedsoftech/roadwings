@@ -461,18 +461,40 @@ function getAgents($mysqli) {
     return $data;
 }
 
+function updateData($mysqli, $agentname, $email, $department,$agentphoneno,$agentrole,$updatedat,$id){
+
+    $query = "update login set agentname='$agentname',email='$email',department='$department',agentphoneno='$agentphoneno' where id='$id'";
+    if ($mysqli->query($query) === TRUE) {
+        return "Agent updated successfully";
+    } else {
+        return "Error updating agent: " . $mysqli->error;
+    }
+}
+
 function getCompanies($mysqli){
     $data = array();
-    $result = $mysqli->query("select company.*,login.agentname from company left join login on company.createdby = login.id order by company.id desc");
-    while($row = $result->fetch_assoc()){
+
+    $result = $mysqli->query("SELECT company.*, login.agentname 
+                              FROM company 
+                              LEFT JOIN login ON company.createdby = login.id 
+                              ORDER BY company.id DESC");
+
+    // Fetch data into an array
+    $data = array();
+    while ($row = $result->fetch_assoc()) {
         $data[] = $row;
     }
+
+    // Free the result set
     $result->free();
+
+    // Return the sorted data
     return $data;
 }
 
 function addCompany($mysqli, $sessionid, $companyname, $companyemailid, $companymanagername, $companyaddress, $companypostalcode, $companycity, $companystate, $companystatus, $paymentterm, $companypaymentlimit, $createdat,$companycontactno) {
     // Escape inputs to prevent SQL injection
+    //$sessionid = $_SESSION['id'];
 
     $companyname = mysqli_real_escape_string($mysqli, $companyname);
     $companyemailid = mysqli_real_escape_string($mysqli, $companyemailid);
