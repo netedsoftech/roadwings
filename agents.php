@@ -304,7 +304,7 @@ P: +1 833 781 8686
                                 <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design"/>
                                 </a>
                                 <?php if($_SESSION['agentrole'] == "Admin"){?>
-                                <a href="delete.php?id=<?php echo $row['id']?>" title="Delete" class="text-secondary font-weight-bold text-xs" >
+                                <a href="delete.php?id=<?php echo $row['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs" >
                                 <img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"/>
                                 </a>
                               <?php }?>
@@ -326,10 +326,12 @@ P: +1 833 781 8686
       </div>
     </section>
 <script type="text/javascript">
-      $(document).ready( function () {
-          $('.table').DataTable();
-      });
-  </script>
+    $(document).ready(function () {
+        $('.table').DataTable({
+            "ordering": false // Disable sorting
+        });
+    });
+</script>
   <script src="addlivefeed.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

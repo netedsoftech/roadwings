@@ -133,7 +133,7 @@ background: #fff!important;
                               <?php 
                                 if($_SESSION['agentrole'] == "Admin"):
                               ?>
-                               <a href="deletecompany.php" title="Delete" class="text-secondary font-weight-bold text-xs" ><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"/></a>
+                               <a href="deletecompany.php?id=<?php echo $row['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs" ><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"/></a>
                              
                                <?php endif; ?>
                              </td>
