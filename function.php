@@ -474,10 +474,20 @@ function updateData($mysqli, $agentname, $email, $department,$agentphoneno,$agen
 function getCompanies($mysqli){
     $data = array();
 
-    $result = $mysqli->query("SELECT company.*, login.agentname 
+    $role = $_SESSION['agentrole'];
+    $id = $_SESSION['id'];
+    if($role == "Admin" || $role == "MANAGER"){
+        $result = $mysqli->query("SELECT company.*, login.agentname 
                               FROM company 
                               LEFT JOIN login ON company.createdby = login.id 
                               ORDER BY company.id DESC");
+    }else{
+        $result = $mysqli->query("SELECT company.*, login.agentname 
+                              FROM company 
+                              LEFT JOIN login ON company.createdby = login.id where company.createdby = '$id'
+                              ORDER BY company.id DESC");
+    }
+    
 
     // Fetch data into an array
     $data = array();
