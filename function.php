@@ -437,10 +437,18 @@ function insertData($mysqli, $agentname, $email, $department,$agentphoneno,$agen
 }
 
 function getAgents($mysqli) {
+    $role = $_SESSION['agentrole'];
+    $id = $_SESSION['id'];
+
     $data = array();
 
     // Perform SQL query to fetch data
-    $result = $mysqli->query("SELECT * FROM login where agentrole<>'admin' order by id desc");
+    if($role == "MANAGER" || $role == "Admin"){
+        $result = $mysqli->query("SELECT * FROM login where agentrole<>'admin' order by id desc");
+    }else{
+        $result = $mysqli->query("SELECT * FROM login where id = $id");
+    }
+    
 
     // Fetch data and store in array
     while ($row = $result->fetch_assoc()) {
