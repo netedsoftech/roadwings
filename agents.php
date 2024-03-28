@@ -203,11 +203,11 @@ P: +1 833 781 8686
   </div>
 </div>
 
+<!-- Button trigger modal end -->
+</div>
 <div class="abc">
  
 </div>
-<!-- Button trigger modal end -->
-             </div>
 
              <div class="row mt-4 ">
               <div class="col-lg-12">
