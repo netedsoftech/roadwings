@@ -15,11 +15,12 @@ if(isset($_POST["update"])){
   $companyid = $_POST['companyid'];
   $updatecompany = updateCompany($mysqli,$companystatus,$companyid);
   $message = "";
+  $error =  "";
     if ($updatecompany) {
-        $message = "Company updated successfully.";
+        $message = "Company updated successfully";
     } else {
         // Insertion failed
-        $message = "Failed to update company.";
+        $error = "Failed to update company.";
     }
 }
 ?>
@@ -48,6 +49,36 @@ background: #fff!important;
 
              <div class="d-flex justify-content-between p-3 main-header ">
               <h5 class="text-break">Recent Shipments</h5>
+              <?php if(!empty($message)){
+                ?>
+                <script>
+                 Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "<?php echo $message?>",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                </script>
+              <?php
+                echo $message;
+              }?>
+              <?php 
+                if(!empty($error)){
+                  ?>
+                  <script>
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "$error",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                </script>
+                  <?php
+                  echo $error;
+                }
+              ?>
               <span class="rounded-pill shadow text-white">Assembly</span>
              </div>
 
