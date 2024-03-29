@@ -226,139 +226,132 @@ background: #fff!important;
 
 <script>
   $(document).ready(function(){
+    // Define the mapping object for company status
+    var statusMap = {
+        1: "Working",
+        2: "Approved",
+        3: "Pending",
+        4: "Rejected"
+    };
+
     $('.editlink').click(function(e){
-          e.preventDefault();
-          
-          // Retrieve the ID from the 'atrid' attribute
-          var companyId = $(this).attr('atrid');
-          //alert(companyId);
-          // Send AJAX request to retrieve data
-          $.ajax({
-              type: 'POST',
-              url: 'get_company_data.php', // Replace 'get_company_data.php' with your PHP file to handle the request
-              data: { companyId: companyId },
-              dataType: 'json',
-              success: function(data){
-                  // Handle the data returned from the server
-                  // You can populate your modal or perform other actions here
-                  console.log(data);
-                  var content = `<div class="modal fade" id="dynamicBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <!-- <h1 class="modal-title fs-5" >Modal title</h1> -->
-            <!-- <h5 class="mt-2 " id="staticBackdropLabel">Company</h5> -->
-    
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form method="post">
-              <h5 class="mt-2 mb-5">Edit Company</h5>
-             <h6 class="mt-2 mb-4"></h6>
-             <div class="row">
-              <div class="col-md-6">
-                <div class="form-group mb-4">
-                  <label for="example-text-input" class="form-control-label mb-2">Company Name <sub>*</sub></label>
-                  <input class="form-control" type="text" name="companyname" value="${data.companyname}" placeholder="Morissette PLC">
-                </div>
-
-                <div class="form-group mb-4">
-                  <label for="example-text-input" class="form-control-label mb-2">Contact Name <sub>*</sub></label>
-                  <input class="form-control" type="text" value="${data.contactperson}" name="contactperson" placeholder="XYZ Limited">
-                </div>
-
-               
-              </div>
-
-              <div class="col-md-6">
-                <div class="form-group mb-4">
-                  <label for="example-text-input" class="form-control-label mb-2">Company E-mail ID <sub>*</sub></label>
-                  <input class="form-control" type="email" value="${data.emailaddress}" name="emailaddress" placeholder="hudson.wilhelmine@boehm.com">
-                </div>
-
-                <div class="form-group mb-4">
-                  <label for="example-text-input" class="form-control-label mb-2">Contact Number <sub>*</sub></label>
-                  <input class="form-control" type="tel" value="${data.companycontactno}" name="companycontactno" minlength="10" maxlength="10" placeholder="+1 (323) 916-4686">
-                </div>
-              </div>
-              <span class="aside-hr mt-3 mb-4"></span>
-              
-              <div class="col-md-4">
-                <div class="form-group mb-4">
-                  <label for="example-text-input" class="form-control-label mb-2">Company Full Address <sub>*</sub></label>
-                  <input class="form-control" value="${data.address}" name="address" type="text" placeholder="93229 Carli Points">
-                </div>
-
-              </div>
-
-              <div class="col-md-4">
-                <div class="form-group mb-4">
-                  <label for="example-text-input" class="form-control-label mb-2">Postal Code</label>
-                  <input class="form-control" value="${data.zipcode}" name="zipcode" type="text" placeholder="84073">
-                </div>
-
-              </div>
-              <div class="col-md-4">
-                <div class="form-group mb-4">
-                  <label for="example-text-input" class="form-control-label mb-2">City</label>
-                  <input class="form-control" value="${data.city}" name="city" type="text" placeholder="Port Danielafort">
-                </div>
-
-              </div>
-
-
-               <div class="col-md-4">
-                <div class="form-group mb-4">
-                  <label for="example-text-input" class="form-control-label mb-2">State</label>
-                  <input class="form-control" value="${data.state}" name="state" type="text" placeholder="Port Danielafort">
-                </div>
-
-              </div>
-
-              <div class="col-md-4">
-                <div class="form-group mb-4">
-                  <label for="example-text-input" class="form-control-label mb-2">Company Status</label>
-                  <select name="companystatus" class="form-control">
-                    <option value="1">Working</option>
-                    <option value="2">Approved</option>
-                    <option value="3">Pending</option>
-                    <option value="4">Rejected</option>
-                    
-                  </select>
-                </div>
-              </div>
-
-            
-
-
-              <div class="col-lg-4"></div>
-              <div class="col-lg-4 text-end">
-                <div class="form-group mb-4 mt-4">
-                <input type="hidden" name="companyid" value="${data.id}">
-                  <button name="update" class="btn ">Submit Details</button>
-                </div>
-              </div>
-             </div>
-            </form>
-          </div>
-         
-        </div>
-      </div>
-    </div>`;
-            $('#dynamicBackdrop1').remove();
-            
-            // Append the modal content to the body
-            $('body').append(content);
-            
-            // Show the modal
-            $('#dynamicBackdrop1').modal('show');
-            
-              },
-              error: function(xhr, status, error){
-                  // Handle errors
-                  console.error(xhr.responseText);
-              }
-          });
+        e.preventDefault();
+        
+        // Retrieve the ID from the 'atrid' attribute
+        var companyId = $(this).attr('atrid');
+        
+        // Send AJAX request to retrieve data
+        $.ajax({
+            type: 'POST',
+            url: 'get_company_data.php', // Replace 'get_company_data.php' with your PHP file to handle the request
+            data: { companyId: companyId },
+            dataType: 'json',
+            success: function(data){
+                // Handle the data returned from the server
+                console.log("Data received from server:", data);
+                var content = `<div class="modal fade" id="dynamicBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <!-- <h1 class="modal-title fs-5" >Modal title</h1> -->
+                                <!-- <h5 class="mt-2 " id="staticBackdropLabel">Company</h5> -->
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post">
+                                    <h5 class="mt-2 mb-5">Edit Company</h5>
+                                    <h6 class="mt-2 mb-4"></h6>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-4">
+                                                <label for="example-text-input" class="form-control-label mb-2">Company Name <sub>*</sub></label>
+                                                <input class="form-control" type="text" name="companyname" value="${data.companyname}" placeholder="Morissette PLC">
+                                            </div>
+                                            <div class="form-group mb-4">
+                                                <label for="example-text-input" class="form-control-label mb-2">Contact Name <sub>*</sub></label>
+                                                <input class="form-control" type="text" value="${data.contactperson}" name="contactperson" placeholder="XYZ Limited">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-4">
+                                                <label for="example-text-input" class="form-control-label mb-2">Company E-mail ID <sub>*</sub></label>
+                                                <input class="form-control" type="email" value="${data.emailaddress}" name="emailaddress" placeholder="hudson.wilhelmine@boehm.com">
+                                            </div>
+                                            <div class="form-group mb-4">
+                                                <label for="example-text-input" class="form-control-label mb-2">Contact Number <sub>*</sub></label>
+                                                <input class="form-control" type="tel" value="${data.companycontactno}" name="companycontactno" minlength="10" maxlength="10" placeholder="+1 (323) 916-4686">
+                                            </div>
+                                        </div>
+                                        <span class="aside-hr mt-3 mb-4"></span>
+                                        <div class="col-md-4">
+                                            <div class="form-group mb-4">
+                                                <label for="example-text-input" class="form-control-label mb-2">Company Full Address <sub>*</sub></label>
+                                                <input class="form-control" value="${data.address}" name="address" type="text" placeholder="93229 Carli Points">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group mb-4">
+                                                <label for="example-text-input" class="form-control-label mb-2">Postal Code</label>
+                                                <input class="form-control" value="${data.zipcode}" name="zipcode" type="text" placeholder="84073">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group mb-4">
+                                                <label for="example-text-input" class="form-control-label mb-2">City</label>
+                                                <input class="form-control" value="${data.city}" name="city" type="text" placeholder="Port Danielafort">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group mb-4">
+                                                <label for="example-text-input" class="form-control-label mb-2">State</label>
+                                                <input class="form-control" value="${data.state}" name="state" type="text" placeholder="Port Danielafort">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group mb-4">
+                                                <label for="example-text-input" class="form-control-label mb-2">Company Status</label>
+                                                <select name="companystatus" class="form-control">
+                                                    <!-- Populate options dynamically -->
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4"></div>
+                                        <div class="col-lg-4 text-end">
+                                            <div class="form-group mb-4 mt-4">
+                                                <input type="hidden" name="companyid" value="${data.id}">
+                                                <button name="update" class="btn ">Submit Details</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+                $('#dynamicBackdrop1').remove();
+                // Append the modal content to the body
+                $('body').append(content);
+                // Map the numeric status value to its string representation
+                var status = statusMap[data.companystatus];
+                console.log("Mapped status:", status);
+                // Update the selected option in the dropdown with the mapped string representation
+                var dropdown = $('select[name="companystatus"]');
+                dropdown.empty(); // Clear existing options
+                $.each(statusMap, function(key, value) {
+                    dropdown.append($('<option></option>').attr('value', key).text(value));
+                });
+                dropdown.val(data.companystatus).change(); // Set selected value
+                // Show the modal
+                $('#dynamicBackdrop1').modal('show');
+            },
+            error: function(xhr, status, error){
+                // Handle errors
+                console.error("Error fetching company data:", xhr.responseText);
+            }
         });
-  })
+    });
+});
 </script>
+
+
+
