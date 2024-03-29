@@ -535,6 +535,17 @@ function addCompany($mysqli, $sessionid, $comapnyname,$contactperson,$emailaddre
     }
 }
 
+function updateCompany($mysqli,$companystatus,$companyid){
+    $companystatus = mysqli_real_escape_string($mysqli, $companystatus);
+    $update = "update company set companystatus = '$companystatus' where id = '$companyid'";
+    if ($mysqli->query($update) === TRUE) {
+        return "Company updated successfully";
+    } else {
+        return "Error updating company: " . $mysqli->error;
+    }
+
+}
+
 function createPassword($mysqli, $email, $password){
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
     $sql = "UPDATE login set password = '$password_hash' where email='$email'";

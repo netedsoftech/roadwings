@@ -8,6 +8,20 @@ if(!($_SESSION)){
     header("location: login_page.php");
   }
   include("header.php");
+
+if(isset($_POST["update"])){
+  //echo "<pre>"; print_r($_POST); die;
+  $companystatus = $_POST['companystatus'];
+  $companyid = $_POST['companyid'];
+  $updatecompany = updateCompany($mysqli,$companystatus,$companyid);
+  $message = "";
+    if ($updatecompany) {
+        $message = "Company updated successfully.";
+    } else {
+        // Insertion failed
+        $message = "Failed to update company.";
+    }
+}
 ?>
   <body>
   <style>
@@ -278,7 +292,7 @@ background: #fff!important;
                     <option value="2">Approved</option>
                     <option value="3">Pending</option>
                     <option value="4">Rejected</option>
-                    <option value="5">High Risk</option>
+                    
                   </select>
                 </div>
               </div>
@@ -289,6 +303,7 @@ background: #fff!important;
               <div class="col-lg-4"></div>
               <div class="col-lg-4 text-end">
                 <div class="form-group mb-4 mt-4">
+                <input type="hidden" name="companyid" value="${data.id}">
                   <button name="update" class="btn ">Submit Details</button>
                 </div>
               </div>
