@@ -128,10 +128,32 @@ if(!($_SESSION)){
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
+                        <input class="form-control" name="companystate" type="text" placeholder="Account Payable">
+                      </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group mb-4 ">
+                        <input class="form-control" name="companystate" type="text" placeholder="Account Payable Email">
+                      </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+                      <div class="form-group mb-4 ">
+                        <input class="form-control" name="companystate" type="tel" placeholder="Account Payable Number">
+                      </div>
+
+                    </div>
+
+                    <!-- <div class="col-md-4">
+                      <div class="form-group mb-4 ">
                         <select name="companyStatus"  class="form-control">
-                         <?php if($_SESSION['agentrole'] == "Agent" || $_SESSION['agentrole'] == "Team leader"): ?>
+                         <?php //if($_SESSION['agentrole'] == "Agent" || $_SESSION['agentrole'] == "Team leader"): ?>
                               <option value="3">Pending</option>
-                          <?php else: ?>
+                          <?php //else: ?>
                               <option ></option>
                               <option selected>Company Status</option>
                               <option value="1">Working</option>
@@ -139,13 +161,13 @@ if(!($_SESSION)){
                               <option value="3">Pending</option>
                               <option value="4">Rejected</option>
                               <option value="5">High Risk</option>
-                          <?php endif; ?>
+                          <?php //endif; ?>
                         </select>
 
                       </div>
-                    </div>
+                    </div> -->
 
-                    <div class="col-md-4">
+                    <!-- <div class="col-md-4">
                       <div class="form-group mb-4 ">
                         <select name="paymentterm"  class="form-control">
                           <option selected>Payment Terms ( 1 - 45 days)</option>
@@ -156,7 +178,7 @@ if(!($_SESSION)){
                           <option value="25">25</option>
                         </select>
                       </div>
-                    </div>
+                    </div> -->
 
 
                     <div class="col-md-4">
@@ -166,6 +188,8 @@ if(!($_SESSION)){
                     </div>
 
 
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-4"></div>
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4 text-end">
                       <div class="form-group mb-4 form-item mt-4">
