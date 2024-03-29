@@ -53,7 +53,7 @@ background: #fff!important;
                           <th class="text-center text-uppercase text-th ">City</th>
                           <th class="text-center text-uppercase text-th ">state</th>
                           <th class="text-center text-uppercase text-th "> Status</th>
-                          <th class="text-center text-uppercase text-th ">Payment Terms</th>
+                          
                           <th class="text-center text-uppercase text-th ">Limit Assign</th>
 
                            <?php if($_SESSION['agentrole'] == "Agent"): ?>
@@ -72,7 +72,7 @@ background: #fff!important;
                               <div class="d-flex px-2 py-1">
                                 
                                 <div class="d-flex flex-column justify-content-center">
-                                  <a href="company_shipment_leads.php" class="mb-0 text-xs"><?php echo ucfirst($row['comapnyname']); ?></a>
+                                  <a href="company_shipment_leads.php" class="mb-0 text-xs"><?php echo ucfirst($row['companyname']); ?></a>
                                   
                                 </div>
                               </div>
@@ -86,29 +86,27 @@ background: #fff!important;
                                 </div>
                               </div>
                             </td>
-                            <!-- <td>
-                              <p class="text-xs text-secondary mb-0"><?php echo ucfirst($row['comapnyname']); ?></p>
-                                                          </td> -->
+                            
                             <td class="align-middle text-center text-sm">
-                              <p class="text-xs font-weight-bold mb-0"><?php echo $row['companyemailid']; ?></p>
+                              <p class="text-xs font-weight-bold mb-0"><?php echo $row['emailaddress']; ?></p>
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['companymanagername']); ?></span>
+                              <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['contactperson']); ?></span>
                             </td>
                             <td class="align-middle text-center">
                               <span class="text-secondary text-xs font-weight-bold"><?php echo $row['companycontactno']; ?></span>
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['companyaddress']); ?></span>
+                              <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['address']); ?></span>
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold"><?php echo $row['companypostalcode']; ?></span>
+                              <span class="text-secondary text-xs font-weight-bold"><?php echo $row['zipcode']; ?></span>
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['companycity']); ?></span>
+                              <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['city']); ?></span>
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['companystate']); ?></span>
+                              <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['state']); ?></span>
                             </td>
                             <td class="align-middle text-center">
                               <span class="text-secondary text-xs font-weight-bold"><?php if($row['companystatus']==1){
@@ -116,11 +114,9 @@ background: #fff!important;
                               }else if($row['companystatus']==2){ echo '<img width="15" height="15" src="https://img.icons8.com/external-flat-icons-inmotus-design/15/external-green-political-signs-flat-icons-inmotus-design.png" alt="external-green-political-signs-flat-icons-inmotus-design"/>';}else if($row['companystatus']==3){ echo '<img width="15" height="15" src="https://img.icons8.com/emoji/15/yellow-circle-emoji.png" alt="yellow-circle-emoji"/>';}
                               else if($row['companystatus']==4){ echo '<img width="15" height="15" src="https://img.icons8.com/emoji/15/red-circle-emoji.png" alt="red-circle-emoji"/>';} ?></span>
                             </td>
+                            
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold"><?php echo $row['paymentterm']; ?></span>
-                            </td>
-                            <td class="align-middle text-center">
-                              <p class="text-xs text-secondary mb-0"><?php echo ucfirst($row['companypaymentlimit']); ?></p>
+                              <p class="text-xs text-secondary mb-0"><?php echo ucfirst($row['creditlimit']); ?></p>
                                                         </td> 
                             <?php if($_SESSION['agentrole'] == "Agent" || $_SESSION['agentrole'] == "Team leader"): ?>
                             <?php else: ?>

@@ -15,29 +15,34 @@ if(!($_SESSION)){
     // Get the form data
     $sessionid = $_SESSION['id'];
     $comapnyname = $_POST["comapnyname"];
-    $companyemailid = $_POST["companyemailid"];
-    $companymanagername = $_POST["companymanagername"];
-    $companyaddress = $_POST["companyaddress"];
-    $companypostalcode = $_POST["companypostalcode"];
-    $companycity = $_POST['companycity'];
-    $companystate = $_POST['companystate'];
-    $companystatus = $_POST['companyStatus'];
-    $paymentterm = $_POST['paymentterm'];
-    $companypaymentlimit = $_POST['companypaymentlimit'];
+    $contactperson = $_POST["contactperson"];
+    $emailaddress = $_POST['emailaddress'];
     $companycontactno = $_POST['companycontactno'];
+    
+    $address = $_POST['address'];
+    $zipcode = $_POST['zipcode'];
+    $city = $_POST['city'];
+    $state = $_POST['state'];
+    $phoneno = $_POST['phoneno'];
+    $mailingaddress = $_POST['mailingaddress'];
+    $accountPayable = $_POST['accountPayable'];
+    $accountPayableEmail = $_POST['accountPayableEmail'];
+    $accountPayableNumber = $_POST['accountPayableNumber'];
+    $creditlimit = $_POST['creditlimit'];
+    
     $createdat = date('Y-m-d, H:i:s');
 
     // Call the insertData function
     // Assuming $mysqli is your database connection object
-    $insertResult = addCompany($mysqli, $sessionid, $comapnyname, $companyemailid,$companymanagername,$companyaddress,$companypostalcode,$companycity,$companystate,$companystatus,$paymentterm,$companypaymentlimit,$createdat,$companycontactno);
+    $insertResult = addCompany($mysqli, $sessionid, $comapnyname,$contactperson,$emailaddress,$companycontactno,$address,$zipcode,$city,$phoneno,$mailingaddress,$accountPayable,$accountPayableEmail,$accountPayableNumber,$creditlimit,$createdat,$state );
 
     // Check the result of the insertion
     $message = "";
     if ($insertResult) {
-        $message = "Agent inserted successfully.";
+        $message = "Company added successfully.";
     } else {
         // Insertion failed
-        $message = "Failed to insert agent.";
+        $message = "Failed to add company.";
     }
 }
 ?>
@@ -46,11 +51,13 @@ if(!($_SESSION)){
       <div class="container-fluid">
         <div class="row">
           <!-- Sidebar start -->
-          <?php include("navSideBar.php");?>
+        <?php  
+           include("navSideBar.php");?>
           <!-- Sidebar end -->
           <div class="col-lg-10 col-md-10 main-content mt-4">
+            <?php include("topHeader.php");?>
              <div class="d-flex justify-content-between p-3 main-header ">
-              <h5 class="text-break">Recent Shipments</h5>
+              <h5 class="text-break">Add  Shipments</h5>
               <?php if(!empty($message)){
                 ?>
                 <script>
@@ -77,11 +84,11 @@ if(!($_SESSION)){
                    <div class="row">
                     <div class="col-md-6">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="comapnyname" type="text" placeholder="Company Name *" >
+                        <input class="form-control" name="comapnyname" type="text" placeholder="Company Name *" required >
                       </div>
 
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="companymanagername" type="text" placeholder="Contact Person *">
+                        <input class="form-control" name="contactperson" type="text" placeholder="Contact Person *" required>
                       </div>
 
                      
@@ -89,31 +96,31 @@ if(!($_SESSION)){
 
                     <div class="col-md-6">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="companyemailid" type="email" placeholder="E-mail ID *">
+                        <input class="form-control" name="emailaddress" type="email" placeholder="E-mail ID *" required>
                       </div>
 
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="companycontactno" type="tel" minlength="10" maxlength="10" placeholder="Contact Number *">
+                        <input class="form-control" required name="companycontactno" type="tel" minlength="10" maxlength="10" placeholder="Contact Number *">
                       </div>
                     </div>
                     <span class="aside-hr mt-3 mb-4"></span>
                     
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="companyaddress" type="text"  placeholder="Address *">
+                        <input class="form-control" required name="address" type="text"  placeholder="Address *">
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="companypostalcode" type="text" placeholder="Zip Code">
+                        <input class="form-control" required name="zipcode" type="text" placeholder="Zip Code">
                       </div>
 
                     </div>
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="companycity" type="text" placeholder="City">
+                        <input class="form-control" required name="city" type="text" placeholder="City">
                       </div>
 
                     </div>
@@ -121,21 +128,35 @@ if(!($_SESSION)){
 
                      <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="companystate" type="text" placeholder="State">
+                        <input class="form-control" required name="state" type="text" placeholder="State">
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="accountPayable" type="text" placeholder="Account Payable">
+                        <input class="form-control" required name="phoneno" type="text" placeholder="PHONE NUMBER:">
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="accountPayEmail" type="text" placeholder="Account Payable Email">
+                        <input class="form-control" name="mailingaddress" type="text" placeholder="Mailiing Address">
+                      </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group mb-4 ">
+                        <input class="form-control" required name="accountPayable" type="text" placeholder="Account Payable">
+                      </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group mb-4 ">
+                        <input class="form-control" required name="accountPayableEmail" type="text" placeholder="Account Payable Email">
                       </div>
 
                     </div>
@@ -143,7 +164,7 @@ if(!($_SESSION)){
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="accountPayNumber" type="tel" placeholder="Account Payable Number">
+                        <input class="form-control" required name="accountPayableNumber" type="tel" placeholder="Account Payable Number">
                       </div>
 
                     </div>
@@ -183,7 +204,7 @@ if(!($_SESSION)){
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="companypaymentlimit" type="tel" minlength="2" maxlength="4" placeholder="Credit Limit">
+                        <input class="form-control" required name="creditlimit" type="tel" minlength="2" maxlength="4" placeholder="Credit Limit">
                       </div>
                     </div>
 

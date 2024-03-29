@@ -502,32 +502,36 @@ function getCompanies($mysqli){
     return $data;
 }
 
-function addCompany($mysqli, $sessionid, $companyname, $companyemailid, $companymanagername, $companyaddress, $companypostalcode, $companycity, $companystate, $companystatus, $paymentterm, $companypaymentlimit, $createdat,$companycontactno) {
+function addCompany($mysqli, $sessionid, $comapnyname,$contactperson,$emailaddress,$companycontactno,$address,$zipcode,$city,$phoneno,$mailingaddress,$accountPayable,$accountPayableEmail,$accountPayableNumber,$creditlimit,$createdat,$state ) {
     // Escape inputs to prevent SQL injection
     //$sessionid = $_SESSION['id'];
-
-    $companyname = mysqli_real_escape_string($mysqli, $companyname);
-    $companyemailid = mysqli_real_escape_string($mysqli, $companyemailid);
-    $companymanagername = mysqli_real_escape_string($mysqli, $companymanagername);
-    $companyaddress = mysqli_real_escape_string($mysqli, $companyaddress);
-    $companypostalcode = mysqli_real_escape_string($mysqli, $companypostalcode);
-    $companycity = mysqli_real_escape_string($mysqli, $companycity);
-    $companystate = mysqli_real_escape_string($mysqli, $companystate);
-    $companystatus = mysqli_real_escape_string($mysqli, $companystatus);
-    $paymentterm = mysqli_real_escape_string($mysqli, $paymentterm);
-    $companypaymentlimit = mysqli_real_escape_string($mysqli, $companypaymentlimit);
-    $createdat = mysqli_real_escape_string($mysqli, $createdat);
+    $companyname = mysqli_real_escape_string($mysqli, $comapnyname);
+    $contactperson = mysqli_real_escape_string($mysqli, $contactperson);
+    $emailaddress = mysqli_real_escape_string($mysqli, $emailaddress);
+    //$companyaddress = mysqli_real_escape_string($mysqli, $companyaddress);
     $companycontactno = mysqli_real_escape_string($mysqli, $companycontactno);
-  
+    $address = mysqli_real_escape_string($mysqli, $address);
+    $zipcode = mysqli_real_escape_string($mysqli, $zipcode);
+    $city = mysqli_real_escape_string($mysqli, $city);
+    $state = mysqli_real_escape_string($mysqli, $state);
+    $phoneno = mysqli_real_escape_string($mysqli, $phoneno);
+    $mailingaddress = mysqli_real_escape_string($mysqli, $mailingaddress);
+    $accountPayable = mysqli_real_escape_string($mysqli, $accountPayable);
+    $accountPayableEmail = mysqli_real_escape_string($mysqli, $accountPayableEmail);
+    $accountPayableNumber = mysqli_real_escape_string($mysqli, $accountPayableNumber);
+    $creditlimit = mysqli_real_escape_string($mysqli, $creditlimit);
+    $createdat = mysqli_real_escape_string($mysqli, $createdat);
+    $status = 3;
     // Prepare SQL statement
-    $sql = "INSERT INTO company (createdby, comapnyname, companyemailid, companymanagername, companyaddress, companypostalcode, companycity, companystate, companystatus, paymentterm, companypaymentlimit, createdat,companycontactno) 
-            VALUES ('$sessionid', '$companyname', '$companyemailid', '$companymanagername', '$companyaddress', '$companypostalcode', '$companycity', '$companystate', '".$companystatus."', '".$paymentterm."', '$companypaymentlimit', '$createdat','$companycontactno')";
+   
+    $sql = "INSERT INTO company (createdby,companyname,contactperson,emailaddress,companycontactno,address,zipcode,city,phoneno,mailingaddress,accountPayable,accountPayableEmail,accountPayableNumber,creditlimit,createdat,companystatus,state) 
+            VALUES ('$sessionid', '$companyname', '$contactperson','$emailaddress','$companycontactno','$address','$zipcode','$city','$phoneno','$mailingaddress','$accountPayable','$accountPayableEmail','$accountPayableNumber','$creditlimit','$createdat','$status','$state')";
 
     // Execute SQL query
     if ($mysqli->query($sql) === TRUE) {
         return "Company added successfully";
     } else {
-        return "Error adding company: " . $mysqli->error;
+        return "Error while adding company: " . $mysqli->error;
     }
 }
 
