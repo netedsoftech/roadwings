@@ -57,37 +57,22 @@
                 </div>
               </a>
             </li>
-            <li class="nav-item px-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0">
-                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li class="nav-item dropdown pe-2 d-flex align-items-center">
+            <li class="nav-item px-3 d-flex align-items-center dropdown">
+              <button type="button" class="btn text-white position-relative dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-bell cursor-pointer" aria-hidden="true" ></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-white bg-danger">
+                  99+
+                  <span class="visually-hidden">unread messages</span>
+                </span>
+              </button>
 
-              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <span  id="unreadNotificationCount" class="badge"></span>
-                <i class="fa fa-bell cursor-pointer" aria-hidden="true" ></i>
-
-              </a>
-               <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-        <li class="mb-2">
-            <a class="dropdown-item border-radius-md" href="javascript:;">
-                <div class="d-flex py-1">
-                    <!-- <div class="my-auto">
-                    <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
-                    </div> -->
-                    <div class="d-flex flex-column justify-content-center" >
-                        <h6 class="text-sm font-weight-normal mb-1">
-                            <span class="font-weight-bold" id="notifications"></span>
-                        </h6>
-                       
-                    </div>
-                </div>
-            </a>
-        </li>
-      
-    </ul>
+              <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
             </li>
+            
           </ul>
         </div>
       </div>

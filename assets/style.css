@@ -235,3 +235,7 @@ li > a{
     border-radius: 4px;
     border-bottom: 2px solid #144084;
 }
+
+.dropdown-toggle::after {
+  display: none!important;
+}
