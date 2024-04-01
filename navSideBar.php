@@ -52,7 +52,7 @@ if (in_array($currentSegment, $pages)) {
                 <li class="nav-item mt-2 mb-2">
 
 
-                  <a class="nav-link <?php echo $currentSegment == 'shipment_leads.php' ? 'active' : ''; ?>" href="company_listing.php">
+                  <a class="nav-link <?php echo $currentSegment == 'company_listing.php' ? 'active' : ''; ?>" href="company_listing.php">
 
                     <img
                       width="18"
