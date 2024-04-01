@@ -535,9 +535,17 @@ function addCompany($mysqli, $sessionid, $comapnyname,$contactperson,$emailaddre
     }
 }
 
-function updateCompany($mysqli,$companystatus,$companyid){
+function updateCompany($mysqli,$companystatus,$companyid,$companyname,$contactperson,$emailaddress,$companycontactno,$address,$zipcode,$city,$state){
+    $companyname = mysqli_real_escape_string($mysqli, $companyname);
+    $contactperson = mysqli_real_escape_string($mysqli, $contactperson);
+    $emailaddress = mysqli_real_escape_string($mysqli, $emailaddress);
+    $companycontactno = mysqli_real_escape_string($mysqli, $companycontactno);
+    $address = mysqli_real_escape_string($mysqli, $address);
+    $zipcode = mysqli_real_escape_string($mysqli, $zipcode);
+    $city = mysqli_real_escape_string($mysqli, $city);
+    $state = mysqli_real_escape_string($mysqli, $state);
     $companystatus = mysqli_real_escape_string($mysqli, $companystatus);
-    $update = "update company set companystatus = '$companystatus' where id = '$companyid'";
+    $update = "update company set companystatus = '$companystatus',companyname='$companyname',contactperson='$contactperson',emailaddress='$emailaddress',companycontactno='$companycontactno',address='$address',zipcode='$zipcode',city='$city',state='$state' where id = '$companyid'";
     if ($mysqli->query($update) === TRUE) {
         return "Company updated successfully";
     } else {

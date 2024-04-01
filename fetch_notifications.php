@@ -4,22 +4,35 @@ require_once "config.php";
 if(!($_SESSION)){
     header("location: login_page.php");
 }
-
+$id = $_SESSION['id'];
 // Fetch count of unread notifications
-
+if($_SESSION['agentrole'] == 'Admin' || $_SESSION['agentrole'] == "MANAGER"){
 $queryCount = "SELECT COUNT(*) AS unread_count 
                FROM company 
                WHERE is_read = '0'"; // Assuming you have a column is_read to track read/unread status
+}else{
+    $queryCount = "SELECT COUNT(*) AS unread_count 
+               FROM company 
+               WHERE is_read = '0' AND createdby = '$id'"; // Assuming you have a column is_read to track read/unread status
+}
 $resultCount = mysqli_query($mysqli, $queryCount);
 $countRow = mysqli_fetch_assoc($resultCount);
 $unreadCount = $countRow['unread_count'];
 
 // Fetch notifications
+if($_SESSION['agentrole'] == 'Admin' || $_SESSION['agentrole'] == "MANAGER"){
 $query = "SELECT company.createdby, login.agentname, company.createdat 
           FROM company 
           LEFT JOIN login ON company.createdby = login.id 
           WHERE company.is_read = '0'
           ORDER BY company.id DESC";
+}else{
+    $query = "SELECT company.createdby, login.agentname, company.createdat 
+          FROM company 
+          LEFT JOIN login ON company.createdby = login.id 
+          WHERE company.is_read = '0' AND  company.createdby = '$id'
+          ORDER BY company.id DESC";
+}
 $result = mysqli_query($mysqli, $query);
 
 // Display notifications

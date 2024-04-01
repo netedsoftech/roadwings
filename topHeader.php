@@ -112,5 +112,18 @@
             $('#notifications').on('click', function() {
                 notificationVisible = !notificationVisible;
             });
+
+            $("#dropdownMenuButton").click(function(){
+              var readnotification = "Read";
+              $.ajax({
+                url:'readnotification.php',
+                type:'post',
+                data:{readnotification:readnotification},
+                success:function(data){
+                  //alert(data);
+                }
+              })
+
+            })
         });
     </script>

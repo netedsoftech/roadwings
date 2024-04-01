@@ -11,9 +11,17 @@ if(!($_SESSION)){
 
 if(isset($_POST["update"])){
   //echo "<pre>"; print_r($_POST); die;
+  $companyname = $_POST['companyname'];
+  $contactperson = $_POST['contactperson'];
+  $emailaddress = $_POST['emailaddress'];
+  $companycontactno = $_POST['companycontactno'];
+  $address = $_POST['address'];
+  $zipcode = $_POST['zipcode'];
+  $city = $_POST['city'];
+  $state = $_POST['state'];
   $companystatus = $_POST['companystatus'];
   $companyid = $_POST['companyid'];
-  $updatecompany = updateCompany($mysqli,$companystatus,$companyid);
+  $updatecompany = updateCompany($mysqli,$companystatus,$companyid,$companyname,$contactperson,$emailaddress,$companycontactno,$address,$zipcode,$city,$state);
   $message = "";
   $error =  "";
     if ($updatecompany) {
