@@ -23,14 +23,13 @@ $unreadCount = $countRow['unread_count'];
 if($_SESSION['agentrole'] == 'Admin' || $_SESSION['agentrole'] == "MANAGER"){
 $query = "SELECT company.createdby, login.agentname, company.createdat 
           FROM company 
-          LEFT JOIN login ON company.createdby = login.id 
-          WHERE company.is_read = '0'
+          LEFT JOIN login ON company.createdby = login.id
           ORDER BY company.id DESC";
 }else{
     $query = "SELECT company.createdby, login.agentname, company.createdat 
           FROM company 
           LEFT JOIN login ON company.createdby = login.id 
-          WHERE company.is_read = '0' AND  company.createdby = '$id'
+          WHERE  company.createdby = '$id'
           ORDER BY company.id DESC";
 }
 $result = mysqli_query($mysqli, $query);
