@@ -60,17 +60,15 @@
             <li class="nav-item px-3 d-flex align-items-center dropdown">
               <button type="button" class="btn text-white position-relative dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-bell cursor-pointer" aria-hidden="true" ></i>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-white bg-danger">
-                  99+
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-white bg-danger" id="unreadNotificationCount">
+                  
                   <span class="visually-hidden">unread messages</span>
                 </span>
               </button>
 
-              <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-  </ul>
+              <ul class="dropdown-menu" >
+                <span id="notifications"></span>
+              </ul>
             </li>
             
           </ul>

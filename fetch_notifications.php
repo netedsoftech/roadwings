@@ -26,7 +26,7 @@ $result = mysqli_query($mysqli, $query);
 if(mysqli_num_rows($result) > 0) {
     while($row = mysqli_fetch_assoc($result)) {
         $notificationTime = date('Y-m-d', strtotime($row['createdat'])); // Format the timestamp
-        echo '<div class="notification">' . $row['agentname'] . ' added new company at ' . $notificationTime . '</div>';
+        echo '<li>' .'<a class="dropdown-item" href="#" >' . $row['agentname'] . ' added new company at ' . $notificationTime . '</a>' . '</li>';
     }
 } else {
     echo 'No new notifications';
