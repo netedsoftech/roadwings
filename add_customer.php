@@ -29,12 +29,13 @@ if(!($_SESSION)){
     $accountPayableEmail = $_POST['accountPayableEmail'];
     $accountPayableNumber = $_POST['accountPayableNumber'];
     $creditlimit = $_POST['creditlimit'];
+    $paymentterm =  $_POST['paymentterm'];
     
     $createdat = date('Y-m-d, H:i:s');
 
     // Call the insertData function
     // Assuming $mysqli is your database connection object
-    $insertResult = addCompany($mysqli, $sessionid, $comapnyname,$contactperson,$emailaddress,$companycontactno,$address,$zipcode,$city,$phoneno,$mailingaddress,$accountPayable,$accountPayableEmail,$accountPayableNumber,$creditlimit,$createdat,$state );
+    $insertResult = addCompany($mysqli, $sessionid, $comapnyname,$contactperson,$emailaddress,$companycontactno,$address,$zipcode,$city,$phoneno,$mailingaddress,$accountPayable,$accountPayableEmail,$accountPayableNumber,$creditlimit,$createdat,$state,$paymentterm );
 
     // Check the result of the insertion
     $message = "";
@@ -188,18 +189,24 @@ if(!($_SESSION)){
                       </div>
                     </div> -->
 
-                    <!-- <div class="col-md-4">
+                   <div class="col-md-4">
                       <div class="form-group mb-4 ">
                         <select name="paymentterm"  class="form-control">
-                          <option selected>Payment Terms ( 1 - 45 days)</option>
+                          <option selected>Payment Terms ( 1 - 50 days)</option>
                           <option value="1">1</option>
                           <option value="10">10</option>
                           <option value="15">15</option>
                           <option value="20">20</option>
                           <option value="25">25</option>
+                          <option value="30">30</option>
+                          <option value="35">35</option>
+                          <option value="40">40</option>
+                          <option value="45">45</option>
+                          <option value="50">50</option>
+                         
                         </select>
                       </div>
-                    </div> -->
+                    </div>
 
 
                     <div class="col-md-4">

@@ -502,7 +502,7 @@ function getCompanies($mysqli){
     return $data;
 }
 
-function addCompany($mysqli, $sessionid, $comapnyname,$contactperson,$emailaddress,$companycontactno,$address,$zipcode,$city,$phoneno,$mailingaddress,$accountPayable,$accountPayableEmail,$accountPayableNumber,$creditlimit,$createdat,$state ) {
+function addCompany($mysqli, $sessionid, $comapnyname,$contactperson,$emailaddress,$companycontactno,$address,$zipcode,$city,$phoneno,$mailingaddress,$accountPayable,$accountPayableEmail,$accountPayableNumber,$creditlimit,$createdat,$state,$paymentterm ) {
     // Escape inputs to prevent SQL injection
     //$sessionid = $_SESSION['id'];
     $companyname = mysqli_real_escape_string($mysqli, $comapnyname);
@@ -521,11 +521,12 @@ function addCompany($mysqli, $sessionid, $comapnyname,$contactperson,$emailaddre
     $accountPayableNumber = mysqli_real_escape_string($mysqli, $accountPayableNumber);
     $creditlimit = mysqli_real_escape_string($mysqli, $creditlimit);
     $createdat = mysqli_real_escape_string($mysqli, $createdat);
+    $paymentterm = mysqli_real_escape_string($mysqli, $paymentterm);
     $status = 3;
     // Prepare SQL statement
    
-    $sql = "INSERT INTO company (createdby,companyname,contactperson,emailaddress,companycontactno,address,zipcode,city,phoneno,mailingaddress,accountPayable,accountPayableEmail,accountPayableNumber,creditlimit,createdat,companystatus,state) 
-            VALUES ('$sessionid', '$companyname', '$contactperson','$emailaddress','$companycontactno','$address','$zipcode','$city','$phoneno','$mailingaddress','$accountPayable','$accountPayableEmail','$accountPayableNumber','$creditlimit','$createdat','$status','$state')";
+    $sql = "INSERT INTO company (createdby,companyname,contactperson,emailaddress,companycontactno,address,zipcode,city,phoneno,mailingaddress,accountPayable,accountPayableEmail,accountPayableNumber,creditlimit,createdat,companystatus,state,paymentterm) 
+            VALUES ('$sessionid', '$companyname', '$contactperson','$emailaddress','$companycontactno','$address','$zipcode','$city','$phoneno','$mailingaddress','$accountPayable','$accountPayableEmail','$accountPayableNumber','$creditlimit','$createdat','$status','$state','$paymentterm')";
 
     // Execute SQL query
     if ($mysqli->query($sql) === TRUE) {
