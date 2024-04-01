@@ -57,7 +57,7 @@
                 </div>
               </a>
             </li>
-            <li class="nav-item px-3 d-flex align-items-center dropdown">
+            <li class="nav-item px-3 d-flex dropstart dropdown">
               <button type="button" class="btn text-white position-relative dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-bell cursor-pointer" aria-hidden="true" ></i>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-white bg-danger" id="unreadNotificationCount">
@@ -66,7 +66,7 @@
                 </span>
               </button>
 
-              <ul class="dropdown-menu" >
+              <ul class="dropdown-menu " >
                 <span id="notifications"></span>
               </ul>
             </li>

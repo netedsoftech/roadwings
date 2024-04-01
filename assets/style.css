@@ -236,6 +236,7 @@ li > a{
     border-bottom: 2px solid #144084;
 }
 
-.dropdown-toggle::after {
+.dropstart .dropdown-toggle::before {
   display: none!important;
 }
+
