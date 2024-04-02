@@ -45,6 +45,8 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px!important;
 color: #124483!important;
 background: #fff!important;
 }
+
+
 </style>
     <section class="main">
       <div class="container-fluid">
@@ -167,10 +169,10 @@ background: #fff!important;
                               <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['state']); ?></span>
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold"><?php if($row['companystatus']==1){
-                                echo '<img width="15" height="15" src="https://img.icons8.com/external-others-inmotus-design/15/f14f81ab/external-Dot-atm-others-inmotus-design.png" alt="external-Dot-atm-others-inmotus-design"/>';
-                              }else if($row['companystatus']==2){ echo '<img width="15" height="15" src="https://img.icons8.com/external-flat-icons-inmotus-design/15/external-green-political-signs-flat-icons-inmotus-design.png" alt="external-green-political-signs-flat-icons-inmotus-design"/>';}else if($row['companystatus']==3){ echo '<img width="15" height="15" src="https://img.icons8.com/emoji/15/yellow-circle-emoji.png" alt="yellow-circle-emoji"/>';}
-                              else if($row['companystatus']==4){ echo '<img width="15" height="15" src="https://img.icons8.com/emoji/15/red-circle-emoji.png" alt="red-circle-emoji"/>';} ?></span>
+                              <span class="text-secondary text-xs font-weight-bold title_main"><?php if($row['companystatus']==1){
+                                echo '<img title="Working" width="15" height="15" src="https://img.icons8.com/emoji/15/orange-circle-emoji.png" alt="orange-circle-emoji"/>';
+                              }else if($row['companystatus']==2){ echo '<img title="Approved" width="15" height="15" src="https://img.icons8.com/external-flat-icons-inmotus-design/15/external-green-political-signs-flat-icons-inmotus-design.png" alt="external-green-political-signs-flat-icons-inmotus-design"/>';}else if($row['companystatus']==3){ echo '<img title="Pending" width="15" height="15" src="https://img.icons8.com/emoji/15/yellow-circle-emoji.png" alt="yellow-circle-emoji"/>';}
+                              else if($row['companystatus']==4){ echo '<img title="Rejected" width="15" height="15" src="https://img.icons8.com/emoji/15/red-circle-emoji.png" alt="red-circle-emoji"/>';} ?></span>
                             </td>
                             
                             <td class="align-middle text-center">
