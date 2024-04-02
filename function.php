@@ -565,4 +565,63 @@ function createPassword($mysqli, $email, $password){
         return "Create password faild.";
     }
 }
+
+function pedingCount($mysqli){
+    $role = $_SESSION['agentrole'];
+    $id = $_SESSION['id'];
+    if($role == "Admin" || $role == "MANAGER"){
+        $query = "select count(*) as countPending from company where companystatus='3'";
+    }else{
+        $query = "select count(*) as countPending from company where companystatus='3' AND createdby = '$id'";
+    }
+    $resultCount = mysqli_query($mysqli, $query);
+    $countRow = mysqli_fetch_assoc($resultCount);
+    $pCount = $countRow['countPending'];
+    return $pCount;
+}
+
+function workingCount($mysqli){
+    $role = $_SESSION['agentrole'];
+    $id = $_SESSION['id'];
+    if($role == "Admin" || $role == "MANAGER"){
+        $query = "select count(*) as countWorking from company where companystatus='1'";
+    }else{
+        $query = "select count(*) as countWorking from company where companystatus='1' AND createdby = '$id'";
+    }
+    
+    $resultCount = mysqli_query($mysqli, $query);
+    $countRow = mysqli_fetch_assoc($resultCount);
+    $wCount = $countRow['countWorking'];
+    return $wCount;
+}
+
+function approvedCount($mysqli){
+    $role = $_SESSION['agentrole'];
+    $id = $_SESSION['id'];
+    if($role == "Admin" || $role == "MANAGER"){
+        $query = "select count(*) as countApproved from company where companystatus='2'";
+    }else{
+        $query = "select count(*) as countApproved from company where companystatus='2' AND createdby = '$id'";
+    }
+    
+    $resultCount = mysqli_query($mysqli, $query);
+    $countRow = mysqli_fetch_assoc($resultCount);
+    $aCount = $countRow['countApproved'];
+    return $aCount; 
+}
+
+function rejectedCount($mysqli){
+    $role = $_SESSION['agentrole'];
+    $id = $_SESSION['id'];
+    if($role == "Admin" || $role == "MANAGER"){
+        $query = "select count(*) as countRejected from company where companystatus='4'";
+    }else{
+        $query = "select count(*) as countRejected from company where companystatus='4' AND createdby = '$id'";
+    }
+    
+    $resultCount = mysqli_query($mysqli, $query);
+    $countRow = mysqli_fetch_assoc($resultCount);
+    $rCount = $countRow['countRejected'];
+    return $rCount; 
+}
 ?>

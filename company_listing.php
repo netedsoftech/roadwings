@@ -109,8 +109,8 @@ background: #fff!important;
                           
                           <th class="text-center text-uppercase text-th ">Limit Assign</th>
 
-                           <?php if($_SESSION['agentrole'] == "Agent"): ?>
-                            <?php else: ?>
+                           <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER"): ?>
+                           
                           <th class="text-secondary "></th>
                           <?php endif; ?>
                         </tr>
@@ -176,8 +176,8 @@ background: #fff!important;
                             <td class="align-middle text-center">
                               <p class="text-xs text-secondary mb-0"><?php echo ucfirst($row['creditlimit']); ?></p>
                                                         </td> 
-                            <?php if($_SESSION['agentrole'] == "Agent" || $_SESSION['agentrole'] == "Team leader"): ?>
-                            <?php else: ?>
+                            <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER"): ?>
+                            
                             
 
                              <td class="align-middle">  
