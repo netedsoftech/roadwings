@@ -11,9 +11,7 @@ include('function.php');
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Load Data</title>
@@ -21,8 +19,7 @@ include('function.php');
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css_demo/daterangepicker.css" />
       <script type="text/javascript" src="js_demo/daterangepicker.js"></script>
-</head>
-<body>
+
 <section class="main">
       <div class="container-fluid">
         <div class="row">
@@ -255,5 +252,11 @@ include('function.php');
             $("#endDate").val(from_date.format("YYYY/MM/DD"));
           });
 </script>
+
+<script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
 </body>
 </html>
