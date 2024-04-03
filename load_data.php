@@ -33,7 +33,7 @@ include('function.php');
 </div>
 
 <div class="row mt-4 ">
-              <div class="col-lg-9">
+              <div class="col-lg-8">
                 <div class="main-header p-3 ">
                   <form method="post">
                     <h5 class="mt-2 mb-5">Add Load Data Details</h5>
@@ -154,7 +154,7 @@ include('function.php');
               </div>
               
               
-<div class="col-lg-3">
+<div class="col-lg-4">
                   <div class="main-header ">
                   <div class="card-header pb-0 p-3">
                     <h6 class="mb-0">Logistic Company</h6>
