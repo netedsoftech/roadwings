@@ -126,15 +126,15 @@ background: #fff!important;
                             <td>
                               <div class="d-flex px-2 py-1">
                                 
-                                <!-- <div class="d-flex flex-column justify-content-center">
-                                  <a href="company_shipment_leads.php" class="mb-0 text-xs"><?php echo ucfirst($row['companyname']); ?></a>
-                                  
-                                </div> -->
-
-                                <div class="d-flex flex-column justify-content-center">
-                                  <p class="text-xs font-weight-bold mb-0"><?php echo ucfirst($row['companyname']); ?></p>
+                                <div class="d-flex flex-column justify-content-center companyname">
+                                  <a title="Load Data" href="load_data.php" class="mb-0 text-xs" ><?php echo ucfirst($row['companyname']); ?></a>
                                   
                                 </div>
+<!-- 
+                                <div class="d-flex flex-column justify-content-center">
+                                  <p class="text-xs font-weight-bold mb-0"><?php// echo ucfirst($row['companyname']); ?></p>
+                                  
+                                </div> -->
                               </div>
                             </td>
                             <td>

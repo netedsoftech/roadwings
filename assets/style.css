@@ -240,15 +240,6 @@ li > a{
   display: none!important;
 }
 
-img {
-  position: relative;
-  display: inline-block;
-  margin-top: 20px;
-}
-
-img[title]:hover::after {
-  content: attr(title);
-  position: absolute;
-  top: -100%;
-  left: 0;
+.companyname > a{
+  text-decoration: none;
 }
