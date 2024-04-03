@@ -331,8 +331,8 @@ if (in_array($currentSegment, $pages)) {
   padding: 25px 16px;
   background: #124483;
   width: 150px;
-  position: absolute;
-  bottom: -85px!important;
+  position: fixed;
+  bottom: 0;
   right: 0;
   margin: 15px;
   border-top-left-radius: 25px;
