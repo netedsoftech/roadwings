@@ -332,7 +332,7 @@ if (in_array($currentSegment, $pages)) {
   background: #124483;
   width: 150px;
   position: absolute;
-  bottom: 0;
+  bottom: -85px!important;
   right: 0;
   margin: 15px;
   border-top-left-radius: 25px;

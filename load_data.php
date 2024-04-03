@@ -110,12 +110,7 @@ include('function.php');
 
                     </div>
 
-                    <div class="col-md-4">
-                      <div class="form-group mb-4 ">
-                        <input class="form-control" required name="notes " type="text" placeholder="Notes ">
-                      </div>
-
-                    </div>
+                  
 
                     <div class="col-md-4 d-none">
                       <div class="form-group mb-4 ">
@@ -133,41 +128,20 @@ include('function.php');
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required name="accountPayableEmail" type="text" placeholder="Account Payable Email">
-                      </div>
-
-                    </div>
-
-
-                    <div class="col-md-4">
-                      <div class="form-group mb-4 ">
                         <input class="form-control" required name="carrier rate" type="tel" placeholder="Carrier Rate">
                       </div>
 
                     </div>
 
-                    <!-- <div class="col-md-4">
+                    <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <select name="companyStatus"  class="form-control">
-                                                       <option value="3">Pending</option>
-                                                        <option ></option>
-                              <option selected>Company Status</option>
-                              <option value="1">Working</option>
-                              <option value="2">Approved</option>
-                              <option value="3">Pending</option>
-                              <option value="4">Rejected</option>
-                              <option value="5">High Risk</option>
-                                                  </select>
-
+                        <textarea class="form-control" name="" id="notes" placeholder="Notes " cols="30" rows="4"></textarea>
                       </div>
-                    </div> -->
 
-                  
+                    </div>
 
-
-
-                    <div class="col-lg-4"></div>
-                    <div class="col-lg-4"></div>
+                    <!-- <div class="col-lg-4"></div>
+                    <div class="col-lg-4"></div> -->
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4 text-end">
                       <div class="form-group mb-4 form-item mt-4">
