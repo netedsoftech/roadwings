@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include('config.php');
 include("header.php");
 include('function.php');
@@ -8,7 +9,7 @@ include('function.php');
   if(!($_SESSION)){
     header("location: login_page.php");
   }
-
+  
 ?>
 
 
@@ -34,28 +35,27 @@ include('function.php');
 
 <div class="row mt-4 ">
               <div class="col-lg-8">
-                 <!-- Company form start -->
-                <div class="main-header p-3" id="companyFormContainer">
-                  <form id="companyForm" method="post" onsubmit="return submitCompanyForm()">
-                    <h5 class="mt-2 mb-5">Add Load </h5>
+                <div class="main-header p-3 ">
+                  <form method="post">
+                    <h5 class="mt-2 mb-5">Add Load Data Details</h5>
                    <!-- <h6 class="mt-2 mb-4">COMPANY INFORMATION</h6> -->
                    <div class="row">
                     <div class="col-md-3">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" id="fromInput" name="from" type="text" placeholder="From *" required>
+                        <input class="form-control" name="from" type="text" placeholder="From *" required>
                       </div>
                     </div>
 
                     <div class="col-md-3">
                     <div class="form-group mb-4 ">
-                        <input class="form-control" id="toInput" name="to" type="text" placeholder="To *" required>
+                        <input class="form-control" name="to" type="text" placeholder="To *" required>
                       </div>
                     </div>
 
 
                     <div class="col-md-3">
                       <div class="form-group mb-4 ">
-                        <input id="startDate" class="form-control icons_search_input click"  name="sDate" type="text" placeholder="Start Date *" required autocomplete="off">
+                        <input id="startDate" class="form-control icons_search_input click"  name="sDate" type="text" placeholder="Start Date *" required>
                       </div>
                     </div>
 
@@ -63,7 +63,7 @@ include('function.php');
                     <div class="col-md-3">
                     
                     <div class="form-group mb-4 ">
-                        <input id="endDate" class="form-control icons_search_input click" name="deliveryDate" type="text" placeholder="Delivery Date *" required autocomplete="off">
+                        <input id="endDate" class="form-control icons_search_input click" name="deliveryDate" type="text" placeholder="Delivery Date *" required>
                       </div>
                     </div>
 
@@ -92,13 +92,13 @@ include('function.php');
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" id="lengthInput" required name="length" type="text" placeholder="Length">
+                        <input class="form-control" required name="length" type="text" placeholder="Length">
                       </div>
 
                     </div>
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" id="weightInput" required name="weight" type="text" placeholder="Weight">
+                        <input class="form-control" required name="weight" type="text" placeholder="Weight">
                       </div>
 
                     </div>
@@ -122,134 +122,14 @@ include('function.php');
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required id="customerrateInput" name="customer rate" type="text" placeholder="Customer Rate">
+                        <input class="form-control" required name="customer rate" type="text" placeholder="Customer Rate">
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required id="carrierrrateInput" name="carrier rate" type="tel" placeholder="Carrier Rate">
-                      </div>
-
-                    </div>
-
-                    <div class="col-md-4">
-                      <div class="form-group mb-4 ">
-                        <textarea class="form-control" name="" id="notes" placeholder="Notes " cols="30" rows="4"></textarea>
-                      </div>
-
-                    </div>
-
-                    <!-- <div class="col-lg-4"></div>
-                    <div class="col-lg-4"></div> -->
-                    <div class="col-lg-4"></div>
-                    <div class="col-lg-4 text-end">
-                    <div class="form-group mb-4 form-item mt-4" id="submitCompanyFormBtnContainer">
-                        <button name="addcompany" class="btn">Submit Details</button>
-                      </div>
-                    </div>
-                   </div>
-                  </form>
-                 </div>
-
-                 <!-- Company form end -->
-                 <!-- Trucker form start -->
-                 <div class="main-header p-3" id="truckerFormContainer" style="display: none;">
-                  <form method="post">
-                    <h5 class="mt-2 mb-5">Add Carrier </h5>
-                   <!-- <h6 class="mt-2 mb-4">COMPANY INFORMATION</h6> -->
-                   <div class="row">
-                    <div class="col-md-3">
-                      <div class="form-group mb-4 ">
-                        <input class="form-control" name="from" id="fromInputSecond" type="text" placeholder="From *" required readonly value="">
-                      </div>
-                    </div>
-
-                    <div class="col-md-3">
-                    <div class="form-group mb-4 ">
-                        <input class="form-control" name="to" id="toInputSecond" type="text" placeholder="To *" required readonly value="">
-                      </div>
-                    </div>
-
-
-                    <div class="col-md-3">
-                      <div class="form-group mb-4 ">
-                        <input id="sDateInputSecond" class="form-control icons_search_input click"  name="sDate" type="text" placeholder="Start Date *" required readonly value="">
-                      </div>
-                    </div>
-
-                   
-                    <div class="col-md-3">
-                    
-                    <div class="form-group mb-4 ">
-                        <input id="deliveryDateInputSecond" class="form-control icons_search_input click" name="deliveryDate" type="text" placeholder="Delivery Date *" required readonly value="">
-                      </div>
-                    </div>
-
-                    <span class="aside-hr mt-3 mb-4"></span>
-                    
-                    <div class="col-md-4">
-                      <div class="form-group mb-4 ">
-                        <select class="form-control"> 
-                            <option >Truck Type</option>
-                            <option value="Dry Van 53">Dry Van 53'</option>
-                            <option value="Flatbed 48">Flatbed 48'</option>
-                            <option value="Flatbed 53">Flatbed 53'</option>
-                            <option value="Stepdeck 53">Stepdeck 53'</option>
-                            <option value="Straight Box Truck 26">Straight Box Truck 26'</option>
-                            <option value="Conestoga, Reefer 53">Conestoga, Reefer 53'</option>
-                            <option value="Flatbed Hotshot">Flatbed Hotshot</option>
-                            <option value="Lowboy, Power Only">Lowboy, Power Only</option>
-                            <option value="Van Hazmat">Van Hazmat</option>
-                            <option value="Reefer Hazmat"> Reefer Hazmat</option>
-                            <option value="RGN">RGN</option>
-                            <option value="Container">Container</option>
-                        </select>
-                      </div>
-
-                    </div>
-
-                    <div class="col-md-4">
-                      <div class="form-group mb-4 ">
-                        <input id="lengthInputSecond" class="form-control" required name="length" type="text" placeholder="Length" readonly value="">
-                      </div>
-
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group mb-4 ">
-                        <input id="weightInputSecond" class="form-control" required name="weight" type="text" placeholder="Weight" readonly value="">
-                      </div>
-
-                    </div>
-
-
-                     <div class="col-md-4">
-                      <div class="form-group mb-4 ">
-                        <input  class="form-control" required name="commodity" type="text" placeholder="Commodity (goods)" readonly value="">
-                      </div>
-
-                    </div>
-
-                  
-
-                    <div class="col-md-4 d-none">
-                      <div class="form-group mb-4 ">
-                        <input class="form-control" name="dat rate" type="text" placeholder="dat rate" hidden>
-                      </div>
-
-                    </div>
-
-                    <div class="col-md-4">
-                      <div class="form-group mb-4 ">
-                        <input id="customerInputSecond" class="form-control" required name="customer rate" type="text" placeholder="Customer Rate" readonly value="">
-                      </div>
-
-                    </div>
-
-                    <div class="col-md-4">
-                      <div class="form-group mb-4 ">
-                        <input  id="carrierInputSecond" class="form-control" required name="carrier rate" type="tel" placeholder="Carrier Rate" readonly value="">
+                        <input class="form-control" required name="carrier rate" type="tel" placeholder="Carrier Rate">
                       </div>
 
                     </div>
@@ -267,13 +147,11 @@ include('function.php');
                     <div class="col-lg-4 text-end">
                       <div class="form-group mb-4 form-item mt-4">
                         <button name="addcompany" class="btn ">Submit Details</button>
-                        <button id="showCompanyFormBtn" class="btn">Edit First form?</button>
                       </div>
                     </div>
                    </div>
                   </form>
                  </div>
-                 <!-- Trucker form end -->
               </div>
               
               
@@ -310,65 +188,6 @@ include('function.php');
 </div>
 </div>
 </section>
-<script>
-  // Function to submit the company form
-  function submitCompanyForm() {
-    var allFieldsFilled = true;
-    var companyForm = document.getElementById("companyForm");
-    var inputs = companyForm.getElementsByTagName("input");
-    for (var i = 0; i < inputs.length; i++) {
-      if (inputs[i].hasAttribute("required") && inputs[i].value.trim() === "") {
-        allFieldsFilled = false;
-        break;
-      }
-    }
-
-    if (allFieldsFilled) {
-      document.getElementById("companyFormContainer").style.display = "none";
-      document.getElementById("truckerFormContainer").style.display = "block";
-
-      var fromValue = document.getElementById("fromInput").value;
-        var toValue = document.getElementById("toInput").value;
-        var startValue = document.getElementById("startDate").value;
-        var endValue = document.getElementById("endDate").value;
-        var lengthValue = document.getElementById("lengthInput").value;
-        var weigthValue = document.getElementById("weightInput").value;
-        var customerValue = document.getElementById("customerrateInput").value;
-        var carrierValue = document.getElementById("carrierrrateInput").value;
-        // Retrieve corresponding fields in the second form
-        var fromInputSecond = document.getElementById("fromInputSecond");
-        var toInputSecond = document.getElementById("toInputSecond");
-        var sDateInputSecond = document.getElementById("sDateInputSecond");
-        var deliveryDateInputSecond = document.getElementById("deliveryDateInputSecond");
-        var lengthInputSecond = document.getElementById("lengthInputSecond");
-        var weightInputSecond = document.getElementById("weightInputSecond");
-        var customerInputSecond = document.getElementById("customerInputSecond");
-        var carrierInputSecond = document.getElementById("carrierInputSecond");
-        // Set values in the second form
-        fromInputSecond.value = fromValue;
-        toInputSecond.value = toValue;
-        sDateInputSecond.value = startValue;
-        deliveryDateInputSecond.value = endValue;
-        lengthInputSecond.value = lengthValue;
-        weightInputSecond.value = weigthValue;
-        customerInputSecond.value = customerValue;
-        carrierInputSecond.value = carrierValue;
-    }
-
-    return false;
-
-
-        // Display the second form
-  }
-
-  document.getElementById("showCompanyFormBtn").addEventListener("click", function(event) {
-    event.preventDefault();
-    document.getElementById("companyFormContainer").style.display = "block";
-    document.getElementById("truckerFormContainer").style.display = "none";
-  });
-</script>
-
-
 
 
 <script>
