@@ -345,7 +345,7 @@ include('function.php');
         var customerInputSecond = document.getElementById("customerInputSecond");
         var carrierInputSecond = document.getElementById("carrierInputSecond");
         // Set values in the second form
-        fromInputSecond.value = fromValue;
+        fromInputSecond.value = fromValue; 
         toInputSecond.value = toValue;
         sDateInputSecond.value = startValue;
         deliveryDateInputSecond.value = endValue;
