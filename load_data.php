@@ -384,13 +384,13 @@ include('function.php');
                     </div>
                     <div class="d-flex justify-content-between ">
                       <div>
-                       <small class="text-black"> Credit Limit: <span class="text-success"> $2000 </span></small><br><br>
-                       <small class="text-black"> Left  Limit: <span class="text-success"> $1500 </span></small><br><br>
-                       <small class="mt-3"> Total business: <span class="text-success"> $200 </span></small>
+                       <small class="text-black"> Credit Limit: <span class="text-success fs-5"> $2000 </span></small><br><br>
+                       <small class="text-black"> Left  Limit: <span class="text-success fs-5"> $1500 </span></small><br><br>
+                       <small class="mt-3"> Total business: <span class="text-success fs-5"> $200 </span></small>
                       </div>
                       <div>
-                        <small class="text-black">Used  Limit: <span class="text-danger"> $500</span></small><br><br>
-                       <small class="text-black"> Paid Amount: <span class="text-success">  $200 </span></small><br><br>
+                        <small class="text-black">Used  Limit: <span class="text-danger fs-5"> $500</span></small><br><br>
+                       <small class="text-black"> Paid Amount: <span class="text-success fs-5">  $200 </span></small><br><br>
                        <small class="mt-3"> Agent Name: <span class="text-black"> Rohan </span></small>
                       </div>
                     </div>
