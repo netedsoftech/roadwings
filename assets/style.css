@@ -78,6 +78,10 @@ nav{
   background-color: #fff;
 }
 
+.main-three{
+  border: 1px solid #15457b;
+}
+
 .rounded-pill{
   background-color: #124483;
   padding: 5px 20px 5px 20px;
@@ -183,6 +187,7 @@ table.dataTable thead .text-th {
   font-size: 13px!important;
   color: #7c7c7c!important;
   font-weight: 500 !important;
+  border-right: 1px solid #cacdd0;
 }
 
 

@@ -279,20 +279,21 @@ include('function.php');
                  <!-- Trucker form end -->
 
                               <!-- Table start -->
-             <div class="table-responsive p-0 mt-3">
+             <div class="table-responsive p-0 mt-3 main-header main-three p-3">
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                      <th class="text-center text-uppercase text-th "> Order ID</th>
-                      <th class="text-center text-uppercase text-th ">Name</th>
-                      <th class="text-center text-uppercase text-th "> E-mail ID</th>
-                      <th class="text-center text-uppercase text-th ">Contact NUmber</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled"> Order ID</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">Name</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled"> E-mail ID</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">Contact NUmber</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">Action</th>
                       
                   
 
                      <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER"): ?>
                      
-                    <th class="text-secondary "></th>
+                    <!-- <th class="text-secondary "></th> -->
                     <?php endif; ?>
                   </tr>
                 </thead>
@@ -326,10 +327,10 @@ include('function.php');
                         </div>
                       </td>
                       
-                      <td class="align-middle text-center text-sm">
+                      <td class="align-middle text-start text-sm">
                         <p class="text-xs font-weight-bold mb-0"><?php echo $row['emailaddress']; ?></p>
                       </td>
-                      <td class="align-middle text-center">
+                      <td class="align-middle text-start">
                         <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['contactperson']); ?></span>
                       </td>
                      
