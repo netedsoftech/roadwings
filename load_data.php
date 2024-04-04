@@ -22,6 +22,7 @@ include('function.php');
     <link rel="stylesheet" type="text/css" media="all" href="css_demo/daterangepicker.css" />
       <script type="text/javascript" src="js_demo/daterangepicker.js"></script>
 
+<?php include("header.php");?>
 <section class="main">
       <div class="container-fluid">
         <div class="row">
@@ -276,6 +277,97 @@ include('function.php');
                   </form>
                  </div>
                  <!-- Trucker form end -->
+
+                              <!-- Table start -->
+             <div class="table-responsive p-0 mt-3">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                      <th class="text-center text-uppercase text-th "> Order ID</th>
+                      <th class="text-center text-uppercase text-th ">Name</th>
+                      <th class="text-center text-uppercase text-th "> E-mail ID</th>
+                      <th class="text-center text-uppercase text-th ">Contact NUmber</th>
+                      
+                  
+
+                     <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER"): ?>
+                     
+                    <th class="text-secondary "></th>
+                    <?php endif; ?>
+                  </tr>
+                </thead>
+                <tbody>
+                   <?php
+                      $companyData = getCompanies($mysqli);
+                      foreach($companyData as $row){ 
+                      ?>
+                  <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          
+                          <div class="d-flex flex-column justify-content-center companyname">
+                            <a title="Load Data" href="load_data.php" class="mb-0 text-xs" ><?php echo ucfirst($row['companyname']); ?></a>
+                            
+                          </div>
+<!-- 
+                          <div class="d-flex flex-column justify-content-center">
+                            <p class="text-xs font-weight-bold mb-0"><?php// echo ucfirst($row['companyname']); ?></p>
+                            
+                          </div> -->
+                        </div>
+                      </td>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          
+                          <div class="d-flex flex-column justify-content-center">
+                            <p class="text-xs font-weight-bold mb-0"><?php echo ucfirst($row['agentname']); ?></p>
+                            
+                          </div>
+                        </div>
+                      </td>
+                      
+                      <td class="align-middle text-center text-sm">
+                        <p class="text-xs font-weight-bold mb-0"><?php echo $row['emailaddress']; ?></p>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['contactperson']); ?></span>
+                      </td>
+                     
+                   
+                      
+                      
+                      
+                  
+                      <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER"): ?>
+                      
+                      
+
+                       <td class="align-middle">  
+                        <a href="javascript:;" title="Edit" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design"/>
+                        </a>
+                        <?php 
+                          if($_SESSION['agentrole'] == "Admin"):
+                        ?>
+                         <a href="deletecompany.php?id=<?php echo $row['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs" ><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"/></a>
+                       
+                         <?php endif; ?>
+                       </td>
+                       <?php endif; ?>
+                      
+                    </tr>
+                    <?php } ?>
+                </tbody>
+              </table>
+            </div>
+          <!-- Table end -->
+          <script type="text/javascript">
+    $(document).ready(function () {
+        $('.table').DataTable({
+            "ordering": false // Disable sorting
+        });
+    });
+</script>
               </div>
               
               
@@ -306,12 +398,17 @@ include('function.php');
                     </div>
                   </div>
                 </div>
-              </div>             </div>
+              </div>    
+
+
+         </div>
 
 </div>
 </div>
 </div>
+
 </section>
+  
 <script>
   // Function to submit the company form
   function submitCompanyForm() {
@@ -362,6 +459,72 @@ include('function.php');
 
         // Display the second form
   }
+
+   // Function to submit the trucker form
+   function submitTruckerForm() {
+        // Submit the form as usual
+        // Retrieve form values
+        var fromValue = document.getElementById("fromInput").value;
+        var toValue = document.getElementById("toInput").value;
+        var startValue = document.getElementById("startDate").value;
+        var endValue = document.getElementById("endDate").value;
+        var lengthValue = document.getElementById("lengthInput").value;
+        var weigthValue = document.getElementById("weightInput").value;
+        var customerValue = document.getElementById("customerrateInput").value;
+        var carrierValue = document.getElementById("carrierrrateInput").value;
+        // Retrieve corresponding fields in the second form
+        var fromInputSecond = document.getElementById("fromInputSecond");
+        var toInputSecond = document.getElementById("toInputSecond");
+        var sDateInputSecond = document.getElementById("sDateInputSecond");
+        var deliveryDateInputSecond = document.getElementById("deliveryDateInputSecond");
+        var lengthInputSecond = document.getElementById("lengthInputSecond");
+        var weightInputSecond = document.getElementById("weightInputSecond");
+        var customerInputSecond = document.getElementById("customerInputSecond");
+        var carrierInputSecond = document.getElementById("carrierInputSecond");
+        // Add more variables for other form fields as needed
+        // Display form values in table
+        displayFormValues(fromValue, toValue, startValue, endValue , lengthValue , weigthValue , customerValue , carrierValue ,fromInputSecond, toInputSecond , sDateInputSecond, deliveryDateInputSecond, lengthInputSecond, weightInputSecond, customerInputSecond ,carrierInputSecond);
+        // Show the table
+        document.getElementById("formValuesTable").style.display = "block";
+        return false;
+    }
+
+    // Function to display form values in table
+    function displayFormValues(from, to) {
+        var tableBody = document.getElementById("formValuesBody");
+        // Clear previous values
+        tableBody.innerHTML = "";
+        // Append new values
+        appendRowToTable("From", fromValue, tableBody);
+        appendRowToTable("To", toValue, tableBody);
+        appendRowToTable("Start Date", startValue, tableBody);
+        appendRowToTable("End Date", endValue, tableBody);
+        appendRowToTable("Length", lengthValue, tableBody);
+        appendRowToTable("Weigth", weigthValue, tableBody);
+        appendRowToTable("Customer", customerValue, tableBody);
+        appendRowToTable("Carrier", carrierValue, tableBody);
+        appendRowToTable("From Trucker", fromInputSecond, tableBody);
+        appendRowToTable("To Trucker", toInputSecond, tableBody);
+        appendRowToTable("Start Date Trucker", sDateInputSecond, tableBody);
+        appendRowToTable("End Date Trucker", deliveryDateInputSecond, tableBody);
+        appendRowToTable("Length Trucker", lengthInputSecond, tableBody);
+        appendRowToTable("Weigth Trucker", weightInputSecond, tableBody);
+        appendRowToTable("Customer Trucker", customerInputSecond, tableBody);
+        appendRowToTable("Carrier Trucker", carrierInputSecond, tableBody);
+        // Add more rows for other form fields as needed
+    }
+
+    // Function to append a row to the table
+    function appendRowToTable(field, value, tableBody) {
+        var row = document.createElement("tr");
+        var fieldCell = document.createElement("td");
+        var valueCell = document.createElement("td");
+        fieldCell.textContent = field;
+        valueCell.textContent = value;
+        row.appendChild(fieldCell);
+        row.appendChild(valueCell);
+        tableBody.appendChild(row);
+    }
 
   document.getElementById("showCompanyFormBtn").addEventListener("click", function(event) {
     event.preventDefault();
@@ -416,5 +579,27 @@ include('function.php');
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+
+    <style>
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current{
+color: #fff!important;
+background: #124483!important;
+border-radius: 50%!important;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px!important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+color: #124483!important;
+background: #fff!important;
+}
+
+.dataTables_length label{
+  color: #124483!important;
+}
+
+.dataTables_filter  label{
+  color: #124483!important;
+}
+</style>
 </body>
 </html>
