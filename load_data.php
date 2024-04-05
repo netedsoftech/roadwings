@@ -9,8 +9,28 @@ include('function.php');
     header("location: login_page.php");
   }
 
-
-
+$urlid = $_GET['id'];
+$getCompaniesForLoad = getCompaniesForLoad($mysqli,$urlid);
+//echo "<pre>"; print_r($getCompaniesForLoad);die;
+if(isset($_POST['submit'])){
+  $from = $_POST['from'];
+  $to = $_POST['to'];
+  $sDate = $_POST['sDate'];
+  $deliveryDate = $_POST['deliveryDate'];
+  $trucker_type = $_POST['trucker_type'];
+  $loadtype = $_POST['loadtype'];
+  $length = $_POST['length'];
+  $weight = $_POST['weight'];
+  $commodity = $_POST['commodity'];
+  $dat_rate = $_POST['dat_rate'];
+  $customer_rate = $_POST['customer_rate'];
+  $carrier_rate = $_POST['carrier_rate'];
+  $truckerNo = $_POST['truckerNo'];
+  $truckerEmail = $_POST['truckerEmail'];
+  $truckerAddress = $_POST['truckerAddress'];
+  
+  $addLoadAndCarrier =  addLoadAndCarrier($mysqli,$from,$to,$sDate,$deliveryDate,$trucker_type,$loadtype,$lenght,$weight,$commodity,$dat_rate,$customer_rate,$carrier_rate,$truckerno,$truckerEmail,$truckerAddress);
+}
 ?>
 
 
@@ -121,7 +141,7 @@ include('function.php');
 
                      <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required name="commodity" type="text" placeholder="Commodity (goods)">
+                        <input class="form-control" required id="commodity" name="commodity" type="text" placeholder="Commodity (goods)">
                       </div>
 
                     </div>
@@ -235,7 +255,7 @@ include('function.php');
 
                      <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input  class="form-control" required name="commodity" type="text" placeholder="Commodity (goods)" readonly value="">
+                        <input  class="form-control" required id="commodityInputSecond" name="commodity" type="text" placeholder="Commodity (goods)" readonly value="">
                       </div>
 
                     </div>
@@ -326,7 +346,7 @@ include('function.php');
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4 text-end">
                       <div class="form-group mb-4 form-item mt-4">
-                        <button name="addcompany" class="btn ">Submit Details</button>
+                        <button name="submit" type="submit" class="btn ">Submit Details</button>
                         <button id="showCompanyFormBtn" class="btn">Edit First form?</button>
                       </div>
                     </div>
@@ -437,18 +457,19 @@ include('function.php');
                   <div class="card-body p-3">
                     <div class="text-center">
                     <img width="100" height="100" src="https://img.icons8.com/color/100/circled-user-male-skin-type-7--v1.png" alt="circled-user-male-skin-type-7--v1"/>
-                      <p>Susheel Jamwal</p>
+                      <p><?php echo ucfirst($getCompaniesForLoad[0]['companyname'])?></p>
                     </div>
                     <div class="d-flex justify-content-between ">
                       <div>
-                       <small class="text-black"> Credit Limit: <span class="text-success fs-5"> $2000 </span></small><br><br>
+
+                       <small class="text-black"> Credit Limit: <span class="text-success fs-5"> $<?php echo $getCompaniesForLoad[0]['creditlimit'];?> </span></small><br><br>
                        <small class="text-black"> Left  Limit: <span class="text-success fs-5"> $1500 </span></small><br><br>
                        <small class="mt-3"> Total business: <span class="text-success fs-5"> $200 </span></small>
                       </div>
                       <div>
                         <small class="text-black">Used  Limit: <span class="text-danger fs-5"> $500</span></small><br><br>
                        <small class="text-black"> Paid Amount: <span class="text-success fs-5">  $200 </span></small><br><br>
-                       <small class="mt-3"> Agent Name: <span class="text-black"> Rohan </span></small>
+                       <small class="mt-3"> Agent Name: <span class="text-black"> <?php echo ucfirst($getCompaniesForLoad[0]['agentname'])?> </span></small>
                       </div>
                     </div>
                     <div class="mt-3">
@@ -483,7 +504,6 @@ include('function.php');
     if (allFieldsFilled) {
       document.getElementById("companyFormContainer").style.display = "none";
       document.getElementById("truckerFormContainer").style.display = "block";
-
       var fromValue = document.getElementById("fromInput").value;
         var toValue = document.getElementById("toInput").value;
         var startValue = document.getElementById("startDate").value;
@@ -492,6 +512,7 @@ include('function.php');
         var loadValue = document.getElementById("load_type").value;
         var lengthValue = document.getElementById("lengthInput").value;
         var weigthValue = document.getElementById("weightInput").value;
+        var commodity = document.getElementById("commodity").value;
         var customerValue = document.getElementById("customerrateInput").value;
         var carrierValue = document.getElementById("carrierrrateInput").value;
         // Retrieve corresponding fields in the second form
@@ -514,6 +535,7 @@ include('function.php');
         lengthInputSecond.value = lengthValue;
         load_typeInputSecond.value = loadValue;
         weightInputSecond.value = weigthValue;
+        commodityInputSecond.value = commodity;
         customerInputSecond.value = customerValue;
         carrierInputSecond.value = carrierValue;
     }
