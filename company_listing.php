@@ -127,7 +127,7 @@ background: #fff!important;
                               <div class="d-flex px-2 py-1">
                                 
                                 <div class="d-flex flex-column justify-content-center companyname">
-                                  <a title="Load Data" href="load_data.php" class="mb-0 text-xs" ><?php echo ucfirst($row['companyname']); ?></a>
+                                  <a title="Load Data" href="load_data.php?id=<?php echo $row['id']?>" class="mb-0 text-xs" ><?php echo ucfirst($row['companyname']); ?></a>
                                   
                                 </div>
 <!-- 
