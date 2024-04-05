@@ -74,7 +74,7 @@ include('function.php');
                     
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <select class="form-control"> 
+                        <select class="form-control"  id="trucker_type"> 
                             <option >Truck Type</option>
                             <option value="Dry Van 53">Dry Van 53'</option>
                             <option value="Flatbed 48">Flatbed 48'</option>
@@ -88,6 +88,18 @@ include('function.php');
                             <option value="Reefer Hazmat"> Reefer Hazmat</option>
                             <option value="RGN">RGN</option>
                             <option value="Container">Container</option>
+                        </select>
+                      </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+                      <div class="form-group mb-4 ">
+                        <select class="form-control"  id="load_type"> 
+                            <option >Load Type</option>
+                            <option value="Partial">Partial</option>
+                            <option value="Full">Full</option>
                         </select>
                       </div>
 
@@ -139,14 +151,13 @@ include('function.php');
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <textarea class="form-control" name="" id="notes" placeholder="Notes " cols="30" rows="4"></textarea>
+                        <textarea class="form-control" name="" id="notes" placeholder="Notes " cols="30" rows="1"></textarea>
                       </div>
 
                     </div>
 
                     <!-- <div class="col-lg-4"></div>
                     <div class="col-lg-4"></div> -->
-                    <div class="col-lg-4"></div>
                     <div class="col-lg-4 text-end">
                     <div class="form-group mb-4 form-item mt-4" id="submitCompanyFormBtnContainer">
                         <button name="addcompany" class="btn">Submit Details</button>
@@ -194,21 +205,16 @@ include('function.php');
                     
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <select class="form-control"> 
-                            <option >Truck Type</option>
-                            <option value="Dry Van 53">Dry Van 53'</option>
-                            <option value="Flatbed 48">Flatbed 48'</option>
-                            <option value="Flatbed 53">Flatbed 53'</option>
-                            <option value="Stepdeck 53">Stepdeck 53'</option>
-                            <option value="Straight Box Truck 26">Straight Box Truck 26'</option>
-                            <option value="Conestoga, Reefer 53">Conestoga, Reefer 53'</option>
-                            <option value="Flatbed Hotshot">Flatbed Hotshot</option>
-                            <option value="Lowboy, Power Only">Lowboy, Power Only</option>
-                            <option value="Van Hazmat">Van Hazmat</option>
-                            <option value="Reefer Hazmat"> Reefer Hazmat</option>
-                            <option value="RGN">RGN</option>
-                            <option value="Container">Container</option>
-                        </select>
+                       <input type="text" id="trucker_typeSecond" class="form-control icons_search_input click" name="trucker_type" placeholder="Delivery trucker_type *" required readonly value="">
+                      </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group mb-4 ">
+                       
+                        <input type="text" id="load_typeSecond" class="form-control icons_search_input click" name="loadtype" placeholder="Load Type *" required readonly value="">
+
                       </div>
 
                     </div>
@@ -257,13 +263,64 @@ include('function.php');
 
                     </div>
 
+                  
+
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <textarea class="form-control" name="" id="notes" placeholder="Notes " cols="30" rows="4"></textarea>
+                      <select class="form-control"  id="trucker_type"> 
+                            <option >Trucker Name</option>
+                            <option value="Dry Van 53">Dry Van 53'</option>
+                            <option value="Flatbed 48">Flatbed 48'</option>
+                            <option value="Flatbed 53">Flatbed 53'</option>
+                            <option value="Stepdeck 53">Stepdeck 53'</option>
+                            <option value="Straight Box Truck 26">Straight Box Truck 26'</option>
+                            <option value="Conestoga, Reefer 53">Conestoga, Reefer 53'</option>
+                            <option value="Flatbed Hotshot">Flatbed Hotshot</option>
+                            <option value="Lowboy, Power Only">Lowboy, Power Only</option>
+                            <option value="Van Hazmat">Van Hazmat</option>
+                            <option value="Reefer Hazmat"> Reefer Hazmat</option>
+                            <option value="RGN">RGN</option>
+                            <option value="Container">Container</option>
+                        </select>
                       </div>
 
                     </div>
 
+                    <div class="col-md-4">
+                      <div class="form-group mb-4 ">
+                      <input  id="carrierInputSecond" class="form-control" required name="truckerNo" type="tel" placeholder="Contact Number"  value="">
+                      </div>
+
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group mb-4 ">
+                      <input  id="carrierInputSecond" class="form-control" required name="truckerEmail" type="tel" placeholder="Email Address"  value="">
+                      </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+                      <div class="form-group mb-4 ">
+                      <input  id="carrierInputSecond" class="form-control" required name="truckerAddress" type="tel" placeholder="MC Number"  value="">
+                      </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+                      <div class="form-group mb-4 ">
+                      <textarea class="form-control" required name="truckerAddress" type="tel" placeholder="Trucker Address"  value="" id="truckerAddress" cols="30" rows="1"></textarea>
+                      </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group mb-4 ">
+                        <textarea class="form-control" name="" id="notes" placeholder="Notes " cols="30" rows="1"></textarea>
+                      </div>
+
+                    </div>
                     <!-- <div class="col-lg-4"></div>
                     <div class="col-lg-4"></div> -->
                     <div class="col-lg-4"></div>
@@ -431,6 +488,8 @@ include('function.php');
         var toValue = document.getElementById("toInput").value;
         var startValue = document.getElementById("startDate").value;
         var endValue = document.getElementById("endDate").value;
+        var truckValue = document.getElementById("trucker_type").value;
+        var loadValue = document.getElementById("load_type").value;
         var lengthValue = document.getElementById("lengthInput").value;
         var weigthValue = document.getElementById("weightInput").value;
         var customerValue = document.getElementById("customerrateInput").value;
@@ -440,6 +499,8 @@ include('function.php');
         var toInputSecond = document.getElementById("toInputSecond");
         var sDateInputSecond = document.getElementById("sDateInputSecond");
         var deliveryDateInputSecond = document.getElementById("deliveryDateInputSecond");
+        var load_typeInputSecond = document.getElementById("load_typeSecond");
+        var truckerInputSecond = document.getElementById("trucker_typeSecond");
         var lengthInputSecond = document.getElementById("lengthInputSecond");
         var weightInputSecond = document.getElementById("weightInputSecond");
         var customerInputSecond = document.getElementById("customerInputSecond");
@@ -449,7 +510,9 @@ include('function.php');
         toInputSecond.value = toValue;
         sDateInputSecond.value = startValue;
         deliveryDateInputSecond.value = endValue;
+        truckerInputSecond.value = truckValue;
         lengthInputSecond.value = lengthValue;
+        load_typeInputSecond.value = loadValue;
         weightInputSecond.value = weigthValue;
         customerInputSecond.value = customerValue;
         carrierInputSecond.value = carrierValue;
@@ -462,70 +525,9 @@ include('function.php');
   }
 
    // Function to submit the trucker form
-   function submitTruckerForm() {
-        // Submit the form as usual
-        // Retrieve form values
-        var fromValue = document.getElementById("fromInput").value;
-        var toValue = document.getElementById("toInput").value;
-        var startValue = document.getElementById("startDate").value;
-        var endValue = document.getElementById("endDate").value;
-        var lengthValue = document.getElementById("lengthInput").value;
-        var weigthValue = document.getElementById("weightInput").value;
-        var customerValue = document.getElementById("customerrateInput").value;
-        var carrierValue = document.getElementById("carrierrrateInput").value;
-        // Retrieve corresponding fields in the second form
-        var fromInputSecond = document.getElementById("fromInputSecond");
-        var toInputSecond = document.getElementById("toInputSecond");
-        var sDateInputSecond = document.getElementById("sDateInputSecond");
-        var deliveryDateInputSecond = document.getElementById("deliveryDateInputSecond");
-        var lengthInputSecond = document.getElementById("lengthInputSecond");
-        var weightInputSecond = document.getElementById("weightInputSecond");
-        var customerInputSecond = document.getElementById("customerInputSecond");
-        var carrierInputSecond = document.getElementById("carrierInputSecond");
-        // Add more variables for other form fields as needed
-        // Display form values in table
-        displayFormValues(fromValue, toValue, startValue, endValue , lengthValue , weigthValue , customerValue , carrierValue ,fromInputSecond, toInputSecond , sDateInputSecond, deliveryDateInputSecond, lengthInputSecond, weightInputSecond, customerInputSecond ,carrierInputSecond);
-        // Show the table
-        document.getElementById("formValuesTable").style.display = "block";
-        return false;
-    }
-
-    // Function to display form values in table
-    function displayFormValues(from, to) {
-        var tableBody = document.getElementById("formValuesBody");
-        // Clear previous values
-        tableBody.innerHTML = "";
-        // Append new values
-        appendRowToTable("From", fromValue, tableBody);
-        appendRowToTable("To", toValue, tableBody);
-        appendRowToTable("Start Date", startValue, tableBody);
-        appendRowToTable("End Date", endValue, tableBody);
-        appendRowToTable("Length", lengthValue, tableBody);
-        appendRowToTable("Weigth", weigthValue, tableBody);
-        appendRowToTable("Customer", customerValue, tableBody);
-        appendRowToTable("Carrier", carrierValue, tableBody);
-        appendRowToTable("From Trucker", fromInputSecond, tableBody);
-        appendRowToTable("To Trucker", toInputSecond, tableBody);
-        appendRowToTable("Start Date Trucker", sDateInputSecond, tableBody);
-        appendRowToTable("End Date Trucker", deliveryDateInputSecond, tableBody);
-        appendRowToTable("Length Trucker", lengthInputSecond, tableBody);
-        appendRowToTable("Weigth Trucker", weightInputSecond, tableBody);
-        appendRowToTable("Customer Trucker", customerInputSecond, tableBody);
-        appendRowToTable("Carrier Trucker", carrierInputSecond, tableBody);
-        // Add more rows for other form fields as needed
-    }
-
-    // Function to append a row to the table
-    function appendRowToTable(field, value, tableBody) {
-        var row = document.createElement("tr");
-        var fieldCell = document.createElement("td");
-        var valueCell = document.createElement("td");
-        fieldCell.textContent = field;
-        valueCell.textContent = value;
-        row.appendChild(fieldCell);
-        row.appendChild(valueCell);
-        tableBody.appendChild(row);
-    }
+   
+    
+    
 
   document.getElementById("showCompanyFormBtn").addEventListener("click", function(event) {
     event.preventDefault();
