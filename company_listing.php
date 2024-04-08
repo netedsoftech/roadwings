@@ -48,6 +48,7 @@ background: #fff!important;
 
 
 </style>
+
     <section class="main">
       <div class="container-fluid">
         <div class="row">
@@ -94,22 +95,22 @@ background: #fff!important;
 
              <div class="row mt-4 ">
               <div class="col-lg-12">
-                <div class="table-responsive p-0">
+                <div class="table-responsive p-0 mt-3 main-header main-three p-3">
                     <table class="table align-items-center mb-0">
                       <thead>
                         <tr>
-                            <th class="text-center text-uppercase text-th "> Name</th>
-                            <th class="text-center text-uppercase text-th ">Added By</th>
-                            <th class="text-center text-uppercase text-th "> E-mail ID</th>
-                            <th class="text-center text-uppercase text-th ">Contact Name</th>
-                            <th class="text-center text-uppercase text-th ">Ph. Number</th>
-                          <th class="text-center text-uppercase text-th  ps-2"> Address</th>
-                          <th class="text-center text-uppercase text-th ">Postal Code</th>
-                          <th class="text-center text-uppercase text-th ">City</th>
-                          <th class="text-center text-uppercase text-th ">state</th>
-                          <th class="text-center text-uppercase text-th "> Status</th>
+                            <th class="text-start text-uppercase text-th "> Name</th>
+                            <th class="text-start text-uppercase text-th ">Added By</th>
+                            <th class="text-start text-uppercase text-th "> E-mail ID</th>
+                            <th class="text-start text-uppercase text-th ">Contact Name</th>
+                            <th class="text-start text-uppercase text-th ">Ph. Number</th>
+                          <th class="text-start text-uppercase text-th  ps-2"> Address</th>
+                          <th class="text-start text-uppercase text-th ">Postal Code</th>
+                          <th class="text-start text-uppercase text-th ">City</th>
+                          <th class="text-start text-uppercase text-th ">state</th>
+                          <th class="text-start text-uppercase text-th "> Status</th>
                           
-                          <th class="text-center text-uppercase text-th ">Limit Assign</th>
+                          <th class="text-start text-uppercase text-th ">Limit Assign</th>
 
                            <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER"): ?>
                            
@@ -147,35 +148,35 @@ background: #fff!important;
                               </div>
                             </td>
                             
-                            <td class="align-middle text-center text-sm">
+                            <td class="align-middle text-start text-sm">
                               <p class="text-xs font-weight-bold mb-0"><?php echo $row['emailaddress']; ?></p>
                             </td>
-                            <td class="align-middle text-center">
+                            <td class="align-middle text-start">
                               <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['contactperson']); ?></span>
                             </td>
-                            <td class="align-middle text-center">
+                            <td class="align-middle text-start">
                               <span class="text-secondary text-xs font-weight-bold"><?php echo $row['companycontactno']; ?></span>
                             </td>
-                            <td class="align-middle text-center">
+                            <td class="align-middle text-start">
                               <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['address']); ?></span>
                             </td>
-                            <td class="align-middle text-center">
+                            <td class="align-middle text-start">
                               <span class="text-secondary text-xs font-weight-bold"><?php echo $row['zipcode']; ?></span>
                             </td>
-                            <td class="align-middle text-center">
+                            <td class="align-middle text-start">
                               <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['city']); ?></span>
                             </td>
-                            <td class="align-middle text-center">
+                            <td class="align-middle text-start">
                               <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['state']); ?></span>
                             </td>
-                            <td class="align-middle text-center">
+                            <td class="align-middle text-start">
                               <span class="text-secondary text-xs font-weight-bold title_main"><?php if($row['companystatus']==1){
                                 echo '<img title="Working" width="15" height="15" src="https://img.icons8.com/emoji/15/orange-circle-emoji.png" alt="orange-circle-emoji"/>';
                               }else if($row['companystatus']==2){ echo '<img title="Approved" width="15" height="15" src="https://img.icons8.com/external-flat-icons-inmotus-design/15/external-green-political-signs-flat-icons-inmotus-design.png" alt="external-green-political-signs-flat-icons-inmotus-design"/>';}else if($row['companystatus']==3){ echo '<img title="Pending" width="15" height="15" src="https://img.icons8.com/emoji/15/yellow-circle-emoji.png" alt="yellow-circle-emoji"/>';}
                               else if($row['companystatus']==4){ echo '<img title="Rejected" width="15" height="15" src="https://img.icons8.com/emoji/15/red-circle-emoji.png" alt="red-circle-emoji"/>';} ?></span>
                             </td>
                             
-                            <td class="align-middle text-center">
+                            <td class="align-middle text-start">
                               <p class="text-xs text-secondary mb-0"><?php echo ucfirst($row['creditlimit']); ?></p>
                                                         </td> 
                             <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER"): ?>
@@ -226,13 +227,7 @@ background: #fff!important;
 
 
 <!-- <script src="addlivefeed.js"></script> -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
+
 
 <script>
   $(document).ready(function(){
@@ -365,3 +360,10 @@ background: #fff!important;
 
 
 
+<script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

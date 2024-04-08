@@ -183,7 +183,7 @@ table.dataTable thead th, table.dataTable thead td {
   border-bottom: 1px solid #ddd!important;
 }
 
-table.dataTable thead .text-th {
+table.dataTable thead .text-th , .text-uppercase {
   font-size: 13px!important;
   color: #7c7c7c!important;
   font-weight: 500 !important;
