@@ -17,13 +17,14 @@ if(!($_SESSION)){
     $comapnyname = $_POST["comapnyname"];
     $contactperson = $_POST["contactperson"];
     $emailaddress = $_POST['emailaddress'];
-    $companycontactno = $_POST['companycontactno'];
+    $phone_cleaned = $_POST['companycontactno'];
+    $companycontactno = preg_replace('/\D/', '', $phone_cleaned);
     
     $address = $_POST['address'];
     $zipcode = $_POST['zipcode'];
     $city = $_POST['city'];
     $state = $_POST['state'];
-    $phoneno = $_POST['phoneno'];
+    $phoneno = "";
     $mailingaddress = $_POST['mailingaddress'];
     $accountPayable = $_POST['accountPayable'];
     $accountPayableEmail = $_POST['accountPayableEmail'];
@@ -134,12 +135,12 @@ if(!($_SESSION)){
 
                     </div>
 
-                    <div class="col-md-4">
+                   <!--  <div class="col-md-4">
                       <div class="form-group mb-4 ">
                         <input class="form-control" required name="phoneno" type="text" placeholder="PHONE NUMBER:">
                       </div>
 
-                    </div>
+                    </div> -->
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">

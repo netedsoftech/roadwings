@@ -506,7 +506,8 @@ function getCompaniesForLoad($mysqli,$id){
     $data = array();
 
     $role = $_SESSION['agentrole'];
-    $id = $_SESSION['id'];
+    //$id = $_SESSION['id'];
+    //echo "select company.*,login.agentname from company left join login on company.createdby = login.id where company.id = '$id'";die;
     $sql = "select company.*,login.agentname from company left join login on company.createdby = login.id where company.id = '$id'";
     $res = $mysqli->query($sql);
     while($row = $res->fetch_assoc()){
