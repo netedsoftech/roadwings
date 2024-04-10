@@ -101,7 +101,7 @@ if(!($_SESSION)){
                       </div>
 
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required name="companycontactno" type="tel" minlength="10" maxlength="10" placeholder="Contact Number *">
+                        <input class="form-control" required name="companycontactno" type="tel" minlength="12" maxlength="12" placeholder="Contact Number *">
                       </div>
                     </div>
                     <span class="aside-hr mt-3 mb-4"></span>

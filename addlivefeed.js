@@ -77,7 +77,7 @@ $(document).ready(function(){
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group mb-4">
-                                                <input required class="form-control" name="agentphoneno" type="tel" minlength="10" maxlength="10" placeholder="Contact Number *" value="${data.agentphoneno}">
+                                                <input required class="form-control" name="agentphoneno" type="tel" minlength="12" maxlength="12" placeholder="Contact Number *" value="${data.agentphoneno}">
                                             </div>
                                             <div class="form-group mb-4">
                                                 <select name="agentrole" class="form-control">

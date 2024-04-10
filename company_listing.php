@@ -284,7 +284,7 @@ background: #fff!important;
                                             </div>
                                             <div class="form-group mb-4">
                                                 <label for="example-text-input" class="form-control-label mb-2">Contact Number <sub>*</sub></label>
-                                                <input class="form-control" type="tel" value="${data.companycontactno}" name="companycontactno" minlength="10" maxlength="10" placeholder="+1 (323) 916-4686">
+                                                <input class="form-control" type="tel" value="${data.companycontactno}" name="companycontactno" minlength="12" maxlength="12" placeholder="+1 (323) 916-4686">
                                             </div>
                                         </div>
                                         <span class="aside-hr mt-3 mb-4"></span>
