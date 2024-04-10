@@ -1,36 +1,28 @@
 <?php
 
 // Check if the user is already logged in, if yes, redirect to homepage
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+/*if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: index.php");
     exit;
-}
+}*/
 
 // Include config file
 require_once "config.php";
 // Include functions file
 require_once "function.php";
 $errorMessage = "";
-// Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    //echo "<pre>"; print_r($_POST);die;
-    // Call the authenticateUser function
-    $password = $_POST["password"];
-    $email = $_GET['email'];
-    $result = createPassword($mysqli, $email, $password);
+    $email = $_POST['email'];
+    $result = forgotPassword($mysqli, $email);
     $error = "";
     $success = "";
-    if ($result=="Password create successfully.") {
-        $success = "Password create successfully.";
+    if ($result=="Password updated successfully.") {
+        $success = "Password updated successfully.";
     }else{
-        $error = "Create password faild.";
+        $error = "Update password faild.";
     }
 }
-//echo $errorMessage; die("here i am working");
 
-
-// Close connection (moved inside the authenticateUser function)
-//$mysqli->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -106,7 +98,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }?>
     <div class="form-group">
         <label>Email Id</label>
-        <input type="password" name="email" id="email" name="email" class="form-control" required>
+        <input type="email" name="email" id="email" name="email" class="form-control" required>
     </div>
    
    
