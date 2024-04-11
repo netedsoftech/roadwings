@@ -162,16 +162,14 @@ if(isset($_POST['submit'])){
                     </div>
 
                     <div class="col-md-4">
-                      <div class="form-group mb-4 ">
-                        <input class="form-control" required id="carrierrrateInput" name="carrier rate" type="tel" placeholder="Carrier Rate">
+                    <div class="form-group mb-4 ">
+                        <textarea class="form-control" name="" id="notes" placeholder="Notes " cols="30" rows="1"></textarea>
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
-                      <div class="form-group mb-4 ">
-                        <textarea class="form-control" name="" id="notes" placeholder="Notes " cols="30" rows="1"></textarea>
-                      </div>
+                     
 
                     </div>
 
@@ -307,13 +305,13 @@ if(isset($_POST['submit'])){
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                      <input  id="carrierInputSecond" class="form-control" required name="truckerNo" type="tel" placeholder="Contact Number"  value="">
+                      <input  id="truckerNo" class="form-control" required name="truckerNo" type="tel" placeholder="Contact Number"  value="">
                       </div>
 
                     </div>
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                      <input  id="carrierInputSecond" class="form-control" required name="truckerEmail" type="tel" placeholder="Email Address"  value="">
+                      <input  id="truckerEmail" class="form-control" required name="truckerEmail" type="tel" placeholder="Email Address"  value="">
                       </div>
 
                     </div>
@@ -321,7 +319,7 @@ if(isset($_POST['submit'])){
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                      <input  id="carrierInputSecond" class="form-control" required name="truckerAddress" type="tel" placeholder="MC Number"  value="">
+                      <input  id="truckerAddress" class="form-control" required name="truckerAddress" type="tel" placeholder="MC Number"  value="">
                       </div>
 
                     </div>
@@ -513,7 +511,6 @@ if(isset($_POST['submit'])){
         var weigthValue = document.getElementById("weightInput").value;
         var commodity = document.getElementById("commodity").value;
         var customerValue = document.getElementById("customerrateInput").value;
-        var carrierValue = document.getElementById("carrierrrateInput").value;
         // Retrieve corresponding fields in the second form
         var fromInputSecond = document.getElementById("fromInputSecond");
         var toInputSecond = document.getElementById("toInputSecond");
@@ -524,7 +521,6 @@ if(isset($_POST['submit'])){
         var lengthInputSecond = document.getElementById("lengthInputSecond");
         var weightInputSecond = document.getElementById("weightInputSecond");
         var customerInputSecond = document.getElementById("customerInputSecond");
-        var carrierInputSecond = document.getElementById("carrierInputSecond");
         // Set values in the second form
         fromInputSecond.value = fromValue; 
         toInputSecond.value = toValue;
@@ -536,7 +532,6 @@ if(isset($_POST['submit'])){
         weightInputSecond.value = weigthValue;
         commodityInputSecond.value = commodity;
         customerInputSecond.value = customerValue;
-        carrierInputSecond.value = carrierValue;
     }
 
     return false;
