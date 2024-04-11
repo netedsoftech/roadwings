@@ -77,7 +77,7 @@ if(isset($_POST['submit'])){
 
                     <div class="col-md-3">
                       <div class="form-group mb-4 ">
-                        <input id="startDate" class="form-control icons_search_input click"  name="sDate" type="text" placeholder="Start Date *" required autocomplete="off">
+                        <input id="startDate" class="form-control icons_search_input click"  name="sDate" type="date" placeholder="Start Date *" required autocomplete="off">
                       </div>
                     </div>
 
@@ -85,7 +85,7 @@ if(isset($_POST['submit'])){
                     <div class="col-md-3">
                     
                     <div class="form-group mb-4 ">
-                        <input id="endDate" class="form-control icons_search_input click" name="deliveryDate" type="text" placeholder="Delivery Date *" required autocomplete="off">
+                        <input id="endDate" class="form-control icons_search_input click" name="deliveryDate" type="date" placeholder="Delivery Date *" required autocomplete="off">
                       </div>
                     </div>
 
