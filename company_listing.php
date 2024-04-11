@@ -90,12 +90,13 @@ background: #fff!important;
                   echo $error;
                 }
               ?>
-              <span class="rounded-pill shadow text-white">Assembly</span>
+              <span class="rounded-pill shadow text-white"><a class="text-white"  href="export.csv" download>Download CSV</a></span>
              </div>
 
              <div class="row mt-4 ">
               <div class="col-lg-12">
                 <div class="table-responsive p-0 mt-3 main-header main-three p-3">
+
                     <table class="table align-items-center mb-0">
                       <thead>
                         <tr>
@@ -367,3 +368,8 @@ background: #fff!important;
     ></script>
   </body>
 </html>
+<style>
+    a{
+  text-decoration: none!important;
+}
+</style>

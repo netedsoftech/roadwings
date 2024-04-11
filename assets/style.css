@@ -248,3 +248,6 @@ li > a{
 .companyname > a{
   text-decoration: none;
 }
+a{
+  text-decoration: none!important;
+}
