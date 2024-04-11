@@ -48,6 +48,7 @@ if(!($_SESSION)){
     }
 }
 ?>
+<title>Add Customer</title>
   <body>
     <section class="main">
       <div class="container-fluid">

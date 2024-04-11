@@ -67,7 +67,7 @@
                 </span>
               </button>
 
-              <ul class="dropdown-menu " >
+              <ul class="dropdown-menu top-notification" >
                 <span id="notifications"></span>
               </ul>
             </li>
@@ -128,4 +128,10 @@
             })
         });
     </script>
-    
+    <style>
+      .top-notification{
+        overflow-y: scroll;
+        padding: 12px;
+        height: 250px;
+      }
+    </style>

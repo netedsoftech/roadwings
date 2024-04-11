@@ -432,5 +432,27 @@ include('function.php');
       </div>
 </section>
 </div>
+
+<style>
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current{
+color: #fff!important;
+background: #124483!important;
+border-radius: 50%!important;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px!important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+color: #124483!important;
+background: #fff!important;
+}
+
+.dataTables_length label{
+  color: #124483!important;
+}
+
+.dataTables_filter  label{
+  color: #124483!important;
+}
+</style>
 </body>
 </html>

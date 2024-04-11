@@ -70,6 +70,7 @@ background: #fff!important;
 
 
 </style>
+<title>Agents Info</title>
   <body>
     <section class="main">
       <div class="container-fluid">
@@ -247,6 +248,7 @@ P: +1 833 781 8686
                               <th class="text-center text-uppercase text-uppercase text-th">DESIGNATION</th>
                               <th class="text-center text-uppercase text-th">Contact Number</th>
                               <th class="text-center text-uppercase text-th">Joined Date</th>
+                              <th class="text-center text-uppercase text-th">Action</th>
                               <?php if(($_SESSION['agentrole'] == "Manager") || ($_SESSION['agentrole'] == "MANAGER") || ($_SESSION['agentrole'] == "Admin")) {?>
                               <th class="text-secondary opacity-7"></th>
                             <?php } ?>

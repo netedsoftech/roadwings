@@ -73,18 +73,20 @@ if (in_array($currentSegment, $pages)) {
                 </li>
 
                 <li class="nav-item mt-2 mb-2">
+                  <a class="nav-link <?php echo $currentSegment == 'add_trucker.php' ? 'active' : ''; ?>" href="add_trucker.php">
+                  <img width="18" height="18" src="https://img.icons8.com/ios/18/143e8b/truck--v1.png" alt="truck--v1" class="mx-2" />
+                    Add Trucker
+                  </a>
+                </li>
+
+                <li class="nav-item mt-2 mb-2">
                   <a class="nav-link <?php echo $currentSegment == 'billing.php' ? 'active' : ''; ?>" href="billing.php">
                     <img width="18" height="18" src="https://img.icons8.com/fluency-systems-regular/18/143e8b/bill.png" alt="bill"  class="mx-2" />
                     Biling
                   </a>
                 </li>
 
-                <li class="nav-item mt-2 mb-2">
-                  <a class="nav-link <?php echo $currentSegment == 'add_trucker.php' ? 'active' : ''; ?>" href="add_trucker.php">
-                    <img width="18" height="18" src="https://img.icons8.com/fluency-systems-regular/18/143e8b/bill.png" alt="bill"  class="mx-2" />
-                    Add Trucker
-                  </a>
-                </li>
+               
               </ul>
 
               <div >

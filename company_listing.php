@@ -32,6 +32,7 @@ if(isset($_POST["update"])){
     }
 }
 ?>
+<title>Customer Lists</title>
   <body>
   <style>
   .dataTables_wrapper .dataTables_paginate .paginate_button.current{
@@ -112,6 +113,7 @@ background: #fff!important;
                           <th class="text-start text-uppercase text-th "> Status</th>
                           
                           <th class="text-start text-uppercase text-th ">Limit Assign</th>
+                          <th class="text-start text-uppercase text-th ">Action</th>
 
                            <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER"): ?>
                            
@@ -322,7 +324,7 @@ background: #fff!important;
                                             </div>
                                         </div>
                                         <div class="col-lg-4"></div>
-                                        <div class="col-lg-4 text-end">
+                                        <div class="col-lg-4 text-start">
                                             <div class="form-group mb-4 mt-4">
                                                 <input type="hidden" name="companyid" value="${data.id}">
                                                 <button name="update" class="btn ">Submit Details</button>

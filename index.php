@@ -13,6 +13,7 @@ include('function.php');
 
 
   <body>
+  <title>Dashboard</title>
   <section class="main">
       <div class="container-fluid">
         <div class="row">
