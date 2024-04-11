@@ -2,33 +2,35 @@
 session_start();
 include("config.php");
 
-// Fetch data from MySQL
-$sql = "SELECT companyname, contactperson, emailaddress, state, city, creditlimit, createdat FROM company ORDER BY id ASC";
-$result = $mysqli->query($sql);
+header('Content-Type: text/csv; charset=utf-8');
+header('Content-Disposition: attachment; filename=data.csv');
+$output = fopen("php://output", "w");
+fputcsv($output, array("Company Name", "Contact Person", "Email", "State", "City", "Credit Limit", "Date", "Status"));
 
-if ($result->num_rows > 0) {
-    // Set headers for CSV download
-    header('Content-Type: text/csv');
-    header('Content-Disposition: attachment; filename="export.csv"');
+$query = "SELECT companyname, contactperson, emailaddress, state, city, creditlimit, createdat, companystatus FROM company ORDER BY id ASC";
+$result = mysqli_query($mysqli, $query);
 
-    // Create a file handle for writing
-    $file = fopen('php://output', 'w');
-
-    // Write the headers
-    $headers = array("Company Name", "Contact Person", "Email ", "State", "City", "Credit Limit", "Date"); // Update with your column names
-    fputcsv($file, $headers);
-
-    // Write the data
-    while ($row = $result->fetch_assoc()) {
-        fputcsv($file, $row);
+while ($row = mysqli_fetch_assoc($result)) {
+    // Convert numeric status to string representation
+    switch ($row['companystatus']) {
+        case 1:
+            $row['companystatus'] = "Working";
+            break;
+        case 2:
+            $row['companystatus'] = "Approved";
+            break;
+        case 3:
+            $row['companystatus'] = "Pending";
+            break;
+        case 4:
+            $row['companystatus'] = "Rejected";
+            break;
+        default:
+            $row['companystatus'] = "Unknown";
     }
 
-    // Close the file handle
-    fclose($file);
-
-    // Prevent further execution
-    exit();
-} else {
-    echo "No data found";
+    fputcsv($output, $row);
 }
+
+fclose($output);
 ?>
