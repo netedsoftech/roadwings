@@ -12,7 +12,7 @@
     />
     <link rel="stylesheet" href="sweetalert.css">
     <link rel="stylesheet" href="assets/style.css" />
-
+    <link rel="icon" type="image/png" sizes="56x56" href="https://roadwingslogistics.com/assets/images/fav-icon/icon.png">
     <!-- font style start -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
