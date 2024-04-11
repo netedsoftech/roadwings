@@ -90,7 +90,7 @@ background: #fff!important;
                   echo $error;
                 }
               ?>
-              <span class="rounded-pill shadow text-white"><button id="downloadBtn">Download CSV</button></span>
+              <span class="rounded-pill shadow text-white"><span class="text-white" id="downloadBtn">Download CSV</span></span>
              </div>
 
              <div class="row mt-4 ">
