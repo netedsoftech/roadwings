@@ -1,17 +1,21 @@
 <?php
 session_start();
 include("config.php");
+
 // Fetch data from MySQL
-$sql = "SELECT companyname, contactperson, emailaddress, state, city, creditlimit FROM company ORDER BY id ASC";
+$sql = "SELECT companyname, contactperson, emailaddress, state, city, creditlimit, createdat FROM company ORDER BY id ASC";
 $result = $mysqli->query($sql);
 
 if ($result->num_rows > 0) {
-    
+    // Set headers for CSV download
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment; filename="export.csv"');
+
     // Create a file handle for writing
-    $file = fopen('export.csv', 'w');
+    $file = fopen('php://output', 'w');
 
     // Write the headers
-    $headers = array("companyname", "contactperson", "emailaddress","state","city","creditlimit"); // Update with your column names
+    $headers = array("Company Name", "Contact Person", "Email ", "State", "City", "Credit Limit", "Date"); // Update with your column names
     fputcsv($file, $headers);
 
     // Write the data
@@ -22,12 +26,9 @@ if ($result->num_rows > 0) {
     // Close the file handle
     fclose($file);
 
-    // Provide download link
-    
+    // Prevent further execution
+    exit();
 } else {
     echo "No data found";
 }
-
-// Close the connection
-//$mysqli->close();
 ?>

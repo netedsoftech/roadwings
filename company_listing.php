@@ -90,7 +90,7 @@ background: #fff!important;
                   echo $error;
                 }
               ?>
-              <span class="rounded-pill shadow text-white"><a class="text-white"  href="export.csv" download>Download CSV</a></span>
+              <span class="rounded-pill shadow text-white"><button id="downloadBtn">Download CSV</button></span>
              </div>
 
              <div class="row mt-4 ">
@@ -373,3 +373,9 @@ background: #fff!important;
   text-decoration: none!important;
 }
 </style>
+
+ <script>
+        document.getElementById("downloadBtn").addEventListener("click", function() {
+            window.location.href = "downloadCustomer.php"; // Replace with the URL of your PHP script
+        });
+    </script>
