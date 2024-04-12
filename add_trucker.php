@@ -54,8 +54,7 @@ include('function.php');
           <?php include("topHeader.php");?>
           <div class="d-flex justify-content-between p-3 main-header ">
               <h5 class="text-break">Carrier Data</h5>
-               <h5 class="mt-2 mb-5">Add Carrier </h5>
-                  <?php if(!empty($message)){
+              <?php if(!empty($message)){
                 ?>
                 <script>
                  Swal.fire({
@@ -85,6 +84,7 @@ include('function.php');
         echo $error;
 
     }?>
+                  
           </div>
           <div class="row mt-4 ">
             <div class="col-lg-8">
@@ -506,5 +506,11 @@ background: #fff!important;
   color: #124483!important;
 }
 </style>
+
+<script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
 </body>
 </html>
