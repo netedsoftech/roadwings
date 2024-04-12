@@ -1026,11 +1026,17 @@ function addTrucker($mysqli,$tname,$tphoneno,$temail,$tmcno,$taddress,$tcarrierr
     $tcarrierrate = mysqli_real_escape_string($mysqli, $tcarrierrate);
     $createdby = mysqli_real_escape_string($mysqli, $createdby);
     $createdat = mysqli_real_escape_string($mysqli, $createdat);
-    $sql = "insert into truckerdata(tname,taddress,temail,tphoneno,tmcno,tcarrierrate,createdat,createdby) VALUES ('".$tname."','".$taddress."','".$temail."','".$tphoneno."','".$tmcno."','".$tcarrierrate."','".$createdat."','".$createdby."')";
-    if($mysqli->query($sql)){
-        return "Trucker added successfully.";
+    $query = "select  temail from truckerdata where temail = '".$temail."'";
+    $res  = $mysqli->query($query);
+    if($res->num_rows > 0){
+        return "Email already registered";
     }else{
-        return "Failed to add trucker.";
+        $sql = "insert into truckerdata(tname,taddress,temail,tphoneno,tmcno,tcarrierrate,createdat,createdby) VALUES ('".$tname."','".$taddress."','".$temail."','".$tphoneno."','".$tmcno."','".$tcarrierrate."','".$createdat."','".$createdby."')";
+        if($mysqli->query($sql)){
+            return "Trucker added successfully.";
+        }else{
+            return "Failed to add trucker.";
+        }
     }
 
     

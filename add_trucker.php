@@ -24,7 +24,11 @@ include('function.php');
     $error = "";
     if($addTrucker == "Trucker added successfully."){
       $message = "Trucker added successfully.";
-    }else{
+    }
+    else if($addTrucker == "Email already registered" ){
+      $error = "Email already registered.";
+    }
+    else{
       $error = "Failed to add trucker.";
     }
 
@@ -66,7 +70,7 @@ include('function.php');
                 });
                 </script>
               <?php
-                echo $message;
+                echo "<h5>" . $message . "</h5>";
               }?>
               <?php if(!empty($error)){
         ?>
@@ -81,7 +85,7 @@ include('function.php');
                 </script>
         <?php
 
-        echo $error;
+        echo "<h5>" . $error . "</h5>";
 
     }?>
                   
@@ -90,77 +94,52 @@ include('function.php');
             <div class="col-lg-8">
                <!-- Company form start -->
               <div class="main-header p-3" id="companyFormContainer">
-                <form method="post">
-                 
-                 <!-- <h6 class="mt-2 mb-4">COMPANY INFORMATION</h6> -->
-                 <div class="row">
-                  <div class="col-md-4 d-none">
-                    <div class="form-group mb-4 ">
-                      <!-- <input class="form-control" name="dat rate" type="text" placeholder="dat rate" hidden=""> -->
-                    </div>
+               <form method="post">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group mb-4">
+                <input id="truckerNo" class="form-control" required="" name="tname" type="text" placeholder="Trucker Name" value="<?php echo isset($_POST['tname']) ? $_POST['tname'] : ''; ?>">
+            </div>
+        </div>
 
-                  </div>
+        <div class="col-md-4">
+            <div class="form-group mb-4">
+                <input id="truckerNo" class="form-control" required="" name="tphoneno" type="tel" placeholder="Contact Number" value="<?php echo isset($_POST['tphoneno']) ? $_POST['tphoneno'] : ''; ?>">
+            </div>
+        </div>
 
-                  
+        <div class="col-md-4">
+            <div class="form-group mb-4">
+                <input id="truckerEmail" class="form-control" required="" name="temail" type="email" placeholder="Email Address" value="<?php echo isset($_POST['temail']) ? $_POST['temail'] : ''; ?>">
+            </div>
+        </div>
 
-                  
+        <div class="col-md-4">
+            <div class="form-group mb-4">
+                <input id="truckerAddress" class="form-control" required="" name="tmcno" type="text" placeholder="MC Number" value="<?php echo isset($_POST['tmcno']) ? $_POST['tmcno'] : ''; ?>">
+            </div>
+        </div>
 
-                
+        <div class="col-md-4">
+            <div class="form-group mb-4">
+                <textarea class="form-control" required="" name="taddress" placeholder="Trucker Address" id="truckerAddress" cols="30" rows="1"><?php echo isset($_POST['taddress']) ? $_POST['taddress'] : ''; ?></textarea>
+            </div>
+        </div>
 
-                 
+        <div class="col-md-4">
+            <div class="form-group mb-4">
+                <input id="carrierInputSecond" class="form-control" required="" name="tcarrierrate" type="text" placeholder="Carrier Rate" value="<?php echo isset($_POST['tcarrierrate']) ? $_POST['tcarrierrate'] : ''; ?>">
+            </div>
+        </div>
 
-                  <div class="col-md-4">
-                    <div class="form-group mb-4 ">
-                    <input id="truckerNo" class="form-control" required="" name="tname" type="text" placeholder="Trucker Name" value="">
-                    </div>
-
-                  </div>
-
-                  <div class="col-md-4">
-                    <div class="form-group mb-4 ">
-                    <input id="truckerNo" class="form-control" required="" name="tphoneno" type="tel" placeholder="Contact Number" value="">
-                    </div>
-
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group mb-4 ">
-                    <input id="truckerEmail" class="form-control" required="" name="temail" type="tel" placeholder="Email Address" value="">
-                    </div>
-
-                  </div>
-
-
-                  <div class="col-md-4">
-                    <div class="form-group mb-4 ">
-                    <input id="truckerAddress" class="form-control" required="" name="tmcno" type="tel" placeholder="MC Number" value="">
-                    </div>
-
-                  </div>
-
-
-                  <div class="col-md-4">
-                    <div class="form-group mb-4 ">
-                    <textarea class="form-control" required="" name="taddress" type="tel" placeholder="Trucker Address" value="" id="truckerAddress" cols="30" rows="1"></textarea>
-                    </div>
-
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group mb-4 ">
-                      <input id="carrierInputSecond" class="form-control" required="" name="tcarrierrate" type="tel" placeholder="Carrier Rate" value="">
-                    </div>
-
-                  </div>
-
-                  <div class="col-md-4"></div>
-                  <!-- <div class="col-lg-4"></div>-->
-                  <div class="col-lg-4"></div> 
-                  <div class="col-lg-4 text-end">
-                    <div class="form-group mb-4 form-item mt-4">
-                      <button name="submit" type="submit" class="btn ">Add Carrier</button>
-                    </div>
-                  </div>
-                 </div>
-                </form>
+        <div class="col-lg-4"></div> 
+        <div class="col-lg-4 text-end">
+            <div class="form-group mb-4 form-item mt-4">
+                <button name="submit" type="submit" class="btn ">Add Carrier</button>
+            </div>
+        </div>
+    </div>
+</form>
           </div>
 
         </div>
