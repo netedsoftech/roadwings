@@ -107,7 +107,9 @@ background: #fff!important;
                   echo $error;
                 }
               ?>
+              <?php if($getrole == "Admin" || $getrole == "MANAGER") { ?>
               <span class="rounded-pill shadow text-white"><span class="text-white" id="downloadBtn">Download CSV</span></span>
+            <?php } ?>
              </div>
 
              <div class="row mt-4 ">
