@@ -8,6 +8,27 @@ include('function.php');
   if(!($_SESSION)){
     header("location: login_page.php");
   }
+  if(isset($_POST['submit'])){
+    //echo "<pre>"; print_r($_POST); die;
+    $tname = $_POST['tname'];
+    $tphoneno = $_POST['tphoneno'];
+    $temail = $_POST['temail'];
+    $tmcno = $_POST['tmcno'];
+    $taddress = $_POST['taddress'];
+    $tcarrierrate = $_POST['tcarrierrate'];
+    $createdby = $_SESSION['id'];
+    $createdat = date('Y-m-d, H:i:s');
+
+    $addTrucker = addTrucker($mysqli,$tname,$tphoneno,$temail,$tmcno,$taddress,$tcarrierrate,$createdby,$createdat);
+    $message = "";
+    $error = "";
+    if($addTrucker == "Trucker added successfully."){
+      $message = "Trucker added successfully.";
+    }else{
+      $error = "Failed to add trucker.";
+    }
+
+  }
 
 
 //echo "<pre>"; print_r($getCompaniesForLoad);die;
@@ -33,18 +54,49 @@ include('function.php');
           <?php include("topHeader.php");?>
           <div class="d-flex justify-content-between p-3 main-header ">
               <h5 class="text-break">Carrier Data</h5>
+               <h5 class="mt-2 mb-5">Add Carrier </h5>
+                  <?php if(!empty($message)){
+                ?>
+                <script>
+                 Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "<?php echo $message?>",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                </script>
+              <?php
+                echo $message;
+              }?>
+              <?php if(!empty($error)){
+        ?>
+         <script>
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "Error",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                </script>
+        <?php
+
+        echo $error;
+
+    }?>
           </div>
           <div class="row mt-4 ">
             <div class="col-lg-8">
                <!-- Company form start -->
               <div class="main-header p-3" id="companyFormContainer">
                 <form method="post">
-                  <h5 class="mt-2 mb-5">Add Carrier </h5>
+                 
                  <!-- <h6 class="mt-2 mb-4">COMPANY INFORMATION</h6> -->
                  <div class="row">
                   <div class="col-md-4 d-none">
                     <div class="form-group mb-4 ">
-                      <input class="form-control" name="dat rate" type="text" placeholder="dat rate" hidden="">
+                      <!-- <input class="form-control" name="dat rate" type="text" placeholder="dat rate" hidden=""> -->
                     </div>
 
                   </div>
@@ -59,28 +111,20 @@ include('function.php');
 
                   <div class="col-md-4">
                     <div class="form-group mb-4 ">
-                    <input id="truckerNo" class="form-control" required="" name="truckerName" type="text" placeholder="Trucker Name" value="">
+                    <input id="truckerNo" class="form-control" required="" name="tname" type="text" placeholder="Trucker Name" value="">
                     </div>
 
                   </div>
 
                   <div class="col-md-4">
                     <div class="form-group mb-4 ">
-                    <input id="truckerNo" class="form-control" required="" name="truckerName" type="tel" placeholder="Contact Number" value="">
+                    <input id="truckerNo" class="form-control" required="" name="tphoneno" type="tel" placeholder="Contact Number" value="">
                     </div>
 
                   </div>
                   <div class="col-md-4">
                     <div class="form-group mb-4 ">
-                    <input id="truckerEmail" class="form-control" required="" name="truckerEmail" type="tel" placeholder="Email Address" value="">
-                    </div>
-
-                  </div>
-
-
-                  <div class="col-md-4">
-                    <div class="form-group mb-4 ">
-                    <input id="truckerAddress" class="form-control" required="" name="truckerAddress" type="tel" placeholder="MC Number" value="">
+                    <input id="truckerEmail" class="form-control" required="" name="temail" type="tel" placeholder="Email Address" value="">
                     </div>
 
                   </div>
@@ -88,13 +132,21 @@ include('function.php');
 
                   <div class="col-md-4">
                     <div class="form-group mb-4 ">
-                    <textarea class="form-control" required="" name="truckerAddress" type="tel" placeholder="Trucker Address" value="" id="truckerAddress" cols="30" rows="1"></textarea>
+                    <input id="truckerAddress" class="form-control" required="" name="tmcno" type="tel" placeholder="MC Number" value="">
+                    </div>
+
+                  </div>
+
+
+                  <div class="col-md-4">
+                    <div class="form-group mb-4 ">
+                    <textarea class="form-control" required="" name="taddress" type="tel" placeholder="Trucker Address" value="" id="truckerAddress" cols="30" rows="1"></textarea>
                     </div>
 
                   </div>
                   <div class="col-md-4">
                     <div class="form-group mb-4 ">
-                      <input id="carrierInputSecond" class="form-control" required="" name="carrier rate" type="tel" placeholder="Carrier Rate" readonly="" value="">
+                      <input id="carrierInputSecond" class="form-control" required="" name="tcarrierrate" type="tel" placeholder="Carrier Rate" value="">
                     </div>
 
                   </div>
@@ -416,12 +468,12 @@ include('function.php');
             </table>
           </div>
           <script type="text/javascript">
-  $(document).ready(function () {
-      $('.table').DataTable({
-          "ordering": false // Disable sorting
-      });
-  });
-</script>
+            $(document).ready(function () {
+                $('.table').DataTable({
+                    "ordering": false // Disable sorting
+                });
+            });
+          </script>
         </div>
       </div>
           </div>

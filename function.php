@@ -1016,4 +1016,23 @@ function getCompany($mysqli,$id){
     $res->free();
     return $data;
 }
+
+function addTrucker($mysqli,$tname,$tphoneno,$temail,$tmcno,$taddress,$tcarrierrate,$createdby,$createdat){
+    $tname = mysqli_real_escape_string($mysqli, $tname);
+    $tphoneno = mysqli_real_escape_string($mysqli, $tphoneno);
+    $temail = mysqli_real_escape_string($mysqli, $temail);
+    $tmcno = mysqli_real_escape_string($mysqli, $tmcno);
+    $taddress = mysqli_real_escape_string($mysqli, $taddress);
+    $tcarrierrate = mysqli_real_escape_string($mysqli, $tcarrierrate);
+    $createdby = mysqli_real_escape_string($mysqli, $createdby);
+    $createdat = mysqli_real_escape_string($mysqli, $createdat);
+    $sql = "insert into truckerdata(tname,taddress,temail,tphoneno,tmcno,tcarrierrate,createdat,createdby) VALUES ('".$tname."','".$taddress."','".$temail."','".$tphoneno."','".$tmcno."','".$tcarrierrate."','".$createdat."','".$createdby."')";
+    if($mysqli->query($sql)){
+        return "Trucker added successfully.";
+    }else{
+        return "Failed to add trucker.";
+    }
+
+    
+}
 ?>
