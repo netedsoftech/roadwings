@@ -36,6 +36,7 @@
           </ol>
          <!--  <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6> -->
         </nav>
+
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             
@@ -79,6 +80,7 @@
 
     <script>
         $(document).ready(function(){
+          
             var notificationVisible = false; // Flag to track the visibility of notification div
 
             // Function to fetch new notifications and unread count
@@ -135,3 +137,5 @@
         height: 250px;
       }
     </style>
+
+     

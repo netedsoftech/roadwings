@@ -1005,4 +1005,15 @@ function forgotPassword($mysqli,$email){
                   return "Update password faild.";
                }
 }
+
+function getCompany($mysqli,$id){
+    $query = "select * from company where id='$id'";
+    $res = $mysqli->query($query);
+    $data = array();
+    while($row = $res->fetch_assoc()){
+        $data[] = $row;
+    }
+    $res->free();
+    return $data;
+}
 ?>
