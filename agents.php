@@ -53,6 +53,8 @@ if(isset($_POST['update'])){
       $error = "<span style='color:red'>Failed to update agent</span>";
     }
 }
+
+$getrole = $_SESSION['agentrole'];
 ?>
 <?php include("header.php")?>
 <style>
@@ -249,9 +251,8 @@ P: +1 833 781 8686
                               <th class="text-center text-uppercase text-th">Contact Number</th>
                               <th class="text-center text-uppercase text-th">Joined Date</th>
                               <th class="text-center text-uppercase text-th">Action</th>
-                              <?php if(($_SESSION['agentrole'] == "Manager") || ($_SESSION['agentrole'] == "MANAGER") || ($_SESSION['agentrole'] == "Admin")) {?>
-                              <th class="text-secondary opacity-7"></th>
-                            <?php } ?>
+                              
+                                
                             </tr>
                           </thead>
                           <tbody>
@@ -298,20 +299,20 @@ P: +1 833 781 8686
                               <td class="align-middle text-center">
                                 <span class="text-secondary text-xs font-weight-bold"><?php echo date('Y-m-d',strtotime($row['createdat'])); ?></span>
                               </td>
-                              <?php 
-                              if(($_SESSION['agentrole'] == "Manager") || ($_SESSION['agentrole'] == "MANAGER") || ($_SESSION['agentrole'] == "Admin")) {
-                                ?>
                               <td class="align-middle">
+                               <?php if($getrole == "Admin" || $getrole == "MANAGER"){?>
+                              
                                 <a href="javascript:" title="Edit" atrid="<?php echo $row['id']; ?>" id="getagents" class="text-secondary font-weight-bold text-xs getagents" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
                                 <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design"/>
                                 </a>
-                                <?php if($_SESSION['agentrole'] == "Admin"){?>
+                                <?php if($getrole == "Admin"){?>
                                 <a href="delete.php?id=<?php echo $row['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs" >
                                 <img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"/>
                                 </a>
                               <?php }?>
-                              </td>
+                              
                             <?php } ?>
+                            </td>
                             </tr>
                             <?php } ?>
                           </tbody>
