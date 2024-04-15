@@ -60,6 +60,8 @@ $query = "SELECT company.createdby, login.agentname, company.createdat
           WHERE  company.createdby = '$id'
           ORDER BY company.id DESC";
 }
+
+
 $result = mysqli_query($mysqli, $query);
 
 // Display notifications
