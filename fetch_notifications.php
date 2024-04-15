@@ -6,7 +6,7 @@ if(!($_SESSION)){
 }
 $id = $_SESSION['id'];
 // Fetch count of unread notifications
-if($_SESSION['agentrole'] == 'Admin' || $_SESSION['agentrole'] == "MANAGER"){
+/*if($_SESSION['agentrole'] == 'Admin' || $_SESSION['agentrole'] == "MANAGER"){
 $queryCount = "SELECT COUNT(*) AS unread_count 
                FROM company 
                WHERE is_read = '0'"; // Assuming you have a column is_read to track read/unread status
@@ -17,7 +17,35 @@ $queryCount = "SELECT COUNT(*) AS unread_count
 }
 $resultCount = mysqli_query($mysqli, $queryCount);
 $countRow = mysqli_fetch_assoc($resultCount);
-$unreadCount = $countRow['unread_count'];
+$unreadCount = $countRow['unread_count'];*/
+
+if ($_SESSION['agentrole'] == 'Admin' || $_SESSION['agentrole'] == "MANAGER") {
+    $queryCount = "SELECT SUM(unread_count) AS total_unread_count
+                   FROM (
+                       SELECT COUNT(*) AS unread_count 
+                       FROM company 
+                       WHERE is_read = '0'
+                       UNION ALL
+                       SELECT COUNT(*) AS unread_count 
+                       FROM truckerdata 
+                       WHERE isread = '0'
+                   ) AS combined_counts"; // Assuming you have a column is_read to track read/unread status
+} else {
+    $queryCount = "SELECT SUM(unread_count) AS total_unread_count
+                   FROM (
+                       SELECT COUNT(*) AS unread_count 
+                       FROM company 
+                       WHERE is_read = '0' AND createdby = '$id'
+                       UNION ALL
+                       SELECT COUNT(*) AS unread_count 
+                       FROM truckerdata 
+                       WHERE isread = '0' AND createdby = '$id'
+                   ) AS combined_counts"; // Assuming you have a column is_read to track read/unread status
+}
+
+$resultCount = mysqli_query($mysqli, $queryCount);
+$countRow = mysqli_fetch_assoc($resultCount);
+$unreadCount = $countRow['total_unread_count'];
 
 // Fetch notifications
 if($_SESSION['agentrole'] == 'Admin' || $_SESSION['agentrole'] == "MANAGER"){
