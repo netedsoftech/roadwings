@@ -1038,7 +1038,23 @@ function addTrucker($mysqli,$tname,$tphoneno,$temail,$tmcno,$taddress,$tcarrierr
             return "Failed to add trucker.";
         }
     }
+}
 
+function getGrucker($mysqli){
+    $sessionid = $_SESSION['id'];
+    $role = $_SESSION['agentrole'];
+    if($role == "Admin" || $role == "MANAGER"){
+        $sql = "select truckerdata.*,login.agentname from truckerdata left join login on truckerdata.createdby = login.id order by truckerdata.id DESC";
+    }else{
+        $sql = "select truckerdata.*,login.agentname from truckerdata left join login on truckerdata.createdby = login.id where truckerdata.createdby = '$sessionid' order by truckerdata.id DESC";
+    }
     
+    $res = $mysqli->query($sql);
+    $data = array();
+    while($row = $res->fetch_assoc()){
+        $data[] = $row;
+    }
+    $res->free();
+    return $data;
 }
 ?>

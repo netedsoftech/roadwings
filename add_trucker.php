@@ -34,6 +34,8 @@ include('function.php');
 
   }
 
+  $getTrucker = getGrucker($mysqli);
+
 
 //echo "<pre>"; print_r($getCompaniesForLoad);die;
 
@@ -144,74 +146,7 @@ include('function.php');
 
         </div>
 
-        <div class="col-lg-4">
-          <div class="main-header ">
-            <div class="card-header pb-0 p-3">
-              <h6 class="mb-0">Companies Status</h6>
-            </div>
-            <div class="card-body p-3">
-              <ul class="list-group">
-                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                  <div class="d-flex align-items-center">
-                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark  text-center">
-                      <img width="35" height="35" src="https://img.icons8.com/color/35/hourglass-sand-top.png" alt="hourglass-sand-top">
-                    </div>
-                    <div class="d-flex flex-column">
-                      <h6 class="mb-1 text-dark text-sm">Pending</h6>
-                      <!-- <span class="text-xs">1 in stock, <span class="font-weight-bold">346+ sold</span></span> -->
-                      <span class="text-xs">1 is Pending <span class="font-weight-bold"></span></span>
-                    </div>
-                  </div>
-                  <div class="d-flex">
-                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                  </div>
-                </li>
-                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                  <div class="d-flex align-items-center">
-                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark  text-center">
-                      <img width="35" height="35" src="https://img.icons8.com/fluency/35/hard-working.png" alt="hard-working">
-                    </div>
-                    <div class="d-flex flex-column">
-                      <h6 class="mb-1 text-dark text-sm">Working</h6>
-                      <span class="text-xs">1 <span class="font-weight-bold"> is Working</span></span>
-                    </div>
-                  </div>
-                  <div class="d-flex">
-                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                  </div>
-                </li>
-                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                  <div class="d-flex align-items-center">
-                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark  text-center">
-                      <img width="35" height="35" src="https://img.icons8.com/doodle/35/ok.png" alt="ok">
-                    </div>
-                    <div class="d-flex flex-column">
-                      <h6 class="mb-1 text-dark text-sm">Approved</h6>
-                      <span class="text-xs">1 is active <span class="font-weight-bold"></span></span>
-                    </div>
-                  </div>
-                  <div class="d-flex">
-                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                  </div>
-                </li>
-                <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
-                  <div class="d-flex align-items-center">
-                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark  text-center">
-                      <img width="35" height="35" src="https://img.icons8.com/external-bearicons-flat-bearicons/35/external-rejected-approved-and-rejected-bearicons-flat-bearicons-3.png" alt="external-rejected-approved-and-rejected-bearicons-flat-bearicons-3">
-                    </div>
-                    <div class="d-flex flex-column">
-                      <h6 class="mb-1 text-dark text-sm">Rejected</h6>
-                      <span class="text-xs font-weight-bold">1 is Rejected</span>
-                    </div>
-                  </div>
-                  <div class="d-flex">
-                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        <?php include("rightbar.php");?>
         <div class="col-lg-12">
           <div class="table-responsive p-0 mt-3 main-header main-three p-3">
             <table class="table align-items-center mb-0">
@@ -229,49 +164,46 @@ include('function.php');
 
                                         
                   <!-- <th class="text-secondary "></th> -->
-                                    </tr>
+              </tr>
               </thead>
               <tbody>
-                                   <tr>
+                <?php foreach($getTrucker as $trucker){ ?>
+                  <tr>
                     <td>
                       <div class="d-flex px-2 py-1">
                         
                         <div class="d-flex flex-column justify-content-center companyname">
-                          <a title="Load Data" href="load_data.php" class="mb-0 text-xs">Sdfsdf</a>
+                          <a title="Load Data" href="load_data.php" class="mb-0 text-xs"><?php echo $trucker['tname']?></a>
                           
                         </div>
-<!-- 
-                        <div class="d-flex flex-column justify-content-center">
-                          <p class="text-xs font-weight-bold mb-0"><?php// echo ucfirst($row['companyname']); ?></p>
-                          
-                        </div> -->
+
                       </div>
                     </td>
                     <td>
                       <div class="d-flex px-2 py-1">
                         
                         <div class="d-flex flex-column justify-content-center">
-                          <p class="text-xs font-weight-bold mb-0">Susheel</p>
+                          <p class="text-xs font-weight-bold mb-0"><?php echo $trucker['tphoneno']?></p>
                           
                         </div>
                       </div>
                     </td>
                     
                     <td class="align-middle text-start text-sm">
-                      <p class="text-xs font-weight-bold mb-0">sdf@gmail.com</p>
+                      <p class="text-xs font-weight-bold mb-0"><?php echo $trucker['temail']?></p>
                     </td>
                     <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold">Sfdsf</span>
+                      <span class="text-secondary text-xs font-weight-bold"><?php echo $trucker['tmcno']?></span>
                     </td>
                    
                  
                     <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold">Sfdsf</span>
+                      <span class="text-secondary text-xs font-weight-bold"><?php echo $trucker['taddress']?></span>
                     </td>
                     
                     
                     <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold">Sfdsf</span>
+                      <span class="text-secondary text-xs font-weight-bold"><?php echo "$" . $trucker['tcarrierrate']?></span>
                     </td>
                                           
                     
@@ -280,169 +212,15 @@ include('function.php');
                       <a href="javascript:;" title="Edit" atrid="4" id="editlink" class="text-secondary font-weight-bold text-xs editlink" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                       <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design">
                       </a>
-                                               <a href="deletecompany.php?id=4" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs"><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"></a>
+                                               <a href="deletetrucker.php?id=<?php echo $trucker['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs"><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"></a>
                      
                                               </td>
                                            
                   </tr>
-                                    <tr>
-                    <td>
-                      <div class="d-flex px-2 py-1">
+                <?php } ?>
+                                    
+                                    
                         
-                        <div class="d-flex flex-column justify-content-center companyname">
-                          <a title="Load Data" href="load_data.php" class="mb-0 text-xs">Sdfsdf</a>
-                          
-                        </div>
-<!-- 
-                        <div class="d-flex flex-column justify-content-center">
-                          <p class="text-xs font-weight-bold mb-0"><?php// echo ucfirst($row['companyname']); ?></p>
-                          
-                        </div> -->
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        
-                        <div class="d-flex flex-column justify-content-center">
-                          <p class="text-xs font-weight-bold mb-0">Susheel</p>
-                          
-                        </div>
-                      </div>
-                    </td>
-                    
-                    <td class="align-middle text-start text-sm">
-                      <p class="text-xs font-weight-bold mb-0">sdfsdf@gmail.com</p>
-                    </td>
-                    <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold">Sdfsdfs</span>
-                    </td>
-                   
-                 
-                    
-                    
-                    <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold">Sfdsf</span>
-                    </td>
-                
-                    <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold">Sfdsf</span>
-                    </td>                 
-                    
-
-                     <td class="align-middle">  
-                      <a href="javascript:;" title="Edit" atrid="3" id="editlink" class="text-secondary font-weight-bold text-xs editlink" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                      <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design">
-                      </a>
-                                               <a href="deletecompany.php?id=3" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs"><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"></a>
-                     
-                                              </td>
-                                           
-                  </tr>
-                                    <tr>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        
-                        <div class="d-flex flex-column justify-content-center companyname">
-                          <a title="Load Data" href="load_data.php" class="mb-0 text-xs">Sdfsdf</a>
-                          
-                        </div>
-<!-- 
-                        <div class="d-flex flex-column justify-content-center">
-                          <p class="text-xs font-weight-bold mb-0"><?php// echo ucfirst($row['companyname']); ?></p>
-                          
-                        </div> -->
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        
-                        <div class="d-flex flex-column justify-content-center">
-                          <p class="text-xs font-weight-bold mb-0">Susheel</p>
-                          
-                        </div>
-                      </div>
-                    </td>
-                    
-                    <td class="align-middle text-start text-sm">
-                      <p class="text-xs font-weight-bold mb-0">sdfsdf@gmail.com</p>
-                    </td>
-                    <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold">Sdfsdfs</span>
-                    </td>
-                   
-                 
-                    <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold">Sfdsf</span>
-                    </td>
-                    
-                
-                    <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold">Sfdsf</span>
-                    </td>                  
-                    
-
-                     <td class="align-middle">  
-                      <a href="javascript:;" title="Edit" atrid="2" id="editlink" class="text-secondary font-weight-bold text-xs editlink" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                      <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design">
-                      </a>
-                                               <a href="deletecompany.php?id=2" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs"><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"></a>
-                     
-                                              </td>
-                                           
-                  </tr>
-                                    <tr>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        
-                        <div class="d-flex flex-column justify-content-center companyname">
-                          <a title="Load Data" href="load_data.php" class="mb-0 text-xs">Comsdfsdfpany name</a>
-                          
-                        </div>
-<!-- 
-                        <div class="d-flex flex-column justify-content-center">
-                          <p class="text-xs font-weight-bold mb-0"><?php// echo ucfirst($row['companyname']); ?></p>
-                          
-                        </div> -->
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        
-                        <div class="d-flex flex-column justify-content-center">
-                          <p class="text-xs font-weight-bold mb-0">Susheel</p>
-                          
-                        </div>
-                      </div>
-                    </td>
-                    
-                    <td class="align-middle text-start text-sm">
-                      <p class="text-xs font-weight-bold mb-0">compansdfsdfy@gmail.com</p>
-                    </td>
-                    <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold">Sussdfsdfsdheel</span>
-                    </td>
-                   
-                    <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold">Sfdsf</span>
-                    </td>
-                    
-                    
-                    
-                    <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold">Sfdsf</span>
-                    </td>
-                                          
-                    
-
-                     <td class="align-middle">  
-                      <a href="javascript:;" title="Edit" atrid="1" id="editlink" class="text-secondary font-weight-bold text-xs editlink" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                      <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design">
-                      </a>
-                                               <a href="deletecompany.php?id=1" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs"><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"></a>
-                     
-                                              </td>
-                                           
-                  </tr>
                                   </tbody>
             </table>
           </div>
