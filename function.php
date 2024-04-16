@@ -1017,21 +1017,22 @@ function getCompany($mysqli,$id){
     return $data;
 }
 
-function addTrucker($mysqli,$tname,$tphoneno,$temail,$tmcno,$taddress,$tcarrierrate,$createdby,$createdat){
+function addTrucker($mysqli,$tname,$tphoneno,$temail,$tmcno,$taddress,$createdby,$createdat,$carrierpaymentterm,$lane){
     $tname = mysqli_real_escape_string($mysqli, $tname);
     $tphoneno = mysqli_real_escape_string($mysqli, $tphoneno);
     $temail = mysqli_real_escape_string($mysqli, $temail);
     $tmcno = mysqli_real_escape_string($mysqli, $tmcno);
     $taddress = mysqli_real_escape_string($mysqli, $taddress);
-    $tcarrierrate = mysqli_real_escape_string($mysqli, $tcarrierrate);
+    $carrierpaymentterm = mysqli_real_escape_string($mysqli, $carrierpaymentterm);
     $createdby = mysqli_real_escape_string($mysqli, $createdby);
     $createdat = mysqli_real_escape_string($mysqli, $createdat);
+    $lane = mysqli_real_escape_string($mysqli, $lane);
     $query = "select  temail from truckerdata where temail = '".$temail."'";
     $res  = $mysqli->query($query);
     if($res->num_rows > 0){
         return "Email already registered";
     }else{
-        $sql = "insert into truckerdata(tname,taddress,temail,tphoneno,tmcno,tcarrierrate,createdat,createdby) VALUES ('".$tname."','".$taddress."','".$temail."','".$tphoneno."','".$tmcno."','".$tcarrierrate."','".$createdat."','".$createdby."')";
+        $sql = "insert into truckerdata(tname,taddress,temail,tphoneno,tmcno,carrierpaymentterm,createdat,createdby,lane) VALUES ('".$tname."','".$taddress."','".$temail."','".$tphoneno."','".$tmcno."','".$carrierpaymentterm."','".$createdat."','".$createdby."','".$lane."')";
         if($mysqli->query($sql)){
             return "Trucker added successfully.";
         }else{

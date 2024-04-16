@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 include('config.php');
 include("header.php");
@@ -15,11 +16,12 @@ include('function.php');
     $temail = $_POST['temail'];
     $tmcno = $_POST['tmcno'];
     $taddress = $_POST['taddress'];
-    $tcarrierrate = $_POST['tcarrierrate'];
+    $carrierpaymentterm = $_POST['carrierpaymentterm'];
     $createdby = $_SESSION['id'];
     $createdat = date('Y-m-d, H:i:s');
+    $lane = $_POST['lane'];
 
-    $addTrucker = addTrucker($mysqli,$tname,$tphoneno,$temail,$tmcno,$taddress,$tcarrierrate,$createdby,$createdat);
+    $addTrucker = addTrucker($mysqli,$tname,$tphoneno,$temail,$tmcno,$taddress,$createdby,$createdat,$carrierpaymentterm,$lane);
     $message = "";
     $error = "";
     if($addTrucker == "Trucker added successfully."){
@@ -113,7 +115,8 @@ include('function.php');
                     <th class="text-start text-uppercase text-th sorting_disabled">E-mail ID</th>
                     <th class="text-start text-uppercase text-th sorting_disabled">MC Number</th>
                     <th class="text-start text-uppercase text-th sorting_disabled">Trucker Address</th>
-                    <th class="text-start text-uppercase text-th sorting_disabled">Carrier Rate</th>
+                    <th class="text-start text-uppercase text-th sorting_disabled">Payment Terms</th>
+                    <th class="text-start text-uppercase text-th sorting_disabled">Lane</th>
                     <th class="text-start text-uppercase text-th sorting_disabled">Added Date</th>
                     <th class="text-start text-uppercase text-th sorting_disabled">Added By</th>
                     <?php if($role == "Admin" || $role == "MANAGER"){?>
@@ -163,7 +166,11 @@ include('function.php');
                     
                     
                     <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold"><?php echo "$" . $trucker['tcarrierrate']?></span>
+                      <span class="text-secondary text-xs font-weight-bold"><?php echo $trucker['carrierpaymentterm'] . ' ' . "Days"?></span>
+                    </td>
+
+                    <td class="align-middle text-start">
+                      <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($trucker['lane']);?></span>
                     </td>
 
                     <td class="align-middle text-start">
@@ -182,7 +189,7 @@ include('function.php');
                     
                     <?php if($role == "Admin" || $role == "MANAGER"){?>
                      <td class="align-middle">  
-                      <a href="edittrucker.php?id<?php echo $trucker['id']?>" title="Edit" atrid="4" id="editlink" class="text-secondary font-weight-bold text-xs editlink" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                      <a href="edittcarrier.php?id<?php echo $trucker['id']?>" title="Edit" atrid="4"  class="text-secondary font-weight-bold text-xs editlink">
                       <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design">
                       </a>
                        <a href="deletetrucker.php?id=<?php echo $trucker['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs"><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"></a>
@@ -266,25 +273,25 @@ background: #fff!important;
     
         <div class="col-md-12">
             <div class="form-group mb-4">
-                <input id="truckerNo" class="form-control" required="" name="tname" type="text" placeholder="Trucker Name" value="<?php echo isset($_POST['tname']) ? $_POST['tname'] : ''; ?>">
+                <input id="truckerNo" class="form-control" required name="tname" type="text" placeholder="Trucker Name" value="<?php echo isset($_POST['tname']) ? $_POST['tname'] : ''; ?>">
             </div>
         </div>
 
         <div class="col-md-12">
             <div class="form-group mb-4">
-                <input id="truckerNo" class="form-control" required="" name="tphoneno" type="tel" placeholder="Contact Number" value="<?php echo isset($_POST['tphoneno']) ? $_POST['tphoneno'] : ''; ?>">
+                <input id="truckerNo" class="form-control" required name="tphoneno" type="tel" placeholder="Contact Number" value="<?php echo isset($_POST['tphoneno']) ? $_POST['tphoneno'] : ''; ?>">
             </div>
         </div>
 
         <div class="col-md-12">
             <div class="form-group mb-4">
-                <input id="truckerEmail" class="form-control" required="" name="temail" type="email" placeholder="Email Address" value="<?php echo isset($_POST['temail']) ? $_POST['temail'] : ''; ?>">
+                <input id="truckerEmail" class="form-control" required= name="temail" type="email" placeholder="Email Address" value="<?php echo isset($_POST['temail']) ? $_POST['temail'] : ''; ?>">
             </div>
         </div>
 
         <div class="col-md-12">
             <div class="form-group mb-4">
-                <input id="truckerAddress" class="form-control" required="" name="tmcno" type="text" placeholder="MC Number" value="<?php echo isset($_POST['tmcno']) ? $_POST['tmcno'] : ''; ?>">
+                <input id="truckerAddress" class="form-control" required name="tmcno" type="text" placeholder="MC Number" value="<?php echo isset($_POST['tmcno']) ? $_POST['tmcno'] : ''; ?>">
             </div>
         </div>
 
@@ -294,11 +301,36 @@ background: #fff!important;
             </div>
         </div>
 
-        <div class="col-md-12">
+         <div class="col-md-12">
             <div class="form-group mb-4">
-                <input id="carrierInputSecond" class="form-control" required="" name="tcarrierrate" type="text" placeholder="Carrier Rate" value="<?php echo isset($_POST['tcarrierrate']) ? $_POST['tcarrierrate'] : ''; ?>">
+                <input id="carrierInputSecond" class="form-control" required="" name="lane" type="text" placeholder="Lane" value="<?php echo isset($_POST['lane']) ? $_POST['lane'] : ''; ?>">
             </div>
         </div>
+<!-- 
+        <div class="col-md-12">
+            <div class="form-group mb-4">
+                <input id="carrierInputSecond" class="form-control" required="" name="tcarrierrate" type="text" placeholder="Carrier Rate" value="<?php// echo isset($_POST['tcarrierrate']) ? $_POST['tcarrierrate'] : ''; ?>">
+            </div>
+        </div> -->
+
+         <div class="col-md-12">
+            <div class="form-group mb-4">
+                        <select name="carrierpaymentterm"  class="form-control">
+                          <option selected>Payment Terms ( 1 - 50 days)</option>
+                          <option value="1">1</option>
+                          <option value="10">10</option>
+                          <option value="15">15</option>
+                          <option value="20">20</option>
+                          <option value="25">25</option>
+                          <option value="30">30</option>
+                          <option value="35">35</option>
+                          <option value="40">40</option>
+                          <option value="45">45</option>
+                          <option value="50">50</option>
+                         
+                        </select>
+                      </div>
+                    </div>
 
         <div class="col-lg-4"></div> 
         <div class="col-lg-4 text-end">
@@ -309,7 +341,7 @@ background: #fff!important;
   
       <div class="modal-footer">
        <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-       <button name="submit" type="submit" class="btn ">Add Carrier</button>
+       <button name="submit" type="submit" class="rounded-pill shadow text-white">Add Carrier</button>
       </div>
     </div>
   </div>
@@ -329,5 +361,11 @@ $(document).ready(function(){
 });
 });
 </script>
+
+<script>
+        document.getElementById("downloadBtn").addEventListener("click", function() {
+            window.location.href = "downloadtrucker.php"; // Replace with the URL of your PHP script
+        });
+    </script>
 
 
