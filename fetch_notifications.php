@@ -48,7 +48,7 @@ $countRow = mysqli_fetch_assoc($resultCount);
 $unreadCount = $countRow['total_unread_count'];
 
 // Fetch notifications
-if($_SESSION['agentrole'] == 'Admin' || $_SESSION['agentrole'] == "MANAGER"){
+/*if($_SESSION['agentrole'] == 'Admin' || $_SESSION['agentrole'] == "MANAGER"){
 $query = "SELECT company.createdby, login.agentname, company.createdat 
           FROM company 
           LEFT JOIN login ON company.createdby = login.id
@@ -59,8 +59,30 @@ $query = "SELECT company.createdby, login.agentname, company.createdat
           LEFT JOIN login ON company.createdby = login.id 
           WHERE  company.createdby = '$id'
           ORDER BY company.id DESC";
-}
+}*/
 
+if($_SESSION['agentrole'] == 'Admin' || $_SESSION['agentrole'] == "MANAGER"){
+    $query = "(SELECT company.createdby, login.agentname, company.createdat, 'Company' AS type
+              FROM company 
+              LEFT JOIN login ON company.createdby = login.id)
+              UNION
+              (SELECT truckerdata.createdby, login.agentname, truckerdata.createdat, 'truckerdata' AS type
+              FROM truckerdata 
+              LEFT JOIN login ON truckerdata.createdby = login.id)
+              ORDER BY createdat DESC";
+} else {
+    $id = $_SESSION['id'];
+    $query = "(SELECT company.createdby, login.agentname, company.createdat, 'Company' AS type
+              FROM company 
+              LEFT JOIN login ON company.createdby = login.id 
+              WHERE company.createdby = '$id')
+              UNION
+              (SELECT truckerdata.createdby, login.agentname, truckerdata.createdat, 'truckerdata' AS type
+              FROM truckerdata 
+              LEFT JOIN login ON truckerdata.createdby = login.id 
+              WHERE truckerdata.createdby = '$id')
+              ORDER BY createdat DESC";
+}
 
 $result = mysqli_query($mysqli, $query);
 
@@ -68,7 +90,9 @@ $result = mysqli_query($mysqli, $query);
 if(mysqli_num_rows($result) > 0) {
     while($row = mysqli_fetch_assoc($result)) {
         $notificationTime = date('Y-m-d', strtotime($row['createdat'])); // Format the timestamp
-        echo '<li>' .'<a class="dropdown-item" href="#" >' . $row['agentname'] . ' added new company at ' . $notificationTime . '</a>' . '</li>';
+        // Customize notification message based on type
+        $notificationType = $row['type'] === 'Company' ? 'company' : 'carrier';
+        echo '<li>' .'<a class="dropdown-item" href="#" >' . $row['agentname'] . ' added new ' . $notificationType . ' at ' . $notificationTime . '</a>' . '</li>';
     }
 } else {
     echo 'No new notifications';

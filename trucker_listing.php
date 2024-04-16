@@ -285,7 +285,7 @@ background: #fff!important;
 
         <div class="col-md-12">
             <div class="form-group mb-4">
-                <input id="truckerEmail" class="form-control" required= name="temail" type="email" placeholder="Email Address" value="<?php echo isset($_POST['temail']) ? $_POST['temail'] : ''; ?>">
+                <input id="truckerEmail" class="form-control" required name="temail" type="email" placeholder="Email Address" value="<?php echo isset($_POST['temail']) ? $_POST['temail'] : ''; ?>">
             </div>
         </div>
 
