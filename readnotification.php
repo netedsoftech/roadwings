@@ -18,4 +18,16 @@ if($readnotification == "Read"){
 	mysqli_query($mysqli,$query);
 	
 }
+
+if($readnotification == "Read"){
+	if($_SESSION['agentrole'] == 'Admin' || $_SESSION['agentrole'] == "MANAGER"){
+		
+		$query = "update truckerdata set isread = '1'";
+	}else{
+		//$query = "update company set is_read = '1' where createdby = '$id'";
+	}
+
+	mysqli_query($mysqli,$query);
+	
+}
 ?>

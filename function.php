@@ -1058,4 +1058,34 @@ function getGrucker($mysqli){
     $res->free();
     return $data;
 }
+
+function getcarrier($mysqli,$id){
+    $sessionid = $_SESSION['id'];
+    $role = $_SESSION['agentrole'];
+    $sql = "select * from truckerdata where id='$id'";
+        
+    $res = $mysqli->query($sql);
+    $data = array();
+    while($row = $res->fetch_assoc()){
+        $data[] = $row;
+    }
+    $res->free();
+     return $data;
+}
+
+function updateCarrier($mysqli,$tname,$id,$temail,$tphoneno,$taddress,$tmcno,$lane,$carrierpaymentterm){
+    $tname = mysqli_real_escape_string($mysqli, $tname);
+    $tphoneno = mysqli_real_escape_string($mysqli, $tphoneno);
+    $temail = mysqli_real_escape_string($mysqli, $temail);
+    $tmcno = mysqli_real_escape_string($mysqli, $tmcno);
+    $taddress = mysqli_real_escape_string($mysqli, $taddress);
+    $carrierpaymentterm = mysqli_real_escape_string($mysqli, $carrierpaymentterm);
+    $lane = mysqli_real_escape_string($mysqli, $lane);
+    $query = "update truckerdata set tname='$tname',temail='$temail',tphoneno='$tphoneno',tmcno='$tmcno',taddress='$taddress',carrierpaymentterm='$carrierpaymentterm',lane='$lane' where id='$id'";
+    if ($mysqli->query($query) === TRUE) {
+        return "Carrier updated successfully";
+    } else {
+        return "Error updating carrier: " . $mysqli->error;
+    }
+}
 ?>

@@ -189,7 +189,7 @@ include('function.php');
                     
                     <?php if($role == "Admin" || $role == "MANAGER"){?>
                      <td class="align-middle">  
-                      <a href="edittcarrier.php?id<?php echo $trucker['id']?>" title="Edit" atrid="4"  class="text-secondary font-weight-bold text-xs editlink">
+                      <a href="edittcarrier.php?id=<?php echo $trucker['id']?>" title="Edit" atrid="4"  class="text-secondary font-weight-bold text-xs editlink">
                       <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design">
                       </a>
                        <a href="deletetrucker.php?id=<?php echo $trucker['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs"><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"></a>

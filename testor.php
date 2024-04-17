@@ -1,88 +1,4 @@
-<?php 
-session_start();
-include("header.php");
-require_once "config.php";
-require_once "function.php";
-if(!($_SESSION)){
-    header("location: login_page.php");
-  }
-
-$id = $_GET['id'];
-
-
-//echo "<pre>"; print_r($getCompany);die;
-if(isset($_POST["editcarrier"])){
-  //echo "<pre>"; print_r($id); die;
-  $tname = $_POST['tname'];
-  $temail = $_POST['temail'];
-  $tphoneno = $_POST['tphoneno'];
-  $taddress = $_POST['taddress'];
-  $tmcno = $_POST['tmcno'];
-  $lane = $_POST['lane'];
-  $carrierpaymentterm = $_POST['carrierpaymentterm'];
-  
-  $updatecarrier = updateCarrier($mysqli,$tname,$id,$temail,$tphoneno,$taddress,$tmcno,$lane,$carrierpaymentterm);
-  $message = "";
-  $error =  "";
-    if ($updatecarrier) {
-        $message = "Carrier updated successfully";
-    } else {
-        // Insertion failed
-        $error = "Failed to update carrier.";
-    }
-}
-
-$getcarrier = getcarrier($mysqli,$id);
-//echo "<pre>"; print_r($getcarrier); die;
- 
-?>
-<title>Edit Carrier</title>
-  <body>
-    <section class="main">
-      <div class="container-fluid">
-        <div class="row">
-          <!-- Sidebar start -->
-        <?php  
-           include("navSideBar.php");?>
-          <!-- Sidebar end -->
-          <div class="col-lg-10 col-md-10 main-content mt-4">
-            <?php include("topHeader.php");?>
-             <div class="d-flex justify-content-between p-3 main-header ">
-              <h5 class="text-break">Edit Carrier Details</h5>
-              <?php if(!empty($message)){
-                ?>
-                <script>
-                 Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "<?php echo $message?>",
-                  showConfirmButton: false,
-                  timer: 1500
-                });
-                </script>
-              <?php
-                echo $message;
-              }?>
-              <?php if(!empty($error)){
-                ?>
-                <script>
-                 Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "<?php echo $error?>",
-                  showConfirmButton: false,
-                  timer: 1500
-                });
-                </script>
-              <?php
-                echo $error;
-              }?>
-              <span class="rounded-pill shadow text-white">Assembly</span>
-             </div>
-
-             <div class="row mt-4 ">
-              <div class="col-lg-9">
-               <div class="main-header p-3 ">
+<div class="main-header p-3 ">
                   <form method="post">
                     <h5 class="mt-2 mb-5"></h5>
                    <!-- <h6 class="mt-2 mb-4">COMPANY INFORMATION</h6> -->
@@ -125,13 +41,13 @@ $getcarrier = getcarrier($mysqli,$id);
                     </div>
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                             <select name="carrierpaymentterm"  class="form-control">
-                          <?php if($getcarrier[0]['carrierpaymentterm']){
+                             <select name="paymentterm"  class="form-control">
+                          <?php if($getcarrier[0]['paymentterm']){
                             ?>
-                            <option value="<?php echo $getcarrier[0]['carrierpaymentterm']?>"><?php echo $getcarrier[0]['carrierpaymentterm']?></option>
+                            <option value="<?php echo $getcarrier[0]['paymentterm']?>"><?php echo $getcarrier[0]['paymentterm']?></option>
                             <?php
                           }?>
-                          <option  >Payment Terms ( 1 - 50 days)</option>
+                          <option >Payment Terms ( 1 - 50 days)</option>
                           <option value="1">1</option>
                           <option value="10">10</option>
                           <option value="15">15</option>
@@ -187,26 +103,9 @@ $getcarrier = getcarrier($mysqli,$id);
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4 text-end">
                       <div class="form-group mb-4 form-item mt-4">
-                        <button name="editcarrier" class="btn ">Submit Details</button>
+                        <button name="editcompany" class="btn ">Submit Details</button>
                       </div>
                     </div>
                    </div>
                   </form>
                  </div>
-              </div>
-              
-              <?php include("rightbar.php");?>
-             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
-
