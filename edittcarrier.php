@@ -119,7 +119,7 @@ $getcarrier = getcarrier($mysqli,$id);
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" equired name="lane" type="text" value="<?php echo $getcarrier[0]['lane']?>" placeholder="State">
+                        <input class="form-control" equired name="lane" type="text" value="<?php echo $getcarrier[0]['lane']?>" placeholder="Lane">
                       </div>
 
                     </div>
