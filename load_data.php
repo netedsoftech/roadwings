@@ -44,6 +44,7 @@ if(isset($_POST['submit'])){
     $error = 'Failed to add load';
   }
 }
+$getCarrier = getAllCarrier($mysqli);
 ?>
 
     <meta charset="UTF-8">
@@ -326,9 +327,16 @@ if(isset($_POST['submit'])){
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                      <select class="form-control" name="trucksubcategorytype"  id="trucker_type"> 
+                      <select class="form-control" name="trucksubcategorytype"  id="trucksubcategorytype"> 
                             <option >Trucker Name</option>
-                            <option value="Dry Van 53">Dry Van 53'</option>
+                            <?php
+                            foreach($getCarrier as $carrier){
+                              ?>
+                              <option value="<?php echo $carrier['id']?>"><?php echo $carrier['tname']?></option>
+                              <?php
+                            }
+                            ?>
+                            <!-- <option value="Dry Van 53">Dry Van 53'</option>
                             <option value="Flatbed 48">Flatbed 48'</option>
                             <option value="Flatbed 53">Flatbed 53'</option>
                             <option value="Stepdeck 53">Stepdeck 53'</option>
@@ -339,7 +347,7 @@ if(isset($_POST['submit'])){
                             <option value="Van Hazmat">Van Hazmat</option>
                             <option value="Reefer Hazmat"> Reefer Hazmat</option>
                             <option value="RGN">RGN</option>
-                            <option value="Container">Container</option>
+                            <option value="Container">Container</option> -->
                         </select>
                       </div>
 
@@ -347,13 +355,13 @@ if(isset($_POST['submit'])){
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                      <input  id="carrierInputSecond" class="form-control" required name="truckerNo" type="tel" placeholder="Contact Number"  value="">
+                      <input  id="truckerNo" class="form-control" required name="truckerNo" type="tel" placeholder="Contact Number"  value="">
                       </div>
 
                     </div>
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                      <input  id="carrierInputSecond" class="form-control" required name="truckerEmail" type="tel" placeholder="Email Address"  value="">
+                      <input  id="truckerEmail" class="form-control" required name="truckerEmail" type="tel" placeholder="Email Address"  value="">
                       </div>
 
                     </div>
@@ -361,7 +369,7 @@ if(isset($_POST['submit'])){
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                      <input  id="carrierInputSecond" class="form-control" required name="truckerAddress" type="tel" placeholder="MC Number"  value="">
+                      <input  id="mcnumber" class="form-control" required name="mcnumber" type="tel" placeholder="MC Number"  value="">
                       </div>
 
                     </div>
@@ -613,6 +621,25 @@ if(isset($_POST['submit'])){
     document.getElementById("companyFormContainer").style.display = "block";
     document.getElementById("truckerFormContainer").style.display = "none";
   });
+
+  $(document).ready(function(){
+    $("#trucksubcategorytype").change(function(){
+      var carrierid = $(this).val();
+      $.ajax({
+        url : "gettrucker.php",
+        type : "post",
+        data:{carrierid:carrierid},
+        success:function(data){
+          var jsonData = JSON.parse(data);
+          $("#truckerNo").val(jsonData.tphoneno);
+          $("#truckerEmail").val(jsonData.temail);
+          $("#mcnumber").val(jsonData.tmcno);
+          $("#truckerAddress").val(jsonData.taddress);
+        }
+      })
+
+    })
+  })
 </script>
 
 

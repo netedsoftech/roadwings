@@ -1113,4 +1113,14 @@ function getLoad($mysqli){
     $res->free();
     return $data;
 }
+function getAllCarrier($mysqli){
+    $sql = "select * from truckerdata order by id DESC";
+    $res = $mysqli->query($sql);
+    $data = array();
+    while($row=$res->fetch_assoc()){
+        $data[] = $row;
+    }
+    $res->free();
+    return $data;
+}
 ?>
