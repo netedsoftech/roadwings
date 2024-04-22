@@ -37,7 +37,7 @@ if(isset($_POST['submit'])){
   
   $addLoadAndCarrier =  addLoadAndCarrier($mysqli,$from,$to,$sDate,$deliveryDate,$trucker_type,$loadtype,$length,$weight,$commodity,$carrier_rate,$truckerNo,$truckerEmail,$truckerAddress,$notes,$companyid,$trucksubcategorytype,$customerrate);
   $error = '';
-  $msg = ''
+  $msg = '';
   if($addLoadAndCarrier == "Loadadded"){
     $msg = "Load Added";
   }else{
@@ -399,11 +399,13 @@ if(isset($_POST['submit'])){
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                      <th class="text-start text-uppercase text-th sorting_disabled"> Order ID</th>
-                      <th class="text-start text-uppercase text-th sorting_disabled">Name</th>
-                      <th class="text-start text-uppercase text-th sorting_disabled"> E-mail ID</th>
-                      <th class="text-start text-uppercase text-th sorting_disabled">Contact NUmber</th>
-                      <th class="text-start text-uppercase text-th sorting_disabled">Action</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled"> From</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">To</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled"> Start Date</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">End Date</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">Company Name</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">Added Date</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">Added By</th>
                       
                   
 
@@ -415,15 +417,15 @@ if(isset($_POST['submit'])){
                 </thead>
                 <tbody>
                    <?php
-                      $companyData = getCompanies($mysqli);
-                      foreach($companyData as $row){ 
+                      $loadData = getLoad($mysqli);
+                      foreach($loadData as $row){ 
                       ?>
                   <tr>
                       <td>
                         <div class="d-flex px-2 py-1">
                           
                           <div class="d-flex flex-column justify-content-center companyname">
-                            <a title="Load Data" href="load_data.php" class="mb-0 text-xs" ><?php echo ucfirst($row['companyname']); ?></a>
+                            <a title="Load Data" href="load_data.php" class="mb-0 text-xs" ><?php echo ucfirst($row['locationfrom']); ?></a>
                             
                           </div>
 <!-- 
@@ -437,18 +439,32 @@ if(isset($_POST['submit'])){
                         <div class="d-flex px-2 py-1">
                           
                           <div class="d-flex flex-column justify-content-center">
-                            <p class="text-xs font-weight-bold mb-0"><?php echo ucfirst($row['agentname']); ?></p>
+                            <p class="text-xs font-weight-bold mb-0"><?php echo ucfirst($row['locationto']); ?></p>
                             
                           </div>
                         </div>
                       </td>
                       
                       <td class="align-middle text-start text-sm">
-                        <p class="text-xs font-weight-bold mb-0"><?php echo $row['emailaddress']; ?></p>
+                        <p class="text-xs font-weight-bold mb-0"><?php echo $row['startdate']; ?></p>
                       </td>
                       <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['contactperson']); ?></span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['deliverydate']); ?></span>
                       </td>
+
+                      <td class="align-middle text-start">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['companyname']); ?></span>
+                      </td>
+
+                      <td class="align-middle text-start">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['addeddate']); ?></span>
+                      </td>
+
+                      <td class="align-middle text-start">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['agentname']); ?></span>
+                      </td>
+
+
                      
                    
                       

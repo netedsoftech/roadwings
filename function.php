@@ -1102,4 +1102,15 @@ function updateCarrier($mysqli,$tname,$id,$temail,$tphoneno,$taddress,$tmcno,$la
         return "Error updating carrier: " . $mysqli->error;
     }
 }
+
+function getLoad($mysqli){
+    $sql = "select loadinfo.*,company.companyname,login.agentname from loadinfo left join company on loadinfo.companyid = company.id left join login on loadinfo.addedby = login.id";
+    $res = $mysqli->query($sql);
+    $data = array();
+    while($row=$res->fetch_assoc()){
+        $data[] = $row;
+    }
+    $res->free();
+    return $data;
+}
 ?>
