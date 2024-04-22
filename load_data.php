@@ -64,6 +64,34 @@ if(isset($_POST['submit'])){
           <?php include("topHeader.php");?>
           <div class="d-flex justify-content-between p-3 main-header ">
               <h5 class="text-break">Load Data</h5>
+               <?php if(!empty($msg)){
+                ?>
+                <script>
+                 Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "<?php echo $msg?>",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                </script>
+              <?php
+                echo $msg;
+              }?>
+               <?php if(!empty($error)){
+                ?>
+                <script>
+                 Swal.fire({
+                  position: "top-end",
+                  icon: "error",
+                  title: "<?php echo $error?>",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                </script>
+              <?php
+                echo $error;
+              }?>
 </div>
 
 <div class="row mt-4 ">
