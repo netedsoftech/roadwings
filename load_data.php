@@ -13,6 +13,7 @@ $urlid = $_GET['id'];
 $getCompaniesForLoad = getCompaniesForLoad($mysqli,$urlid);
 //echo "<pre>"; print_r($getCompaniesForLoad);die;
 if(isset($_POST['submit'])){
+  //echo "<pre>"; print_r($_POST);die;
   $from = $_POST['from'];
   $to = $_POST['to'];
   $sDate = $_POST['sDate'];
@@ -22,14 +23,26 @@ if(isset($_POST['submit'])){
   $length = $_POST['length'];
   $weight = $_POST['weight'];
   $commodity = $_POST['commodity'];
-  $dat_rate = $_POST['dat_rate'];
-  $customer_rate = $_POST['customer_rate'];
-  $carrier_rate = $_POST['carrier_rate'];
+  //$dat_rate = $_POST['dat_rate'];
+
+  $carrier_rate = $_POST['carrierrate'];
   $truckerNo = $_POST['truckerNo'];
   $truckerEmail = $_POST['truckerEmail'];
   $truckerAddress = $_POST['truckerAddress'];
+  $companyid = $_GET['id'];
+  $notes = $_POST['notes1'];
+  //$notes1 = $_POST['notes1'];
+  $customerrate = $_POST['customerrate'];
+  $trucksubcategorytype = $_POST['trucksubcategorytype'];
   
-  $addLoadAndCarrier =  addLoadAndCarrier($mysqli,$from,$to,$sDate,$deliveryDate,$trucker_type,$loadtype,$lenght,$weight,$commodity,$dat_rate,$customer_rate,$carrier_rate,$truckerno,$truckerEmail,$truckerAddress);
+  $addLoadAndCarrier =  addLoadAndCarrier($mysqli,$from,$to,$sDate,$deliveryDate,$trucker_type,$loadtype,$length,$weight,$commodity,$carrier_rate,$truckerNo,$truckerEmail,$truckerAddress,$notes,$companyid,$trucksubcategorytype,$customerrate);
+  $error = '';
+  $msg = ''
+  if($addLoadAndCarrier == "Loadadded"){
+    $msg = "Load Added";
+  }else{
+    $error = 'Failed to add load';
+  }
 }
 ?>
 
@@ -92,7 +105,7 @@ if(isset($_POST['submit'])){
                     
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <select class="form-control"  id="trucker_type"> 
+                        <select class="form-control" name="trucker_type"  id="trucker_type"> 
                             <option >Truck Type</option>
                             <option value="Dry Van 53">Dry Van 53'</option>
                             <option value="Flatbed 48">Flatbed 48'</option>
@@ -148,28 +161,28 @@ if(isset($_POST['submit'])){
 
                     <div class="col-md-4 d-none">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="dat rate" type="text" placeholder="dat rate" hidden>
+                        <input class="form-control" name="datrate" type="text" placeholder="dat rate" hidden>
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required id="customerrateInput" name="customer rate" type="text" placeholder="Customer Rate">
+                        <input class="form-control" required id="customerrateInput" name="customerrate" type="text" placeholder="Customer Rate">
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required id="carrierrrateInput" name="carrier rate" type="tel" placeholder="Carrier Rate">
+                        <input class="form-control" required id="carrierrrateInput" name="carrierrate" type="tel" placeholder="Carrier Rate">
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <textarea class="form-control" name="" id="notes" placeholder="Notes " cols="30" rows="1"></textarea>
+                        <textarea class="form-control" name="notes" id="notes" placeholder="Notes " cols="30" rows="1"></textarea>
                       </div>
 
                     </div>
@@ -269,14 +282,14 @@ if(isset($_POST['submit'])){
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input id="customerInputSecond" class="form-control" required name="customer rate" type="text" placeholder="Customer Rate" readonly value="">
+                        <input id="customerInputSecond" class="form-control" required name="customerrate" type="text" placeholder="Customer Rate" readonly value="">
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input  id="carrierInputSecond" class="form-control" required name="carrier rate" type="tel" placeholder="Carrier Rate" readonly value="">
+                        <input  id="carrierInputSecond" class="form-control" required name="carrierrate" type="tel" placeholder="Carrier Rate" readonly value="">
                       </div>
 
                     </div>
@@ -285,7 +298,7 @@ if(isset($_POST['submit'])){
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                      <select class="form-control"  id="trucker_type"> 
+                      <select class="form-control" name="trucksubcategorytype"  id="trucker_type"> 
                             <option >Trucker Name</option>
                             <option value="Dry Van 53">Dry Van 53'</option>
                             <option value="Flatbed 48">Flatbed 48'</option>
@@ -335,7 +348,7 @@ if(isset($_POST['submit'])){
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <textarea class="form-control" name="" id="notes" placeholder="Notes " cols="30" rows="1"></textarea>
+                        <textarea class="form-control" name="notes1" id="notes1" placeholder="Notes " cols="30" rows="1"></textarea>
                       </div>
 
                     </div>
@@ -524,6 +537,7 @@ if(isset($_POST['submit'])){
         var weightInputSecond = document.getElementById("weightInputSecond");
         var customerInputSecond = document.getElementById("customerInputSecond");
         var carrierInputSecond = document.getElementById("carrierInputSecond");
+        var notes = document.getElementById("notes").value;
         // Set values in the second form
         fromInputSecond.value = fromValue; 
         toInputSecond.value = toValue;
@@ -536,6 +550,7 @@ if(isset($_POST['submit'])){
         commodityInputSecond.value = commodity;
         customerInputSecond.value = customerValue;
         carrierInputSecond.value = carrierValue;
+        notes1.value =  notes; 
     }
 
     return false;

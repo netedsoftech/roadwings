@@ -645,22 +645,36 @@ function rejectedCount($mysqli){
     return $rCount; 
 }
 
-function addLoadAndCarrier($mysqli,$from,$to,$sDate,$deliveryDate,$trucker_type,$loadtype,$lenght,$weight,$commodity,$dat_rate,$customer_rate,$carrier_rate,$truckerno,$truckerEmail,$truckerAddress){
+function addLoadAndCarrier($mysqli,$from,$to,$sDate,$deliveryDate,$trucker_type,$loadtype,$length,$weight,$commodity,$carrier_rate,$truckerno,$truckerEmail,$truckerAddress,$notes,$companyid,$trucksubcategorytype,$customerrate){
     $from = mysqli_real_escape_string($mysqli, $from);
     $to = mysqli_real_escape_string($mysqli, $to);
     $sDate = mysqli_real_escape_string($mysqli, $sDate);
     $deliveryDate = mysqli_real_escape_string($mysqli, $deliveryDate);
     $trucker_type = mysqli_real_escape_string($mysqli, $trucker_type);
     $loadtype = mysqli_real_escape_string($mysqli, $loadtype);
-    $lenght = mysqli_real_escape_string($mysqli, $lenght);
+    $lenght = mysqli_real_escape_string($mysqli, $length);
     $weight = mysqli_real_escape_string($mysqli, $weight);
     $commodity = mysqli_real_escape_string($mysqli, $commodity);
-    $dat_rate = mysqli_real_escape_string($mysqli, $dat_rate);
-    $customer_rate = mysqli_real_escape_string($mysqli, $customer_rate);
+    //$dat_rate = mysqli_real_escape_string($mysqli, $dat_rate);
+    $customer_rate = mysqli_real_escape_string($mysqli, $customerrate);
     $carrier_rate = mysqli_real_escape_string($mysqli, $carrier_rate);
     $truckerno = mysqli_real_escape_string($mysqli, $truckerno);
     $truckerEmail = mysqli_real_escape_string($mysqli, $truckerEmail);
     $truckerAddress = mysqli_real_escape_string($mysqli, $truckerAddress);
+    $notes = mysqli_real_escape_string($mysqli,$notes);
+    $addeddate = date('Y-m-d');
+    $addedby = $_SESSION['id'];
+    //$notes = mysqli_real_escape_string($mysqli,$notes);
+    $companyid = mysqli_real_escape_string($mysqli,$companyid);
+    $trucksubcategorytype = mysqli_real_escape_string($mysqli,$trucksubcategorytype);
+    /*echo "insert into loadinfo (locationfrom,locationto,startdate,deliverydate,trucktype,length,weight,commodity,customerrate,carrierrate,truckerNo,truckerEmail,truckerAddress,notes,addeddate,addedby,companyid,trucksubcategorytype) VALUES('$from','$to','$sDate','$deliveryDate','$trucker_type','$lenght','$weight','$commodity','$customer_rate','$carrier_rate','$truckerno','$truckerEmail','$truckerAddress','$notes','$addeddate','$addedby','$companyid','$trucksubcategorytype')";die;*/
+    $sql = "insert into loadinfo (locationfrom,locationto,startdate,deliverydate,trucktype,length,weight,commodity,customerrate,carrierrate,truckerNo,truckerEmail,truckerAddress,notes,addeddate,addedby,companyid,trucksubcategorytype) VALUES('$from','$to','$sDate','$deliveryDate','$trucker_type','$lenght','$weight','$commodity','$customer_rate','$carrier_rate','$truckerno','$truckerEmail','$truckerAddress','$notes','$addeddate','$addedby','$companyid','$trucksubcategorytype')";
+    if(mysqli_query($mysqli,$sql)){
+        return "Loadadded";
+    }else{
+        return "Failed to add load";
+    }
+
 
 }
 
