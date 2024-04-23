@@ -36,9 +36,6 @@ include('function.php');
 
   }
 
-  //$getLoad = getLoad($mysqli);
-  $trucker = getGrucker($mysqli);
-
   $role = $_SESSION['agentrole'];
 
 
@@ -66,7 +63,7 @@ include('function.php');
           <div class="d-flex justify-content-between p-3 main-header ">
               <h5 class="text-break">Carrier Listing</h5>
               <?php if($role == "Admin" || $role == "MANAGER"){?>
-              <span class="rounded-pill shadow text-white"><span class="text-white" id="downloadBtn">Download Carrier</span></span>
+              <span class="rounded-pill shadow text-white"><span class="text-white" id="downloadBtn">Download Report</span></span>
             <?php } ?>
               <?php if(!empty($message)){
                 ?>
@@ -100,7 +97,7 @@ include('function.php');
     }?>
 
 
-          <span class="rounded-pill shadow text-white" id="openModalBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Carrier</span>    
+          <!-- <span class="rounded-pill shadow text-white" id="openModalBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Carrier</span>   -->  
           </div>
           <div class="row mt-4 ">
            
@@ -108,103 +105,125 @@ include('function.php');
         <?php //include("rightbar.php");?>
         <div class="col-lg-12">
           <div class="table-responsive p-0 mt-3 main-header main-three p-3">
-            <table class="table align-items-center mb-0">
-              <thead>
-                <tr>
-                    <th class="text-start text-uppercase text-th sorting_disabled">Trucker Name</th>
-                    <th class="text-start text-uppercase text-th sorting_disabled">Contact NUmber</th>
-                    <th class="text-start text-uppercase text-th sorting_disabled">E-mail ID</th>
-                    <th class="text-start text-uppercase text-th sorting_disabled">MC Number</th>
-                    <th class="text-start text-uppercase text-th sorting_disabled">Trucker Address</th>
-                    <th class="text-start text-uppercase text-th sorting_disabled">Payment Terms</th>
-                    <th class="text-start text-uppercase text-th sorting_disabled">Lane</th>
-                    <th class="text-start text-uppercase text-th sorting_disabled">Added Date</th>
-                    <th class="text-start text-uppercase text-th sorting_disabled">Added By</th>
-                    <?php if($role == "Admin" || $role == "MANAGER"){?>
-                    <th class="text-start text-uppercase text-th sorting_disabled">Action</th>
-                  <?php } ?>
-                    
-                
-
-                                        
-                  <!-- <th class="text-secondary "></th> -->
-              </tr>
-              </thead>
-              <tbody>
-                <?php foreach($trucker as $load){ ?>
+           <table class="table align-items-center mb-0">
+                <thead>
                   <tr>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        
-                        <div class="d-flex flex-column justify-content-center companyname">
-                          <a title="Load Data" href="load_data.php" class="mb-0 text-xs"><?php echo $load['tname']?></a>
-                          
-                        </div>
+                      <th class="text-start text-uppercase text-th sorting_disabled"> From</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">To</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled"> Start Date</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">End Date</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">Company Payment Terms</th>
+                       <th class="text-start text-uppercase text-th sorting_disabled">Carrier Payment Terms</th>
 
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        
-                        <div class="d-flex flex-column justify-content-center">
-                          <p class="text-xs font-weight-bold mb-0"><?php echo $load['tphoneno']?></p>
-                          
-                        </div>
-                      </div>
-                    </td>
-                    
-                    <td class="align-middle text-start text-sm">
-                      <p class="text-xs font-weight-bold mb-0"><?php echo $load['temail']?></p>
-                    </td>
-                    <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold"><?php echo $load['tmcno']?></span>
-                    </td>
-                   
-                 
-                    <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold"><?php echo $load['taddress']?></span>
-                    </td>
-                    
-                    
-                    <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold"><?php echo $load['carrierpaymentterm'] . ' ' . "Days"?></span>
-                    </td>
+                       <th class="text-start text-uppercase text-th sorting_disabled">Customer Rate</th>
+                       <th class="text-start text-uppercase text-th sorting_disabled">Carrier Rate</th>
+                       <th class="text-start text-uppercase text-th sorting_disabled">Status</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">Added Date</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">Added By</th>
+                      
+                  
 
-                    <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($load['lane']);?></span>
-                    </td>
-
-                    <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold"><?php  
-
-                      $date = new DateTime($load['createdat']);
-                      $dateWithoutTime = $date->format('Y-m-d');
-                      echo $dateWithoutTime;
-                    ?></span>
-                    </td>
-
-                    <td class="align-middle text-start">
-                      <span class="text-secondary text-xs font-weight-bold"><?php echo $load['agentname']?></span>
-                    </td>
-                                          
-                    
-                    <?php if($role == "Admin" || $role == "MANAGER"){?>
-                     <td class="align-middle">  
-                      <a href="editload.php?id=<?php echo $load['id']?>" title="Edit" atrid="4"  class="text-secondary font-weight-bold text-xs editlink">
-                      <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design">
-                      </a>
-                       <a href="deleteload.php?id=<?php echo $load['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs"><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"></a>
-
-                      </td>
-                    <?php }?>
-                                           
+                     <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER"): ?>
+                     
+                     <th class="text-secondary ">Action</th> 
+                    <?php endif; ?>
                   </tr>
-                <?php } ?>
-                                    
-                                    
-                        
-                                  </tbody>
-            </table>
+                </thead>
+                <tbody>
+                   <?php
+                      $loadData = getLoad($mysqli);
+                      foreach($loadData as $row){ 
+                      ?>
+                  <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          
+                          <div class="d-flex flex-column justify-content-center companyname">
+                            <a title="Load Data" href="load_data.php" class="mb-0 text-xs" ><?php echo ucfirst($row['locationfrom']); ?></a>
+                            
+                          </div>
+<!-- 
+                          <div class="d-flex flex-column justify-content-center">
+                            <p class="text-xs font-weight-bold mb-0"><?php// echo ucfirst($row['companyname']); ?></p>
+                            
+                          </div> -->
+                        </div>
+                      </td>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          
+                          <div class="d-flex flex-column justify-content-center">
+                            <p class="text-xs font-weight-bold mb-0"><?php echo ucfirst($row['locationto']); ?></p>
+                            
+                          </div>
+                        </div>
+                      </td>
+                      
+                      <td class="align-middle text-start text-sm">
+                        <p class="text-xs font-weight-bold mb-0"><?php echo $row['startdate']; ?></p>
+                      </td>
+                      <td class="align-middle text-start">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['deliverydate']); ?></span>
+                      </td>
+
+                      <td class="align-middle text-start">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['paymentterm']) . " " . "Days"; ?></span>
+                      </td>
+
+                      <td class="align-middle text-start text-sm">
+                        <p class="text-xs font-weight-bold mb-0"><?php echo $row['carrierpaymentterm'] . " " . "Days"; ?></p>
+                      </td>
+
+
+                      <td class="align-middle text-start">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['customerrate']); ?></span>
+                      </td>
+                      <td class="align-middle text-start">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['carrierrate']); ?></span>
+                      </td>
+                      <td class="align-middle text-start">
+                        <span class="text-secondary text-xs font-weight-bold"><?php if($row['status'] == 0){
+                          echo "Pending";
+                        }if($row['status'] == 1){
+                        echo "Paid"; }  ?></span>
+                      </td>
+
+                      <td class="align-middle text-start">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['addeddate']); ?></span>
+                      </td>
+
+                      <td class="align-middle text-start">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['agentname']); ?></span>
+                      </td>
+
+
+                     
+                   
+                      
+                      
+                      
+                  
+                      <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER"): ?>
+                      
+                      
+
+                       <td class="align-middle">  
+                        <a href="javascript:;" title="Edit" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design"/>
+                        </a>
+                        <?php 
+                          if($_SESSION['agentrole'] == "Admin"):
+                        ?>
+                         <a href="deletecompany.php?id=<?php echo $row['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs" ><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"/></a>
+                       
+                         <?php endif; ?>
+                       </td>
+                       <?php endif; ?>
+                      
+                    </tr>
+                    <?php } ?>
+                </tbody>
+              </table>
           </div>
           <script type="text/javascript">
             $(document).ready(function () {

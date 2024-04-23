@@ -645,7 +645,7 @@ function rejectedCount($mysqli){
     return $rCount; 
 }
 
-function addLoadAndCarrier($mysqli,$from,$to,$sDate,$deliveryDate,$trucker_type,$loadtype,$length,$weight,$commodity,$carrier_rate,$truckerno,$truckerEmail,$truckerAddress,$notes,$companyid,$trucksubcategorytype,$customerrate){
+function addLoadAndCarrier($mysqli,$from,$to,$sDate,$deliveryDate,$trucker_type,$loadtype,$length,$weight,$commodity,$carrier_rate,$truckerno,$truckerEmail,$truckerAddress,$notes,$companyid,$trucksubcategorytype,$customerrate,$truckerid){
     $from = mysqli_real_escape_string($mysqli, $from);
     $to = mysqli_real_escape_string($mysqli, $to);
     $sDate = mysqli_real_escape_string($mysqli, $sDate);
@@ -662,13 +662,14 @@ function addLoadAndCarrier($mysqli,$from,$to,$sDate,$deliveryDate,$trucker_type,
     $truckerEmail = mysqli_real_escape_string($mysqli, $truckerEmail);
     $truckerAddress = mysqli_real_escape_string($mysqli, $truckerAddress);
     $notes = mysqli_real_escape_string($mysqli,$notes);
+    $truckerid = mysqli_real_escape_string($mysqli,$truckerid);
     $addeddate = date('Y-m-d');
     $addedby = $_SESSION['id'];
     //$notes = mysqli_real_escape_string($mysqli,$notes);
     $companyid = mysqli_real_escape_string($mysqli,$companyid);
     $trucksubcategorytype = mysqli_real_escape_string($mysqli,$trucksubcategorytype);
     /*echo "insert into loadinfo (locationfrom,locationto,startdate,deliverydate,trucktype,length,weight,commodity,customerrate,carrierrate,truckerNo,truckerEmail,truckerAddress,notes,addeddate,addedby,companyid,trucksubcategorytype) VALUES('$from','$to','$sDate','$deliveryDate','$trucker_type','$lenght','$weight','$commodity','$customer_rate','$carrier_rate','$truckerno','$truckerEmail','$truckerAddress','$notes','$addeddate','$addedby','$companyid','$trucksubcategorytype')";die;*/
-    $sql = "insert into loadinfo (locationfrom,locationto,startdate,deliverydate,trucktype,length,weight,commodity,customerrate,carrierrate,truckerNo,truckerEmail,truckerAddress,notes,addeddate,addedby,companyid,trucksubcategorytype) VALUES('$from','$to','$sDate','$deliveryDate','$trucker_type','$lenght','$weight','$commodity','$customer_rate','$carrier_rate','$truckerno','$truckerEmail','$truckerAddress','$notes','$addeddate','$addedby','$companyid','$trucksubcategorytype')";
+    $sql = "insert into loadinfo (locationfrom,locationto,startdate,deliverydate,trucktype,length,weight,commodity,customerrate,carrierrate,truckerNo,truckerEmail,truckerAddress,notes,addeddate,addedby,companyid,trucksubcategorytype,truckerid,status) VALUES('$from','$to','$sDate','$deliveryDate','$trucker_type','$lenght','$weight','$commodity','$customer_rate','$carrier_rate','$truckerno','$truckerEmail','$truckerAddress','$notes','$addeddate','$addedby','$companyid','$trucksubcategorytype','$truckerid','0')";
     if(mysqli_query($mysqli,$sql)){
         return "Loadadded";
     }else{
@@ -1104,7 +1105,8 @@ function updateCarrier($mysqli,$tname,$id,$temail,$tphoneno,$taddress,$tmcno,$la
 }
 
 function getLoad($mysqli){
-    $sql = "select loadinfo.*,company.companyname,login.agentname from loadinfo left join company on loadinfo.companyid = company.id left join login on loadinfo.addedby = login.id";
+    /*$sql = "select loadinfo.*,company.companyname,login.agentname from loadinfo left join company on loadinfo.companyid = company.id left join login on loadinfo.addedby = login.id";*/
+    $sql = "select loadinfo.*,company.companyname,company.paymentterm,login.agentname,truckerdata.carrierpaymentterm from loadinfo left join company on loadinfo.companyid=company.id left join login on loadinfo.addedby=login.id left join truckerdata on loadinfo.truckerid = truckerdata.id ";
     $res = $mysqli->query($sql);
     $data = array();
     while($row=$res->fetch_assoc()){
@@ -1123,4 +1125,15 @@ function getAllCarrier($mysqli){
     $res->free();
     return $data;
 }
+
+/*function getLoad($mysqli){
+    $sql = "select loadinfo.*,login.agentname from loadinfo left join login on loadinfo.addedby = login.id order by id DESC";
+    $res = $mysqli->query($sql);
+    $data = array();
+    while($row=$res->fetch_assoc()){
+        $data[] = $row;
+    }
+    $res->free();
+    return $data;
+}*/
 ?>

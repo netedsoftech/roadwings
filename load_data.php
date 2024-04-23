@@ -34,8 +34,9 @@ if(isset($_POST['submit'])){
   //$notes1 = $_POST['notes1'];
   $customerrate = $_POST['customerrate'];
   $trucksubcategorytype = $_POST['trucksubcategorytype'];
+  $truckerid = $_POST['truckerid'];
   
-  $addLoadAndCarrier =  addLoadAndCarrier($mysqli,$from,$to,$sDate,$deliveryDate,$trucker_type,$loadtype,$length,$weight,$commodity,$carrier_rate,$truckerNo,$truckerEmail,$truckerAddress,$notes,$companyid,$trucksubcategorytype,$customerrate);
+  $addLoadAndCarrier =  addLoadAndCarrier($mysqli,$from,$to,$sDate,$deliveryDate,$trucker_type,$loadtype,$length,$weight,$commodity,$carrier_rate,$truckerNo,$truckerEmail,$truckerAddress,$notes,$companyid,$trucksubcategorytype,$customerrate,$truckerid);
   $error = '';
   $msg = '';
   if($addLoadAndCarrier == "Loadadded"){
@@ -370,6 +371,7 @@ $getCarrier = getAllCarrier($mysqli);
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
                       <input  id="mcnumber" class="form-control" required name="mcnumber" type="tel" placeholder="MC Number"  value="">
+                      <input  id="truckerid" class="form-control" required name="truckerid" type="hidden" >
                       </div>
 
                     </div>
@@ -381,6 +383,8 @@ $getCarrier = getAllCarrier($mysqli);
                       </div>
 
                     </div>
+
+
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
@@ -411,7 +415,8 @@ $getCarrier = getAllCarrier($mysqli);
                       <th class="text-start text-uppercase text-th sorting_disabled">To</th>
                       <th class="text-start text-uppercase text-th sorting_disabled"> Start Date</th>
                       <th class="text-start text-uppercase text-th sorting_disabled">End Date</th>
-                      <th class="text-start text-uppercase text-th sorting_disabled">Company Name</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">Company Payment Terms</th>
+                       <th class="text-start text-uppercase text-th sorting_disabled">Carrier Payment Terms</th>
                       <th class="text-start text-uppercase text-th sorting_disabled">Added Date</th>
                       <th class="text-start text-uppercase text-th sorting_disabled">Added By</th>
                       
@@ -461,7 +466,11 @@ $getCarrier = getAllCarrier($mysqli);
                       </td>
 
                       <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['companyname']); ?></span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['paymentterm']); ?></span>
+                      </td>
+
+                      <td class="align-middle text-start text-sm">
+                        <p class="text-xs font-weight-bold mb-0"><?php echo $row['carrierpaymentterm'] . " " . "Days"; ?></p>
                       </td>
 
                       <td class="align-middle text-start">
@@ -635,6 +644,7 @@ $getCarrier = getAllCarrier($mysqli);
           $("#truckerEmail").val(jsonData.temail);
           $("#mcnumber").val(jsonData.tmcno);
           $("#truckerAddress").val(jsonData.taddress);
+          $("#truckerid").val(jsonData.id);
         }
       })
 
