@@ -205,13 +205,6 @@ include('function.php');
                         <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['agentname']); ?></span>
                       </td>
 
-
-                     
-                   
-                      
-                      
-                      
-                  
                       <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER"): ?>
                       
                       
