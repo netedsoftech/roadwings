@@ -86,12 +86,15 @@ if (in_array($currentSegment, $pages)) {
                   </a>
                 </li>
 
+                <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER" || $_SESSION['agentrole'] == "ACCOUNTS"){?>
+
                 <li class="nav-item mt-2 mb-2">
                   <a class="nav-link <?php echo $currentSegment == 'billing.php' ? 'active' : ''; ?>" href="billing.php">
                     <img width="18" height="18" src="https://img.icons8.com/fluency-systems-regular/18/143e8b/bill.png" alt="bill"  class="mx-2" />
                     Biling
                   </a>
                 </li>
+              <?php } ?>
 
                
               </ul>

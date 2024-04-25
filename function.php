@@ -1136,4 +1136,24 @@ function getAllCarrier($mysqli){
     $res->free();
     return $data;
 }*/
+
+function getEditLoad($mysqli,$id){
+    $sql = "select * from loadinfo where id='$id'";
+    $res = $mysqli->query($sql);
+    $data = array();
+    while($row = $res->fetch_assoc()){
+        $data[] = $row;
+    }
+    $res->free();
+    return $data;
+}
+
+function updateLoad($mysqli,$locationfrom,$locationto,$startdate,$deliverydate,$trucktype,$length,$weight,$commodity,$customerrate,$carrierrate,$notes,$truckerNo,$truckerEmail,$truckerAddress,$id,$status){
+    $sql = "update loadinfo set locationfrom='$locationfrom',locationto='$locationto',startdate='$startdate',deliverydate='$deliverydate',trucktype='$trucktype',length='$length',weight='$weight',commodity='$commodity',customerrate='$customerrate',carrierrate='$carrierrate',notes='$notes',truckerNo='$truckerNo',truckerEmail='$truckerEmail',truckerAddress='$truckerAddress',status='$status' where id='$id'";
+    if($mysqli->query($sql)){
+        return "updated";
+    }else{
+        return "Errro while update";
+    }
+}
 ?>

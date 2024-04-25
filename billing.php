@@ -9,7 +9,7 @@ include('function.php');
   if(!($_SESSION)){
     header("location: login_page.php");
   }
-  if(isset($_POST['submit'])){
+  /*if(isset($_POST['submit'])){
     //echo "<pre>"; print_r($_POST); die;
     $tname = $_POST['tname'];
     $tphoneno = $_POST['tphoneno'];
@@ -34,7 +34,7 @@ include('function.php');
       $error = "Failed to add trucker.";
     }
 
-  }
+  }*/
 
   $role = $_SESSION['agentrole'];
 
@@ -208,13 +208,13 @@ include('function.php');
                       
 
                        <td class="align-middle">  
-                        <a href="javascript:;" title="Edit" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <a href="editload.php?id=<?php echo $row['id']?>" title="Edit" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink" >
                         <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design"/>
                         </a>
                         <?php 
                           if($_SESSION['agentrole'] == "Admin"):
                         ?>
-                         <a href="deletecompany.php?id=<?php echo $row['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs" ><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"/></a>
+                         <a href="deleteload.php?id=<?php echo $row['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs" ><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"/></a>
                        
                          <?php endif; ?>
                        </td>
@@ -274,117 +274,9 @@ background: #fff!important;
 </html>
 
 
-
-<!-- 
- 
- -->
-
-
- <div class="modal" tabindex="-1" role="dialog" id="exampleModal">
-  <form method="post">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Add Trucker</h5>
-        <button type="button" class="close" data-dismiss="modal" id="closeModalBtn" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    
-        <div class="col-md-12">
-            <div class="form-group mb-4">
-                <input id="truckerNo" class="form-control" required name="tname" type="text" placeholder="Trucker Name" value="<?php echo isset($_POST['tname']) ? $_POST['tname'] : ''; ?>">
-            </div>
-        </div>
-
-        <div class="col-md-12">
-            <div class="form-group mb-4">
-                <input id="truckerNo" class="form-control" required name="tphoneno" type="tel" placeholder="Contact Number" value="<?php echo isset($_POST['tphoneno']) ? $_POST['tphoneno'] : ''; ?>">
-            </div>
-        </div>
-
-        <div class="col-md-12">
-            <div class="form-group mb-4">
-                <input id="truckerEmail" class="form-control" required name="temail" type="email" placeholder="Email Address" value="<?php echo isset($_POST['temail']) ? $_POST['temail'] : ''; ?>">
-            </div>
-        </div>
-
-        <div class="col-md-12">
-            <div class="form-group mb-4">
-                <input id="truckerAddress" class="form-control" required name="tmcno" type="text" placeholder="MC Number" value="<?php echo isset($_POST['tmcno']) ? $_POST['tmcno'] : ''; ?>">
-            </div>
-        </div>
-
-        <div class="col-md-12">
-            <div class="form-group mb-4">
-                <textarea class="form-control" required="" name="taddress" placeholder="Trucker Address" id="truckerAddress" cols="30" rows="1"><?php echo isset($_POST['taddress']) ? $_POST['taddress'] : ''; ?></textarea>
-            </div>
-        </div>
-
-         <div class="col-md-12">
-            <div class="form-group mb-4">
-                <input id="carrierInputSecond" class="form-control" required="" name="lane" type="text" placeholder="Lane" value="<?php echo isset($_POST['lane']) ? $_POST['lane'] : ''; ?>">
-            </div>
-        </div>
-<!-- 
-        <div class="col-md-12">
-            <div class="form-group mb-4">
-                <input id="carrierInputSecond" class="form-control" required="" name="tcarrierrate" type="text" placeholder="Carrier Rate" value="<?php// echo isset($_POST['tcarrierrate']) ? $_POST['tcarrierrate'] : ''; ?>">
-            </div>
-        </div> -->
-
-         <div class="col-md-12">
-            <div class="form-group mb-4">
-                        <select name="carrierpaymentterm"  class="form-control">
-                          <option selected>Payment Terms ( 1 - 50 days)</option>
-                          <option value="1">1</option>
-                          <option value="10">10</option>
-                          <option value="15">15</option>
-                          <option value="20">20</option>
-                          <option value="25">25</option>
-                          <option value="30">30</option>
-                          <option value="35">35</option>
-                          <option value="40">40</option>
-                          <option value="45">45</option>
-                          <option value="50">50</option>
-                         
-                        </select>
-                      </div>
-                    </div>
-
-        <div class="col-lg-4"></div> 
-        <div class="col-lg-4 text-end">
-            <div class="form-group mb-4 form-item mt-4">
-                
-            </div>
-        </div>
-  
-      <div class="modal-footer">
-       <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-       <button name="submit" type="submit" class="rounded-pill shadow text-white">Add Carrier</button>
-      </div>
-    </div>
-  </div>
-  </form>
-</div>
-
-
-<script>
-$(document).ready(function(){
-  $("#openModalBtn").click(function(){
-    $("#exampleModal").modal('show');
-  });
-
-  $('#closeModalBtn').click(function() {
-    
-    $('#exampleModal').modal('hide');
-});
-});
-</script>
-
 <script>
         document.getElementById("downloadBtn").addEventListener("click", function() {
-            window.location.href = "downloadtrucker.php"; // Replace with the URL of your PHP script
+            window.location.href = "downloadload.php"; // Replace with the URL of your PHP script
         });
     </script>
 
