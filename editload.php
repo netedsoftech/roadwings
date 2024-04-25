@@ -55,7 +55,7 @@ $getEditLoad = getEditLoad($mysqli,$id);
           <div class="col-lg-10 col-md-10 main-content mt-4">
             <?php include("topHeader.php");?>
              <div class="d-flex justify-content-between p-3 main-header ">
-              <h5 class="text-break">Edit Company Details</h5>
+              <h5 class="text-break">Edit Load Details</h5>
               <?php if(!empty($message)){
                 ?>
                 <script>

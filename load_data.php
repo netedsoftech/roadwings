@@ -10,10 +10,25 @@ include('function.php');
   }
 
 $urlid = $_GET['id'];
+
 $getCompaniesForLoad = getCompaniesForLoad($mysqli,$urlid);
 //echo "<pre>"; print_r($getCompaniesForLoad);die;
 if(isset($_POST['submit'])){
   //echo "<pre>"; print_r($_POST);die;
+  function generateUniqueRBLNumbers($count) {
+    $uniqueNumbers = [];
+    while (count($uniqueNumbers) < $count) {
+        $randNumber = mt_rand(100, 999); // Generate a random 3-digit number
+        $uniqueNumbers[] = "RBL" . $randNumber;
+        $uniqueNumbers = array_unique($uniqueNumbers); // Remove duplicates
+    }
+    return $uniqueNumbers;
+}
+
+$uniqueNumbers = generateUniqueRBLNumbers(5); // Change the count as per your requirement
+foreach ($uniqueNumbers as $number) {
+    $uid = $number;
+}
   $from = $_POST['from'];
   $to = $_POST['to'];
   $sDate = $_POST['sDate'];
@@ -36,7 +51,7 @@ if(isset($_POST['submit'])){
   $trucksubcategorytype = $_POST['trucksubcategorytype'];
   $truckerid = $_POST['truckerid'];
   
-  $addLoadAndCarrier =  addLoadAndCarrier($mysqli,$from,$to,$sDate,$deliveryDate,$trucker_type,$loadtype,$length,$weight,$commodity,$carrier_rate,$truckerNo,$truckerEmail,$truckerAddress,$notes,$companyid,$trucksubcategorytype,$customerrate,$truckerid);
+  $addLoadAndCarrier =  addLoadAndCarrier($mysqli,$from,$to,$sDate,$deliveryDate,$trucker_type,$loadtype,$length,$weight,$commodity,$carrier_rate,$truckerNo,$truckerEmail,$truckerAddress,$notes,$companyid,$trucksubcategorytype,$customerrate,$truckerid,$uid);
   $error = '';
   $msg = '';
   if($addLoadAndCarrier == "Loadadded"){
@@ -411,6 +426,7 @@ $getCarrier = getAllCarrier($mysqli);
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
+                    <th class="text-start text-uppercase text-th sorting_disabled"> Invoice No</th>
                       <th class="text-start text-uppercase text-th sorting_disabled"> From</th>
                       <th class="text-start text-uppercase text-th sorting_disabled">To</th>
                       <th class="text-start text-uppercase text-th sorting_disabled"> Start Date</th>
@@ -434,6 +450,20 @@ $getCarrier = getAllCarrier($mysqli);
                       foreach($loadData as $row){ 
                       ?>
                   <tr>
+                    <td>
+                        <div class="d-flex px-2 py-1">
+                          
+                          <div class="d-flex flex-column justify-content-center companyname">
+                            <a title="Load Data" href="load_data.php" class="mb-0 text-xs" ><?php echo ucfirst($row['carrierinvoiceno']); ?></a>
+                            
+                          </div>
+<!-- 
+                          <div class="d-flex flex-column justify-content-center">
+                            <p class="text-xs font-weight-bold mb-0"><?php// echo ucfirst($row['companyname']); ?></p>
+                            
+                          </div> -->
+                        </div>
+                      </td>
                       <td>
                         <div class="d-flex px-2 py-1">
                           

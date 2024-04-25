@@ -43,13 +43,7 @@ include('function.php');
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trucker</title>
-</head>
+
 <body>
 <?php include("header.php");?>
 <section class="main">
@@ -108,6 +102,7 @@ include('function.php');
            <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
+                    <th class="text-start text-uppercase text-th sorting_disabled"> Invoice No</th>
                       <th class="text-start text-uppercase text-th sorting_disabled"> From</th>
                       <th class="text-start text-uppercase text-th sorting_disabled">To</th>
                       <th class="text-start text-uppercase text-th sorting_disabled"> Start Date</th>
@@ -135,11 +130,25 @@ include('function.php');
                       foreach($loadData as $row){ 
                       ?>
                   <tr>
+                    <td>
+                        <div class="d-flex px-2 py-1">
+                          
+                          <div class="d-flex flex-column justify-content-center companyname">
+                            <a title="Load Data" href="payment.php?id=<?php echo $row['id']?>" class="mb-0 text-xs" ><?php echo ucfirst($row['carrierinvoiceno']); ?></a>
+                            
+                          </div>
+<!-- 
+                          <div class="d-flex flex-column justify-content-center">
+                            <p class="text-xs font-weight-bold mb-0"><?php// echo ucfirst($row['companyname']); ?></p>
+                            
+                          </div> -->
+                        </div>
+                      </td>
                       <td>
                         <div class="d-flex px-2 py-1">
                           
                           <div class="d-flex flex-column justify-content-center companyname">
-                            <a title="Load Data" href="load_data.php" class="mb-0 text-xs" ><?php echo ucfirst($row['locationfrom']); ?></a>
+                             <p class="text-xs font-weight-bold mb-0"><?php echo ucfirst($row['locationfrom']); ?></p>
                             
                           </div>
 <!-- 
@@ -235,10 +244,7 @@ include('function.php');
         </div>
       </div>
           </div>
-
-          
         </div>
-        
       </div>
 </section>
 </div>
