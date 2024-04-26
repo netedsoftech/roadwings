@@ -1138,7 +1138,7 @@ function getAllCarrier($mysqli){
     return $data;
 }*/
 
-function getEditLoad($mysqli,$id){
+function getEditLoad($mysqli,$id){  
     $sql = "select * from loadinfo where id='$id'";
     $res = $mysqli->query($sql);
     $data = array();
@@ -1157,4 +1157,6 @@ function updateLoad($mysqli,$locationfrom,$locationto,$startdate,$deliverydate,$
         return "Errro while update";
     }
 }
+
+
 ?>

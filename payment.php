@@ -102,63 +102,68 @@ $getEditLoad = getEditLoad($mysqli,$id);
                     </div>
 
                     <div class="form-group mb-4">
-                      <label for="truckercost">Carrier Cost *</label>
-                      <input class="form-control" name="truckercost" type="text" placeholder="Carrier Cost *" value="" required>
+                      <label for="companypaymentstatus">Company Payment Status *</label>
+                     <select name="companypaymentstatus" class="form-control">
+                        <option value="">Please Select Status </option>
+                        <option value="0">Due </option>
+                        <option value="1">Recieved </option>
+                      </select>
                     </div>
                   </div>
 
                   <div class="col-md-6">
                     <div class="form-group mb-4">
-                      <label for="companypaymentstatus">Company Payment Status *</label>
-                      <input class="form-control" name="companypaymentstatus" type="text" placeholder="Company Payment Status *" value="" required>
-                    </div>
-
-                    <div class="form-group mb-4">
-                      <label for="truckerpaymentstatus">Carrier Payment Status *</label>
-                      <input class="form-control" required name="truckerpaymentstatus" type="text" minlength="12" value="" maxlength="12" placeholder="Carrier Payment Status*">
-                    </div>
-                  </div>
-
-                  <span class="aside-hr mt-3 mb-4"></span>
-
-                  <div class="col-md-4">
-                    <div class="form-group mb-4">
                       <label for="companypaidamount">Company Paid Amount *</label>
                       <input class="form-control" required name="companypaidamount" type="text" value=""  placeholder="Company Paid Amount *">
                     </div>
-                  </div>
 
-                  <div class="col-md-4">
-                    <div class="form-group mb-4">
-                      <label for="shipperpaidamount">Carrier Paid Amount *</label>
-                      <input class="form-control" required name="shipperpaidamount" type="text" value="Carrier Paid Amount" placeholder="Length">
-                    </div>
-                  </div>
-
-                  <div class="col-md-4">
                     <div class="form-group mb-4">
                       <label for="companypaymentdate">Company Payment Date *</label>
                       <input class="form-control" required name="companypaymentdate" type="date" value="" placeholder="Company Payment Date">
                     </div>
                   </div>
 
+                  <span class="aside-hr mt-3 mb-4"></span>
+
+                 <!--  <div class="col-md-4">
+                    <div class="form-group mb-4">
+                      <label for="companypaidamount">Company Paid Amount *</label>
+                      <input class="form-control" required name="companypaidamount" type="text" value=""  placeholder="Company Paid Amount *">
+                    </div>
+                  </div> -->
+
                   <div class="col-md-4">
                     <div class="form-group mb-4">
-                      <label for="shippperpaymentdate">Shipper Payment Date *</label>
-                      <input class="form-control" required name="shippperpaymentdate" type="date" value="" placeholder="Shipper Payment Date">
+                     <label for="truckercost">Carrier Cost *</label>
+                      <input class="form-control" name="truckercost" type="text" placeholder="Carrier Cost *" value="" required>
                     </div>
                   </div>
 
                   <div class="col-md-4">
                     <div class="form-group mb-4">
-                      <label for="status">Status</label>
-                      <select name="status" class="form-control">
-                        <option value="">Please Select Status </option>
-                        <option value="0">Pending </option>
-                        <option value="1">Paid </option>
-                      </select>
+                       <label for="truckerpaymentstatus">Carrier Payment Status *</label>
+                     
+                         <select name="truckerpaymentstatus" class="form-control">
+                          <option value="">Please Select Status </option>
+                          <option value="0">Due </option>
+                          <option value="1">Paid </option>
+                        </select>
                     </div>
                   </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group mb-4">
+                     <label for="shipperpaidamount">Carrier Paid Amount *</label>
+                      <input class="form-control" required name="shipperpaidamount" type="text" value="Carrier Paid Amount" placeholder="Length">
+                    </div>
+                  </div>
+
+                   <div class="col-md-4">
+                    <div class="form-group mb-4">
+                       <label for="shippperpaymentdate">Shipper Payment Date *</label>
+                      <input class="form-control" required name="shippperpaymentdate" type="date" value="" placeholder="Shipper Payment Date">
+                    </div>
+                  </div> 
 
                   <div class="col-lg-4"></div>
                   <div class="col-lg-4"></div>

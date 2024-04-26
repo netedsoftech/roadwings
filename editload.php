@@ -6,10 +6,7 @@ require_once "function.php";
 if(!($_SESSION)){
     header("location: login_page.php");
   }
-
 $id = $_GET['id'];
-
-
 //echo "<pre>"; print_r($getCompany);die;
 if(isset($_POST["editload"])){
   //echo "<pre>"; print_r($_POST); die;
