@@ -12,14 +12,18 @@ include('function.php');
 $urlid = $_GET['id'];
 
 $getCompaniesForLoad = getCompaniesForLoad($mysqli,$urlid);
-//echo "<pre>"; print_r($getCompaniesForLoad);die;
+$calculate = calculateleftlimit($mysqli,$urlid);
+$calculatepaidamount = calculatepaidamount($mysqli,$urlid);
+$calculatetotalbusiness = calculatetotalbusiness($mysqli,$urlid);
+$usedlitmit = calculateusedlimit($mysqli,$urlid);
+//echo "<pre>"; print_r($calculate);die;
 if(isset($_POST['submit'])){
   //echo "<pre>"; print_r($_POST);die;
   function generateUniqueRBLNumbers($count) {
     $uniqueNumbers = [];
     while (count($uniqueNumbers) < $count) {
         $randNumber = mt_rand(100, 999); // Generate a random 3-digit number
-        $uniqueNumbers[] = "RBL" . $randNumber;
+        $uniqueNumbers[] = "RWL" . $randNumber;
         $uniqueNumbers = array_unique($uniqueNumbers); // Remove duplicates
     }
     return $uniqueNumbers;
@@ -565,12 +569,12 @@ $getCarrier = getAllCarrier($mysqli);
                       <div>
 
                        <small class="text-black"> Credit Limit: <span class="text-success fs-5"> $<?php echo $getCompaniesForLoad[0]['creditlimit'];?> </span></small><br><br>
-                       <small class="text-black"> Left  Limit: <span class="text-success fs-5"> $1500 </span></small><br><br>
-                       <small class="mt-3"> Total business: <span class="text-success fs-5"> $200 </span></small>
+                       <small class="text-black"> Left  Limit: <span class="text-success fs-5"> $<?php echo $calculate[0]['remaining_credit_limit'];?> </span></small><br><br>
+                       <small class="mt-3"> Total business: <span class="text-success fs-5"> $<?php echo $calculatetotalbusiness[0]['total_business'];?> </span></small>
                       </div>
                       <div>
-                        <small class="text-black">Used  Limit: <span class="text-danger fs-5"> $500</span></small><br><br>
-                       <small class="text-black"> Paid Amount: <span class="text-success fs-5">  $200 </span></small><br><br>
+                        <small class="text-black">Used  Limit: <span class="text-danger fs-5"> $<?php echo $usedlitmit[0]['used_limit'];?></span></small><br><br>
+                       <small class="text-black"> Paid Amount: <span class="text-success fs-5">  $<?php echo $calculatepaidamount[0]['total_paid_amount'];?> </span></small><br><br>
                        <small class="mt-3"> Agent Name: <span class="text-black"> <?php echo ucfirst($getCompaniesForLoad[0]['agentname'])?> </span></small>
                       </div>
                     </div>

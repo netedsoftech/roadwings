@@ -328,6 +328,8 @@ background: #fff!important;
                           <option value="40">40</option>
                           <option value="45">45</option>
                           <option value="50">50</option>
+                          <option value="COD">COD</option>
+                         
                          
                         </select>
                       </div>

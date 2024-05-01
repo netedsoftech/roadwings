@@ -1107,7 +1107,7 @@ function updateCarrier($mysqli,$tname,$id,$temail,$tphoneno,$taddress,$tmcno,$la
 
 function getLoad($mysqli){
     /*$sql = "select loadinfo.*,company.companyname,login.agentname from loadinfo left join company on loadinfo.companyid = company.id left join login on loadinfo.addedby = login.id";*/
-    $sql = "select loadinfo.*,company.companyname,company.paymentterm,login.agentname,truckerdata.carrierpaymentterm from loadinfo left join company on loadinfo.companyid=company.id left join login on loadinfo.addedby=login.id left join truckerdata on loadinfo.truckerid = truckerdata.id ";
+    $sql = "select loadinfo.*,company.id as cid,company.companyname,company.paymentterm,login.agentname,truckerdata.id as tid,truckerdata.carrierpaymentterm from loadinfo left join company on loadinfo.companyid=company.id left join login on loadinfo.addedby=login.id left join truckerdata on loadinfo.truckerid = truckerdata.id ";
     $res = $mysqli->query($sql);
     $data = array();
     while($row=$res->fetch_assoc()){
@@ -1156,6 +1156,118 @@ function updateLoad($mysqli,$locationfrom,$locationto,$startdate,$deliverydate,$
     }else{
         return "Errro while update";
     }
+}
+
+function ctData($mysqli,$id,$cid,$tid){
+    $sql = "select * from loadinfo where id='$id' AND companyid='$cid' AND truckerid='$tid'";
+    $res = $mysqli->query($sql);
+    $data = array();
+    while($row = $res->fetch_assoc()){
+        $data[] = $row;
+    }
+    $res->free();
+    return $data;
+}
+
+
+
+function addcarrierPayment($mysqli,$truckercost,$truckerpaymentstatus,$shipperpaidamount,$shippperpaymentdate,$id,$cid,$tid,$sessionid,$modeofpayment){
+    $date = date('Y-m-d');
+    $query = "insert into carrierpaymentdetail (truckercost,truckerpaymentstatus,shipperpaidamount,shippperpaymentdate,companyid,loadid,truckerid,addedby,createdat,paymentmode)VALUES('$truckercost','$truckerpaymentstatus','$shipperpaidamount','$shippperpaymentdate','$cid','$id','$tid','$sessionid','$date','$modeofpayment')";
+    if($mysqli->query($query)){
+        return "Payment submit";
+    }else{
+        return "Payment faild";
+    }
+}
+
+function carrierData($mysqli,$id,$cid,$tid){
+    $sql = "select carrierpaymentdetail.*,login.agentname  from carrierpaymentdetail left join login on carrierpaymentdetail.addedby = login.id  where loadid='$id'";
+    $res = $mysqli->query($sql);
+    $data = array();
+    while($row = $res->fetch_assoc()){
+        $data[] = $row;
+    }
+    //echo "<pre>"; print_r($data); die;
+    $res->free();
+    return $data;
+}
+
+function addcompanyPayment($mysqli,$companypaymentstatus,$companypaidamount,$companypaymentdate,$id,$cid,$tid){
+    /*here will be code for add payemnt of company*/
+}
+
+function calculateleftlimit($mysqli,$urlid){
+    $sql = "SELECT 
+    loadinfo.*, 
+    company.creditlimit - (COUNT(loadinfo.id) * loadinfo.carrierrate) AS remaining_credit_limit,
+    companypaymentdetail.companypaidamount 
+        FROM 
+            loadinfo 
+        LEFT JOIN 
+            company ON loadinfo.companyid = company.id 
+        LEFT JOIN 
+            companypaymentdetail ON company.id = companypaymentdetail.companyid 
+        WHERE 
+    loadinfo.companyid = '$urlid'";
+    $res = $mysqli->query($sql);
+    $data = array();
+    while($row = $res->fetch_assoc()){
+        $data[] = $row;
+    }
+    $res->free();
+    return $data;
+}
+
+function calculatepaidamount($mysqli,$urlid){
+    $sql = "SELECT 
+    SUM(companypaymentdetail.companypaidamount) AS total_paid_amount
+FROM 
+    companypaymentdetail 
+WHERE 
+    companypaymentdetail.companyid = '$urlid'";
+    $res = $mysqli->query($sql);
+    $data = array();
+    while($row = $res->fetch_assoc()){
+        $data[] = $row;
+    }
+    $res->free();
+    return $data;
+}
+
+function calculatetotalbusiness($mysqli,$urlid){
+     
+    $sql = "SELECT 
+    SUM(companypaymentdetail.companypaidamount) AS total_business
+FROM 
+    companypaymentdetail 
+WHERE 
+    companypaymentdetail.companyid = '$urlid'";
+    $res = $mysqli->query($sql);
+    $data = array();
+    while($row = $res->fetch_assoc()){
+        $data[] = $row;
+    }
+    $res->free();
+    return $data;
+}
+
+function calculateusedlimit($mysqli,$urlid){
+    $sql = "SELECT 
+    company.creditlimit - SUM(companypaymentdetail.companypaidamount) AS used_limit
+FROM 
+    company 
+LEFT JOIN 
+    companypaymentdetail ON company.id = companypaymentdetail.companyid 
+WHERE 
+    company.id = '$urlid'";
+    $res = $mysqli->query($sql);
+    $data = array();
+    while($row = $res->fetch_assoc()){
+        $data[] = $row;
+    }
+    $res->free();
+    return $data;
 }
 
 

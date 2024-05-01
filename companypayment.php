@@ -1,70 +1,149 @@
-<?php
-ob_start();
+<!-- company cost
+trucker cost
+profile
+company payment status(option will be due or recieved)
+trucker payment status(option will be due or paid)
+company paid amount
+shipper paid amount
+company payment date
+shipper payment date -->
+<?php 
 session_start();
-include('config.php');
 include("header.php");
-include('function.php');
-  if(!($_SESSION)){
+require_once "config.php";
+require_once "function.php";
+if(!($_SESSION)){
     header("location: login_page.php");
-  }
-  $role = $_SESSION['agentrole'];
+}
+
+$id = $_GET['loadid'];
+$cid= $_GET['cid'];
+$tid= $_GET['tid'];
 
 
-//echo "<pre>"; print_r($getCompaniesForLoad);die;
+//echo "<pre>"; print_r($getCompany);die;
+if(isset($_POST["submit"])){
+  echo "<pre>"; print_r($_POST); die;
+  $companycost = $_POST['companycost'];
+  $companypaymentstatus = $_POST['companypaymentstatus'];
+  $companypaidamount = $_POST['companypaidamount'];
+  $companypaymentdate = $_POST['companypaymentdate'];
+  
+  
+  $addPayment = addcompanyPayment($mysqli,$companypaymentstatus,$companypaidamount,$companypaymentdate,$id,$cid,$tid);
+  $message = "";
+  $error =  "";
+    if ($updateLoad == "updated") {
+        $message = "Load updated successfully";
+    } else {
+        // Insertion failed
+        $error = "Failed to update load.";
+    }
+}
 
+$ctData = ctData($mysqli,$id,$cid,$tid);
+//echo "<pre>"; print_r($ctData); die;
+ 
 ?>
 
+  <body>
+   <section class="main">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar start -->
+      <?php include("navSideBar.php");?>
+      <!-- Sidebar end -->
+      <div class="col-lg-10 col-md-10 main-content mt-4">
+        <?php include("topHeader.php");?>
+        <div class="d-flex justify-content-between p-3 main-header ">
+          <h5 class="text-break">Accounts</h5>
+          <?php if(!empty($message)){ ?>
+            <script>
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "<?php echo $message?>",
+                showConfirmButton: false,
+                timer: 1500
+              });
+            </script>
+          <?php echo $message; }?>
+          <?php if(!empty($error)){ ?>
+            <script>
+              Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "<?php echo $error?>",
+                showConfirmButton: false,
+                timer: 1500
+              });
+            </script>
+          <?php echo $error; }?>
+          <span class="rounded-pill shadow text-white">Assembly</span>
+        </div>
 
-<body>
-<?php include("header.php");?>
-<section class="main">
-      <div class="container-fluid">
-        <div class="row">
-             <!-- Sidebar start -->
-          <?php include("navSideBar.php");?>
-          <!-- Sidebar end -->
-          <div class="col-lg-10 col-md-10 main-content mt-4">
-          <?php include("topHeader.php");?>
-          <div class="d-flex justify-content-between p-3 main-header ">
-              <h5 class="text-break">Carrier Listing</h5>
-              <?php if($role == "Admin" || $role == "MANAGER"){?>
-              <span class="rounded-pill shadow text-white"><span class="text-white" id="downloadBtn">Download Report</span></span>
-            <?php } ?>
-              <?php if(!empty($message)){
-                ?>
-                <script>
-                 Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "<?php echo $message?>",
-                  showConfirmButton: false,
-                  timer: 1500
-                });
-                </script>
-              <?php
-                echo "<h5>" . $message . "</h5>";
-              }?>
-              <?php if(!empty($error)){
-        ?>
-         <script>
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: "Error",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                </script>
-        <?php
+        <div class="row mt-4 ">
+          <div class="col-lg-9">
+            <div class="main-header p-3 ">
+              <form method="post">
+                <h5 class="mt-2 mb-5"></h5>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group mb-4">
+                      <label for="companycost">Company Cost *</label>
+                      <input class="form-control" name="companycost" type="text" placeholder="Company Cost *" value="<?php echo $ctData[0]['customerrate']?>" required>
+                    </div>
 
-        echo "<h5>" . $error . "</h5>";
+                    <div class="form-group mb-4">
+                      <label for="companypaymentstatus">Company Payment Status *</label>
+                     <select name="companypaymentstatus" class="form-control">
+                        <option value="">Please Select Status </option>
+                        <option value="Due">Due </option>
+                        <option value="Recieved">Recieved </option>
+                      </select>
+                    </div>
+                  </div>
 
-    }?>
+                  <div class="col-md-6">
+                    <div class="form-group mb-4">
+                      <label for="companypaidamount">Company Paid Amount *</label>
+                      <input class="form-control" required name="companypaidamount" type="text" value=""  placeholder="Company Paid Amount *">
+                    </div>
 
+                    <div class="form-group mb-4">
+                      <label for="companypaymentdate">Company Payment Date *</label>
+                      <input class="form-control" required name="companypaymentdate" type="date" value="" placeholder="Company Payment Date">
+                    </div>
+                  </div>
 
-          <!-- <span class="rounded-pill shadow text-white" id="openModalBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Carrier</span>   -->  
+                  <span class="aside-hr mt-3 mb-4"></span>
+
+                 <!--  <div class="col-md-4">
+                    <div class="form-group mb-4">
+                      <label for="companypaidamount">Company Paid Amount *</label>
+                      <input class="form-control" required name="companypaidamount" type="text" value=""  placeholder="Company Paid Amount *">
+                    </div>
+                  </div> -->
+
+                  
+
+                  <div class="col-lg-4"></div>
+                  <div class="col-lg-4"></div>
+                  <div class="col-lg-4"></div>
+                  <div class="col-lg-4 text-end">
+                    <div class="form-group mb-4 form-item mt-4">
+                      <button name="addcompanypayment" class="btn ">Submit Details</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
-          <div class="row mt-4 ">
+           
+          <?php include("rightbar.php");?>
+          
+        </div>
+        <div class="row mt-4 ">
            
 
         <?php //include("rightbar.php");?>
@@ -184,8 +263,7 @@ include('function.php');
                         <a href="editload.php?id=<?php echo $row['id']?>" title="Edit" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink" >
                         <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design"/>
                         </a>
-                        <a title="Load Data" href="carrierpayment.php?loadid=<?php echo $row['id']?>&cid=<?php echo $row['cid']?>&tid=<?php echo $row['tid']?>" class="mb-0 text-xs" >Carrier Payment</a>
-                        <a title="Load Data" href="companypayment.php?loadid=<?php echo $row['id']?>&cid=<?php echo $row['cid']?>&tid=<?php echo $row['tid']?>" class="mb-0 text-xs" >Company Payment</a>
+                       
                         <?php 
                           if($_SESSION['agentrole'] == "Admin"):
                         ?>
@@ -209,47 +287,16 @@ include('function.php');
           </script>
         </div>
       </div>
-          </div>
-        </div>
       </div>
+    </div>
+  </div>
 </section>
-</div>
 
-<style>
-  .dataTables_wrapper .dataTables_paginate .paginate_button.current{
-color: #fff!important;
-background: #124483!important;
-border-radius: 50%!important;
-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px!important;
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
-color: #124483!important;
-background: #fff!important;
-}
-
-.dataTables_length label{
-  color: #124483!important;
-}
-
-.dataTables_filter  label{
-  color: #124483!important;
-}
-</style>
-
-<script
+    <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-</body>
+  </body>
 </html>
-
-
-<script>
-        document.getElementById("downloadBtn").addEventListener("click", function() {
-            window.location.href = "downloadload.php"; // Replace with the URL of your PHP script
-        });
-    </script>
-
 
