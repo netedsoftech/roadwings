@@ -1272,7 +1272,39 @@ WHERE
 
 function getLoad1($mysqli){
     /*$sql = "select loadinfo.*,company.companyname,login.agentname from loadinfo left join company on loadinfo.companyid = company.id left join login on loadinfo.addedby = login.id";*/
-    $sql = "select loadinfo.*,company.id as cid,company.companyname,company.paymentterm,login.agentname,truckerdata.id as tid,truckerdata.carrierpaymentterm from loadinfo left join company on loadinfo.companyid=company.id left join login on loadinfo.addedby=login.id left join truckerdata on loadinfo.truckerid = truckerdata.id ";
+ /*   $sql = "select loadinfo.*,company.id as cid,company.companyname,company.paymentterm,login.agentname,truckerdata.id as tid,truckerdata.carrierpaymentterm from loadinfo left join company on loadinfo.companyid=company.id left join login on loadinfo.addedby=login.id left join truckerdata on loadinfo.truckerid = truckerdata.id ";*/
+ $sql = "SELECT 
+    loadinfo.*, 
+    company.id AS cid, 
+    company.companyname, 
+    company.paymentterm, 
+    login.agentname, 
+    truckerdata.id AS tid, 
+    truckerdata.carrierpaymentterm,
+    COALESCE(SUM(companypaymentdetail.companypaidamount), 0) AS total_companypaidamount,
+    CASE 
+        WHEN SUM(companypaymentdetail.companypaidamount) >= loadinfo.customerrate THEN 'Paid' 
+        ELSE 'Partial' 
+    END AS companypaymentstatus,
+    COALESCE(SUM(carrierpaymentdetail.shipperpaidamount), 0) AS total_shipperpaidamount,
+    CASE 
+        WHEN SUM(carrierpaymentdetail.shipperpaidamount) >= loadinfo.carrierrate THEN 'Paid' 
+        ELSE 'Partial' 
+    END AS carrierpaymentstatus
+    FROM 
+        loadinfo 
+    LEFT JOIN 
+        company ON loadinfo.companyid = company.id 
+    LEFT JOIN 
+        login ON loadinfo.addedby = login.id 
+    LEFT JOIN 
+        truckerdata ON loadinfo.truckerid = truckerdata.id
+    LEFT JOIN
+        companypaymentdetail ON loadinfo.id = companypaymentdetail.loadid
+    LEFT JOIN
+    carrierpaymentdetail ON loadinfo.id = carrierpaymentdetail.loadid
+GROUP BY 
+    loadinfo.id";
     $res = $mysqli->query($sql);
     $data = array();
     while($row=$res->fetch_assoc()){

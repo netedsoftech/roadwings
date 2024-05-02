@@ -83,7 +83,8 @@ include('function.php');
 
                        <th class="text-start text-uppercase text-th sorting_disabled">Customer Rate</th>
                        <th class="text-start text-uppercase text-th sorting_disabled">Carrier Rate</th>
-                       <th class="text-start text-uppercase text-th sorting_disabled">Status</th>
+                       <th class="text-start text-uppercase text-th sorting_disabled">Company Payment Status</th>
+                       <th class="text-start text-uppercase text-th sorting_disabled">Carrier Payment Status</th>
                       <th class="text-start text-uppercase text-th sorting_disabled">Added Date</th>
                       <th class="text-start text-uppercase text-th sorting_disabled">Added By</th>
                       
@@ -156,16 +157,17 @@ include('function.php');
 
 
                       <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['customerrate']); ?></span>
+                        <span class="text-secondary text-xs font-weight-bold">$<?php echo ucfirst($row['customerrate']); ?></span>
                       </td>
                       <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['carrierrate']); ?></span>
+                        <span class="text-secondary text-xs font-weight-bold">$<?php echo ucfirst($row['carrierrate']); ?></span>
                       </td>
                       <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php if($row['status'] == 0){
-                          echo "Pending";
-                        }if($row['status'] == 1){
-                        echo "Paid"; }  ?></span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $row['companypaymentstatus'] ?></span>
+                      </td>
+
+                       <td class="align-middle text-start">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $row['carrierpaymentstatus'] ?></span>
                       </td>
 
                       <td class="align-middle text-start">
