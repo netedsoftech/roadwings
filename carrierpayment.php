@@ -133,8 +133,8 @@ $ctData = ctData($mysqli,$id,$cid,$tid);
 
                    <div class="col-md-4">
                     <div class="form-group mb-4">
-                       <label for="shippperpaymentdate">Shipper Payment Date *</label>
-                      <input class="form-control" required name="shippperpaymentdate" type="date" value="" placeholder="Shipper Payment Date">
+                       <label for="shippperpaymentdate">Carrier Payment Date *</label>
+                      <input class="form-control" required name="shippperpaymentdate" type="text" onfocus="(this.type='date')" value="" placeholder="Due / Paid  Date">
                     </div>
                   </div> 
 
