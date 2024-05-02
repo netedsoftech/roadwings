@@ -114,8 +114,8 @@ $ctData = ctData($mysqli,$id,$cid,$tid);
 
                   <div class="col-md-4">
                     <div class="form-group mb-4">
-                     <label for="shipperpaidamount">Carrier Paid Amount *</label>
-                      <input class="form-control" required name="shipperpaidamount" type="text" value="" placeholder="Carrier Paid Amount">
+                     <label for="shipperpaidamount">Carrier Paid Amount </label>
+                      <input class="form-control"  name="shipperpaidamount" type="text" value="" placeholder="Carrier Paid Amount">
                     </div>
                   </div>
 
