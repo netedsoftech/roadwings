@@ -114,6 +114,11 @@ $ctData = ctData($mysqli,$id,$cid,$tid);
                       <label for="companypaymentdate">Company Payment Date *</label>
                       <input class="form-control" required name="companypaymentdate" type="date" value="" placeholder="Company Payment Date">
                     </div>
+
+                    <div class="form-group mb-4">
+                      <label for="companypaymentdate">Mode of payment *</label>
+                      <input class="form-control" required name="modeofpayment" type="date" value="" placeholder="Company Payment Date">
+                    </div>
                   </div>
 
                   <span class="aside-hr mt-3 mb-4"></span>

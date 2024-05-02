@@ -510,7 +510,7 @@ function getCompaniesForLoad($mysqli,$id){
 
     $role = $_SESSION['agentrole'];
     //$id = $_SESSION['id'];
-    //echo "select company.*,login.agentname from company left join login on company.createdby = login.id where company.id = '$id'";die;
+  /*  echo "select company.*,login.agentname from company left join login on company.createdby = login.id where company.id = '$id'";die;*/
     $sql = "select company.*,login.agentname from company left join login on company.createdby = login.id where company.id = '$id'";
     $res = $mysqli->query($sql);
     while($row = $res->fetch_assoc()){
@@ -1105,9 +1105,9 @@ function updateCarrier($mysqli,$tname,$id,$temail,$tphoneno,$taddress,$tmcno,$la
     }
 }
 
-function getLoad($mysqli){
+function getLoad($mysqli,$urlid){
     /*$sql = "select loadinfo.*,company.companyname,login.agentname from loadinfo left join company on loadinfo.companyid = company.id left join login on loadinfo.addedby = login.id";*/
-    $sql = "select loadinfo.*,company.id as cid,company.companyname,company.paymentterm,login.agentname,truckerdata.id as tid,truckerdata.carrierpaymentterm from loadinfo left join company on loadinfo.companyid=company.id left join login on loadinfo.addedby=login.id left join truckerdata on loadinfo.truckerid = truckerdata.id ";
+    $sql = "select loadinfo.*,company.id as cid,company.companyname,company.paymentterm,login.agentname,truckerdata.id as tid,truckerdata.carrierpaymentterm from loadinfo left join company on loadinfo.companyid=company.id left join login on loadinfo.addedby=login.id left join truckerdata on loadinfo.truckerid = truckerdata.id where loadinfo.companyid = '$urlid'";
     $res = $mysqli->query($sql);
     $data = array();
     while($row=$res->fetch_assoc()){
@@ -1264,6 +1264,18 @@ WHERE
     $res = $mysqli->query($sql);
     $data = array();
     while($row = $res->fetch_assoc()){
+        $data[] = $row;
+    }
+    $res->free();
+    return $data;
+}
+
+function getLoad1($mysqli){
+    /*$sql = "select loadinfo.*,company.companyname,login.agentname from loadinfo left join company on loadinfo.companyid = company.id left join login on loadinfo.addedby = login.id";*/
+    $sql = "select loadinfo.*,company.id as cid,company.companyname,company.paymentterm,login.agentname,truckerdata.id as tid,truckerdata.carrierpaymentterm from loadinfo left join company on loadinfo.companyid=company.id left join login on loadinfo.addedby=login.id left join truckerdata on loadinfo.truckerid = truckerdata.id ";
+    $res = $mysqli->query($sql);
+    $data = array();
+    while($row=$res->fetch_assoc()){
         $data[] = $row;
     }
     $res->free();

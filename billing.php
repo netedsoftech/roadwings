@@ -97,7 +97,7 @@ include('function.php');
                 </thead>
                 <tbody>
                    <?php
-                      $loadData = getLoad($mysqli);
+                      $loadData = getLoad1($mysqli);
                       foreach($loadData as $row){ 
                       ?>
                   <tr>

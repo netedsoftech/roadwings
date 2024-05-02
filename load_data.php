@@ -450,7 +450,7 @@ $getCarrier = getAllCarrier($mysqli);
                 </thead>
                 <tbody>
                    <?php
-                      $loadData = getLoad($mysqli);
+                      $loadData = getLoad($mysqli,$urlid);
                       foreach($loadData as $row){ 
                       ?>
                   <tr>
