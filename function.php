@@ -1289,19 +1289,20 @@ function getLoad1($mysqli){
     COALESCE(SUM(carrierpaymentdetail.shipperpaidamount), 0) AS total_shipperpaidamount,
     CASE 
         WHEN SUM(carrierpaymentdetail.shipperpaidamount) >= loadinfo.carrierrate THEN 'Paid' 
+        WHEN MAX(carrierpaymentdetail.truckerpaymentstatus) = 'cancelled' THEN 'Cancelled' 
         ELSE 'Partial' 
     END AS carrierpaymentstatus
-    FROM 
-        loadinfo 
-    LEFT JOIN 
-        company ON loadinfo.companyid = company.id 
-    LEFT JOIN 
-        login ON loadinfo.addedby = login.id 
-    LEFT JOIN 
-        truckerdata ON loadinfo.truckerid = truckerdata.id
-    LEFT JOIN
-        companypaymentdetail ON loadinfo.id = companypaymentdetail.loadid
-    LEFT JOIN
+FROM 
+    loadinfo 
+LEFT JOIN 
+    company ON loadinfo.companyid = company.id 
+LEFT JOIN 
+    login ON loadinfo.addedby = login.id 
+LEFT JOIN 
+    truckerdata ON loadinfo.truckerid = truckerdata.id
+LEFT JOIN
+    companypaymentdetail ON loadinfo.id = companypaymentdetail.loadid
+LEFT JOIN
     carrierpaymentdetail ON loadinfo.id = carrierpaymentdetail.loadid
 GROUP BY 
     loadinfo.id";
