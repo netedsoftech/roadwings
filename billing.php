@@ -89,6 +89,8 @@ include('function.php');
                        <th class="text-start text-uppercase text-th sorting_disabled">Company Paid Amount</th>
                        <th class="text-start text-uppercase text-th sorting_disabled">Carrier Amount Left</th>
                        <th class="text-start text-uppercase text-th sorting_disabled">Company Amount Left</th>
+                       <th class="text-start text-uppercase text-th sorting_disabled">Due Date</th>
+                       
                       <th class="text-start text-uppercase text-th sorting_disabled">Added Date</th>
                       <th class="text-start text-uppercase text-th sorting_disabled">Added By</th>
                       
@@ -184,6 +186,9 @@ include('function.php');
                       </td>
                        <td class="align-middle text-start">
                         <span class="text-secondary text-xs font-weight-bold">$<?php echo $row['company_payment_left'] ?></span>
+                      </td>
+                      <td class="align-middle text-start">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $row['shippperpaymentdate'] ?></span>
                       </td>
 
                       <td class="align-middle text-start">

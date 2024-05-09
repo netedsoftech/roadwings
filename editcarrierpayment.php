@@ -10,6 +10,21 @@ if(!($_SESSION)){
 $id = $_REQUEST['id'];
 $getcarrierpaymentdata = getcarrierpaymentdata($mysqli,$id);
 //echo "<pre>"; print_r($getcarrierpaymentdata); die;
+if(isset($_POST['editcarrierpayment'])){
+  $truckercost = $_POST['truckercost'];
+  $truckerpaymentstatus = $_POST['truckerpaymentstatus'];
+  $shipperpaidamount = $_POST['shipperpaidamount'];
+  $shippperpaymentdate = $_POST['shippperpaymentdate'];
+  $modeofpayment = $_POST['modeofpayment'];
+  $editpayment = editPayment($mysqli,$truckercost,$truckerpaymentstatus,$shipperpaidamount,$shippperpaymentdate,$modeofpayment,$id);
+  $error = "";
+  $message = "";
+  if($editpayment == "Payment updated"){
+    $message = "Payment updated";
+  }else{
+    $error = "Payment update failed";
+  }
+}
 ?>
 
  <body>
@@ -110,7 +125,7 @@ $getcarrierpaymentdata = getcarrierpaymentdata($mysqli,$id);
                   <div class="col-lg-4"></div>
                   <div class="col-lg-4 text-end">
                     <div class="form-group mb-4 form-item mt-4">
-                      <button name="addcarrierpayment" class="btn ">Submit Details</button>
+                      <button name="editcarrierpayment" class="btn ">Submit Details</button>
                     </div>
                   </div>
                 </div>

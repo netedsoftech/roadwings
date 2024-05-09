@@ -23,7 +23,7 @@ $tid= $_GET['tid'];
 
 //echo "<pre>"; print_r($getCompany);die;
 if(isset($_POST["addcarrierpayment"])){
-  //echo "<pre>"; print_r($_POST); die;
+  echo "<pre>"; print_r($_POST); die;
   $sessionid = $_SESSION['id'];
   $truckercost = $_POST['truckercost'];
   $truckerpaymentstatus = $_POST['truckerpaymentstatus'];
@@ -181,6 +181,7 @@ $ctData = ctData($mysqli,$id,$cid,$tid);
                 <tbody>
                    <?php
                       $carrierData = carrierData($mysqli,$id,$cid,$tid);
+                      //echo "<pre>"; print_r($carrierData);die;
                       foreach($carrierData as $row){ 
                       ?>
                   <tr>
