@@ -85,6 +85,10 @@ include('function.php');
                        <th class="text-start text-uppercase text-th sorting_disabled">Carrier Rate</th>
                        <th class="text-start text-uppercase text-th sorting_disabled">Company Payment Status</th>
                        <th class="text-start text-uppercase text-th sorting_disabled">Carrier Payment Status</th>
+                       <th class="text-start text-uppercase text-th sorting_disabled">Carrier Paid Amount</th>
+                       <th class="text-start text-uppercase text-th sorting_disabled">Company Paid Amount</th>
+                       <th class="text-start text-uppercase text-th sorting_disabled">Carrier Amount Left</th>
+                       <th class="text-start text-uppercase text-th sorting_disabled">Company Amount Left</th>
                       <th class="text-start text-uppercase text-th sorting_disabled">Added Date</th>
                       <th class="text-start text-uppercase text-th sorting_disabled">Added By</th>
                       
@@ -169,9 +173,22 @@ include('function.php');
                        <td class="align-middle text-start">
                         <span class="text-secondary text-xs font-weight-bold"><?php echo $row['carrierpaymentstatus'] ?></span>
                       </td>
+                      <td class="align-middle text-start">
+                        <span class="text-secondary text-xs font-weight-bold">$<?php echo $row['total_shipperpaidamount'] ?></span>
+                      </td>
+                       <td class="align-middle text-start">
+                        <span class="text-secondary text-xs font-weight-bold">$<?php echo $row['total_companypaidamount'] ?></span>
+                      </td>
+                       <td class="align-middle text-start">
+                        <span class="text-secondary text-xs font-weight-bold">$<?php echo $row['carrier_payment_left'] ?></span>
+                      </td>
+                       <td class="align-middle text-start">
+                        <span class="text-secondary text-xs font-weight-bold">$<?php echo $row['company_payment_left'] ?></span>
+                      </td>
 
                       <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['addeddate']); ?></span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php $addeddate = $row['addeddate'];
+                       echo $formatted_date = date("Y-m-d", strtotime($addeddate));  ?></span>
                       </td>
 
                       <td class="align-middle text-start">

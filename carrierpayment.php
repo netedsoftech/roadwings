@@ -240,9 +240,9 @@ $ctData = ctData($mysqli,$id,$cid,$tid);
                       
 
                        <td class="align-middle">  
-                       <!--  <a href="editcarrierpayment.php?id=<?php echo $row['id']?>" title="Edit" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink" >
+                        <a href="editcarrierpayment.php?id=<?php echo $row['id']?>" title="Edit" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink" >
                         <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design"/>
-                        </a> -->
+                        </a> 
                        
                         <?php 
                           if($_SESSION['agentrole'] == "Admin"):
