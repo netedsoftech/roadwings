@@ -86,7 +86,7 @@ if (in_array($currentSegment, $pages)) {
                   </a>
                 </li>
 
-                <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER" || $_SESSION['agentrole'] == "ACCOUNTS"){?>
+                <?php //if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER" || $_SESSION['agentrole'] == "ACCOUNTS"){?>
 
                 <li class="nav-item mt-2 mb-2">
                   <a class="nav-link <?php echo $currentSegment == 'billing.php' ? 'active' : ''; ?>" href="billing.php">
@@ -94,7 +94,7 @@ if (in_array($currentSegment, $pages)) {
                     Biling
                   </a>
                 </li>
-              <?php } ?>
+              <?php //} ?>
 
                
               </ul>

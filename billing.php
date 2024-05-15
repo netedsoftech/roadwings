@@ -89,9 +89,12 @@ include('function.php');
                        <th class="text-start text-uppercase text-th sorting_disabled">Company Paid Amount</th>
                        <th class="text-start text-uppercase text-th sorting_disabled">Carrier Amount Left</th>
                        <th class="text-start text-uppercase text-th sorting_disabled">Company Amount Left</th>
-                       <th class="text-start text-uppercase text-th sorting_disabled">Due Date</th>
+                       <th class="text-start text-uppercase text-th sorting_disabled">Carrier Payment Date</th>
+                       <th class="text-start text-uppercase text-th sorting_disabled">Compay Payment Date</th>
+                       <th class="text-start text-uppercase text-th sorting_disabled">Total Profit</th>
                        
-                      <th class="text-start text-uppercase text-th sorting_disabled">Added Date</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">Carrier Next Date</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">Company Next Date</th>
                       <th class="text-start text-uppercase text-th sorting_disabled">Added By</th>
                       
                   
@@ -107,119 +110,88 @@ include('function.php');
                       $loadData = getLoad1($mysqli);
                       foreach($loadData as $row){ 
                       ?>
-                  <tr>
-                    <td>
-                        <div class="d-flex px-2 py-1">
-                          
-                          <div class="d-flex flex-column justify-content-center companyname">
-                            <a title="Load Data" href="#" class="mb-0 text-xs" ><?php echo ucfirst($row['carrierinvoiceno']); ?></a>
-                            
-                          </div>
-<!-- 
-                          <div class="d-flex flex-column justify-content-center">
-                            <p class="text-xs font-weight-bold mb-0"><?php// echo ucfirst($row['companyname']); ?></p>
-                            
-                          </div> -->
-                        </div>
-                      </td>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          
-                          <div class="d-flex flex-column justify-content-center companyname">
-                             <p class="text-xs font-weight-bold mb-0"><?php echo ucfirst($row['locationfrom']); ?></p>
-                            
-                          </div>
-<!-- 
-                          <div class="d-flex flex-column justify-content-center">
-                            <p class="text-xs font-weight-bold mb-0"><?php// echo ucfirst($row['companyname']); ?></p>
-                            
-                          </div> -->
-                        </div>
-                      </td>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          
-                          <div class="d-flex flex-column justify-content-center">
-                            <p class="text-xs font-weight-bold mb-0"><?php echo ucfirst($row['locationto']); ?></p>
-                            
-                          </div>
-                        </div>
-                      </td>
-                      
-                      <td class="align-middle text-start text-sm">
-                        <p class="text-xs font-weight-bold mb-0"><?php echo $row['startdate']; ?></p>
-                      </td>
-                      <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['deliverydate']); ?></span>
-                      </td>
+                   <tr>
+                <td><?php echo ucfirst($row['carrierinvoiceno']); ?></td>
+                <td><?php echo ucfirst($row['locationfrom']); ?></td>
+                <td><?php echo ucfirst($row['locationto']); ?></td>
+                <td><?php echo $row['startdate']; ?></td>
+                <td><?php echo ucfirst($row['deliverydate']); ?></td>
+                <td><?php echo ucfirst($row['paymentterm']) . " " . "Days"; ?></td>
+                <td><?php echo $row['carrierpaymentterm'] . " " . "Days"; ?></td>
+                <td>$<?php echo ucfirst($row['customerrate']); ?></td>
+                <td>$<?php echo ucfirst($row['carrierrate']); ?></td>
+                <td><?php echo isset($row['company_payment_data']['companypaymentstatus']) ? $row['company_payment_data']['companypaymentstatus'] : ''; ?></td>
+                <td>
+    <?php 
+    if (isset($row['carrier_payment_data']['truckerpaymentstatus'])) {
+        if ($row['carrier_payment_data']['truckerpaymentstatus'] === 'Tono') {
+            echo 'Tono';
+        } else {
+            echo $row['carrier_payment_data']['truckerpaymentstatus'];
+        }
+    } else {
+        echo '';
+    }
+    ?>
+</td>
+                
+                <td>$<?php echo isset($row['carrier_payment_data']['total_shipperpaidamount']) ? $row['carrier_payment_data']['total_shipperpaidamount'] : ''; ?></td>
+                <td>$<?php echo isset($row['company_payment_data']['total_companypaidamount']) ? $row['company_payment_data']['total_companypaidamount'] : ''; ?></td>
+                <td>$<?php echo $row['carrier_payment_left']; ?></td>
+                <td>$<?php if(isset($row['company_payment_left'])){ echo $row['company_payment_left']; } ?></td>
+                <td><?php echo isset($row['carrier_payment_data']['shippperpaymentdate']) ? $row['carrier_payment_data']['shippperpaymentdate'] : ''; ?></td>
+                <td><?php echo isset($row['company_payment_data']['companypaymentdate']) ? $row['company_payment_data']['companypaymentdate'] : ''; ?></td>
+               <td><?php echo $row['customerrate'] - $row['carrierrate'];?></td>
+                <td>
+                <?php 
+                if (isset($row['carrier_payment_data']['carriernextpaymentdate'])) {
+                    $nextPaymentDate = strtotime($row['carrier_payment_data']['carriernextpaymentdate']);
+                    if ($nextPaymentDate > time()) {
+                        echo $row['carrier_payment_data']['carriernextpaymentdate'];
+                    } else {
+                        echo 'No due date left';
+                    }
+                } else {
+                    echo '';
+                }
+                ?>
+            </td>
+            <td>
+    <?php 
+    if (isset($row['company_payment_data']['nextpaymentdate'])) {
+        $nextPaymentDate = strtotime($row['company_payment_data']['nextpaymentdate']);
+        if ($nextPaymentDate > time()) {
+            echo $row['company_payment_data']['nextpaymentdate'];
+        } else {
+            echo 'No due date left';
+        }
+    } else {
+        echo '';
+    }
+    ?>
+</td>
 
-                      <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['paymentterm']) . " " . "Days"; ?></span>
-                      </td>
 
-                      <td class="align-middle text-start text-sm">
-                        <p class="text-xs font-weight-bold mb-0"><?php echo $row['carrierpaymentterm'] . " " . "Days"; ?></p>
-                      </td>
-
-
-                      <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold">$<?php echo ucfirst($row['customerrate']); ?></span>
-                      </td>
-                      <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold">$<?php echo ucfirst($row['carrierrate']); ?></span>
-                      </td>
-                      <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo $row['companypaymentstatus'] ?></span>
-                      </td>
-
-                       <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo $row['carrierpaymentstatus'] ?></span>
-                      </td>
-                      <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold">$<?php echo $row['total_shipperpaidamount'] ?></span>
-                      </td>
-                       <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold">$<?php echo $row['total_companypaidamount'] ?></span>
-                      </td>
-                       <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold">$<?php echo $row['carrier_payment_left'] ?></span>
-                      </td>
-                       <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold">$<?php echo $row['company_payment_left'] ?></span>
-                      </td>
-                      <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo $row['shippperpaymentdate'] ?></span>
-                      </td>
-
-                      <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php $addeddate = $row['addeddate'];
-                       echo $formatted_date = date("Y-m-d", strtotime($addeddate));  ?></span>
-                      </td>
-
-                      <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['agentname']); ?></span>
-                      </td>
-
-                      <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER"): ?>
+                <td><?php echo ucfirst($row['agentname']); ?></td>
+                <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER"): ?>
                       
                       
 
-                       <td class="align-middle">  
-                        <a href="editload.php?id=<?php echo $row['id']?>" title="Edit" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink" >
-                        <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design"/>
-                        </a>
-                        <a title="Load Data" href="carrierpayment.php?loadid=<?php echo $row['id']?>&cid=<?php echo $row['cid']?>&tid=<?php echo $row['tid']?>" class="mb-0 text-xs" >Carrier Payment</a>
-                        <a title="Load Data" href="companypayment.php?loadid=<?php echo $row['id']?>&cid=<?php echo $row['cid']?>&tid=<?php echo $row['tid']?>" class="mb-0 text-xs" >Company Payment</a>
-                        <?php 
-                          if($_SESSION['agentrole'] == "Admin"):
-                        ?>
-                         <a href="deleteload.php?id=<?php echo $row['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs" ><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"/></a>
-                       
-                         <?php endif; ?>
-                       </td>
-                       <?php endif; ?>
+                      <td class="align-middle">  
+                       <a href="editload.php?id=<?php echo $row['id']?>" title="Edit" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink" >
+                       <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design"/>
+                       </a>
+                       <a title="Load Data" href="carrierpayment.php?loadid=<?php echo $row['id']?>&cid=<?php echo $row['cid']?>&tid=<?php echo $row['tid']?>" class="mb-0 text-xs" >Carrier Payment</a>
+                       <a title="Load Data" href="companypayment.php?loadid=<?php echo $row['id']?>&cid=<?php echo $row['cid']?>&tid=<?php echo $row['tid']?>" class="mb-0 text-xs" >Company Payment</a>
+                       <?php 
+                         if($_SESSION['agentrole'] == "Admin"):
+                       ?>
+                        <a href="deleteload.php?id=<?php echo $row['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs" ><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"/></a>
                       
-                    </tr>
+                        <?php endif; ?>
+                      </td>
+                      <?php endif; ?>
+            </tr>
                     <?php } ?>
                 </tbody>
               </table>

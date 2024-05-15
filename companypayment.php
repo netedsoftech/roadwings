@@ -22,22 +22,24 @@ $tid= $_GET['tid'];
 
 
 //echo "<pre>"; print_r($getCompany);die;
-if(isset($_POST["submit"])){
-  echo "<pre>"; print_r($_POST); die;
+if(isset($_POST["addcompanypayment"])){
+  //echo "<pre>"; print_r($_POST); die;
   $companycost = $_POST['companycost'];
   $companypaymentstatus = $_POST['companypaymentstatus'];
   $companypaidamount = $_POST['companypaidamount'];
   $companypaymentdate = $_POST['companypaymentdate'];
+  $companymodeofpayment = $_POST['companymodeofpayment'];
+  $nextpaymentdate = $_POST['nextpaymentdate'];
   
   
-  $addPayment = addcompanyPayment($mysqli,$companypaymentstatus,$companypaidamount,$companypaymentdate,$id,$cid,$tid);
+  $addPayment = addcompanyPayment($mysqli,$companycost,$companypaymentstatus,$companypaidamount,$companypaymentdate,$id,$cid,$tid,$companymodeofpayment,$nextpaymentdate);
   $message = "";
   $error =  "";
-    if ($updateLoad == "updated") {
-        $message = "Load updated successfully";
+    if ($addPayment == "Payment submit") {
+        $message = "Payment add successfully";
     } else {
         // Insertion failed
-        $error = "Failed to update load.";
+        $error = "Failed to add payment";
     }
 }
 
@@ -114,12 +116,27 @@ $ctData = ctData($mysqli,$id,$cid,$tid);
                       <label for="companypaymentdate">Company Payment Date *</label>
                       <input class="form-control" required name="companypaymentdate" type="date" value="" placeholder="Company Payment Date">
                     </div>
-
-                    <div class="form-group mb-4">
-                      <label for="companypaymentdate">Mode of payment *</label>
-                      <input class="form-control" required name="modeofpayment" type="date" value="" placeholder="Company Payment Date">
-                    </div>
                   </div>
+
+                  <div class="col-md-6"><div class="form-group mb-4">
+                      <label for="nextpaymentdate">Next Payment Date</label>
+                      <input class="form-control"  name="nextpaymentdate" type="date" value="" placeholder="Next Payment Date">
+                    </div></div>
+
+                    <div class="col-md-6">
+                    <div class="form-group mb-4">
+
+                     <label for="companymodeofpayment">Mode Of Payment *</label>
+                       <select name="companymodeofpayment" class="form-control">
+                          <option value="">Please Select Payment Mode </option>
+                          <option value="Account">Account </option>
+                          <option value="ACH">ACH </option>
+                         
+                        </select>
+                    
+                  </div>
+            </div>
+                  
 
                   <span class="aside-hr mt-3 mb-4"></span>
 
@@ -157,17 +174,10 @@ $ctData = ctData($mysqli,$id,$cid,$tid);
            <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                    <th class="text-start text-uppercase text-th sorting_disabled"> Invoice No</th>
-                      <th class="text-start text-uppercase text-th sorting_disabled"> From</th>
-                      <th class="text-start text-uppercase text-th sorting_disabled">To</th>
-                      <th class="text-start text-uppercase text-th sorting_disabled"> Start Date</th>
-                      <th class="text-start text-uppercase text-th sorting_disabled">End Date</th>
-                      <th class="text-start text-uppercase text-th sorting_disabled">Company Payment Terms</th>
-                       <th class="text-start text-uppercase text-th sorting_disabled">Carrier Payment Terms</th>
-
-                       <th class="text-start text-uppercase text-th sorting_disabled">Customer Rate</th>
-                       <th class="text-start text-uppercase text-th sorting_disabled">Carrier Rate</th>
-                       <th class="text-start text-uppercase text-th sorting_disabled">Status</th>
+                  <th class="text-start text-uppercase text-th sorting_disabled">Paid Amount</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">Payment Date</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">Payment Mode</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">Carrier Payment Status</th>
                       <th class="text-start text-uppercase text-th sorting_disabled">Added Date</th>
                       <th class="text-start text-uppercase text-th sorting_disabled">Added By</th>
                       
@@ -181,98 +191,74 @@ $ctData = ctData($mysqli,$id,$cid,$tid);
                 </thead>
                 <tbody>
                    <?php
-                      $loadData = getLoad($mysqli);
-                      foreach($loadData as $row){ 
+                      $getcompanypaymentdata = getcompanypaymentdata($mysqli,$id,$cid,$tid);
+                      foreach($getcompanypaymentdata as $row){ 
                       ?>
                   <tr>
                     <td>
                         <div class="d-flex px-2 py-1">
                           
                           <div class="d-flex flex-column justify-content-center companyname">
-                            <a title="Load Data" href="#" class="mb-0 text-xs" ><?php echo ucfirst($row['carrierinvoiceno']); ?></a>
+                            <a title="Load Data" href="#" class="mb-0 text-xs" ><?php echo ucfirst($row['companypaidamount']); ?></a>
                             
                           </div>
-<!-- 
-                          <div class="d-flex flex-column justify-content-center">
-                            <p class="text-xs font-weight-bold mb-0"><?php// echo ucfirst($row['companyname']); ?></p>
-                            
-                          </div> -->
+
                         </div>
                       </td>
                       <td>
                         <div class="d-flex px-2 py-1">
                           
                           <div class="d-flex flex-column justify-content-center companyname">
-                             <p class="text-xs font-weight-bold mb-0"><?php echo ucfirst($row['locationfrom']); ?></p>
+                             <p class="text-xs font-weight-bold mb-0"><?php echo ucfirst($row['companypaymentdate']); ?></p>
                             
                           </div>
-<!-- 
-                          <div class="d-flex flex-column justify-content-center">
-                            <p class="text-xs font-weight-bold mb-0"><?php// echo ucfirst($row['companyname']); ?></p>
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          
+                          <div class="d-flex flex-column justify-content-center companyname">
+                             <p class="text-xs font-weight-bold mb-0"><?php echo ucfirst($row['paymentmode']); ?></p>
                             
-                          </div> -->
+                          </div>
+
                         </div>
                       </td>
                       <td>
                         <div class="d-flex px-2 py-1">
                           
                           <div class="d-flex flex-column justify-content-center">
-                            <p class="text-xs font-weight-bold mb-0"><?php echo ucfirst($row['locationto']); ?></p>
+                            <p class="text-xs font-weight-bold mb-0"><?php echo ucfirst($row['companypaymentstatus']); ?></p>
                             
                           </div>
                         </div>
                       </td>
                       
                       <td class="align-middle text-start text-sm">
-                        <p class="text-xs font-weight-bold mb-0"><?php echo $row['startdate']; ?></p>
+                        <p class="text-xs font-weight-bold mb-0"><?php echo $row['createdat']; ?></p>
                       </td>
-                      <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['deliverydate']); ?></span>
-                      </td>
-
-                      <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['paymentterm']) . " " . "Days"; ?></span>
-                      </td>
-
-                      <td class="align-middle text-start text-sm">
-                        <p class="text-xs font-weight-bold mb-0"><?php echo $row['carrierpaymentterm'] . " " . "Days"; ?></p>
-                      </td>
-
-
-                      <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['customerrate']); ?></span>
-                      </td>
-                      <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['carrierrate']); ?></span>
-                      </td>
-                      <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php if($row['status'] == 0){
-                          echo "Pending";
-                        }if($row['status'] == 1){
-                        echo "Paid"; }  ?></span>
-                      </td>
-
-                      <td class="align-middle text-start">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['addeddate']); ?></span>
-                      </td>
+                      
 
                       <td class="align-middle text-start">
                         <span class="text-secondary text-xs font-weight-bold"><?php echo ucfirst($row['agentname']); ?></span>
                       </td>
 
-                      <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER"): ?>
+                     
+
+                      <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER" || $_SESSION['agentrole'] == "ACCOUNTS"):?>
                       
                       
 
                        <td class="align-middle">  
-                        <a href="editload.php?id=<?php echo $row['id']?>" title="Edit" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink" >
+                        <a href="editcompanypayment.php?id=<?php echo $row['id']?>" title="Edit" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink" >
                         <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design"/>
-                        </a>
+                        </a> 
                        
                         <?php 
                           if($_SESSION['agentrole'] == "Admin"):
                         ?>
-                         <a href="deleteload.php?id=<?php echo $row['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs" ><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"/></a>
+                         <a href="deletecompanypayment.php?id=<?php echo $row['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs" ><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"/></a>
                        
                          <?php endif; ?>
                        </td>

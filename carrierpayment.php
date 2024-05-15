@@ -1,12 +1,4 @@
-<!-- company cost
-trucker cost
-profile
-company payment status(option will be due or recieved)
-trucker payment status(option will be due or paid)
-company paid amount
-shipper paid amount
-company payment date
-shipper payment date -->
+
 <?php 
 session_start();
 include("header.php");
@@ -23,15 +15,16 @@ $tid= $_GET['tid'];
 
 //echo "<pre>"; print_r($getCompany);die;
 if(isset($_POST["addcarrierpayment"])){
-  echo "<pre>"; print_r($_POST); die;
+  //echo "<pre>"; print_r($_POST); die;
   $sessionid = $_SESSION['id'];
   $truckercost = $_POST['truckercost'];
   $truckerpaymentstatus = $_POST['truckerpaymentstatus'];
   $shipperpaidamount = $_POST['shipperpaidamount'];
   $shippperpaymentdate = $_POST['shippperpaymentdate'];
   $modeofpayment = $_POST['modeofpayment'];
+  $carriernextpaymentdate = $_POST['carriernextpaymentdate'];
   
-  $addPayment = addcarrierPayment($mysqli,$truckercost,$truckerpaymentstatus,$shipperpaidamount,$shippperpaymentdate,$id,$cid,$tid,$sessionid,$modeofpayment);
+  $addPayment = addcarrierPayment($mysqli,$truckercost,$truckerpaymentstatus,$shipperpaidamount,$shippperpaymentdate,$id,$cid,$tid,$sessionid,$modeofpayment,$carriernextpaymentdate);
   $message = "";
   $error =  "";
     if ($addPayment == "Payment submit") {
@@ -86,7 +79,7 @@ $ctData = ctData($mysqli,$id,$cid,$tid);
         <div class="row mt-4 ">
           <div class="col-lg-9">
             <div class="main-header p-3 ">
-              <form method="post">
+              <form method="post" class="abc">
                 <h5 class="mt-2 mb-5"></h5>
                 <div class="row">
                  
@@ -101,8 +94,8 @@ $ctData = ctData($mysqli,$id,$cid,$tid);
                   <div class="col-md-4">
                     <div class="form-group mb-4">
                        <label for="truckerpaymentstatus">Carrier Payment Status *</label>
-                     
-                         <select name="truckerpaymentstatus" class="form-control">
+                       <select id="truckerpaymentstatus" name="truckerpaymentstatus" class="form-control" onchange="toggleFields()">
+                        
                           <option value="">Please Select Status </option>
                           <option value="Due">Due </option>
                           <option value="Paid">Paid </option>
@@ -113,15 +106,15 @@ $ctData = ctData($mysqli,$id,$cid,$tid);
                   </div>
 
                   <div class="col-md-4">
-                    <div class="form-group mb-4">
-                     <label for="shipperpaidamount">Carrier Paid Amount </label>
+                    <div class="form-group mb-4" id="shipperpaidamount">
+                     <label for="shipperpaidamount" >Carrier Paid Amount </label>
                       <input class="form-control"  name="shipperpaidamount" type="text" value="" placeholder="Carrier Paid Amount">
                     </div>
                   </div>
 
                    <div class="col-md-4">
-                    <div class="form-group mb-4">
-                     <label for="shipperpaidamount">Mode Of Payment *</label>
+                    <div class="form-group mb-4" id="modeofpayment">
+                     <label for="modeofpayment">Mode Of Payment *</label>
                        <select name="modeofpayment" class="form-control">
                           <option value="">Please Select Payment Mode </option>
                           <option value="Account">Account </option>
@@ -132,9 +125,16 @@ $ctData = ctData($mysqli,$id,$cid,$tid);
                   </div>
 
                    <div class="col-md-4">
-                    <div class="form-group mb-4">
-                       <label for="shippperpaymentdate">Carrier Payment Date *</label>
-                      <input class="form-control" required name="shippperpaymentdate" type="text" onfocus="(this.type='date')" value="" placeholder="Due / Paid  Date">
+                    <div class="form-group mb-4" id="shippperpaymentdate">
+                       <label for="shippperpaymentdate" >Carrier Payment Date *</label>
+                      <input class="form-control"  name="shippperpaymentdate" type="text" onfocus="(this.type='date')" value="" placeholder="Due / Paid  Date">
+                    </div>
+                  </div> 
+
+                  <div class="col-md-4">
+                    <div class="form-group mb-4" id="carriernextpaymentdate">
+                       <label for="carriernextpaymentdate">Next Payment Date </label>
+                      <input class="form-control"  name="carriernextpaymentdate" type="text" onfocus="(this.type='date')" value="" placeholder="Next Payment  Date">
                     </div>
                   </div> 
 
@@ -236,7 +236,7 @@ $ctData = ctData($mysqli,$id,$cid,$tid);
 
                      
 
-                      <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER"): ?>
+                      <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER" || $_SESSION['agentrole'] == "ACCOUNTS"):?>
                       
                       
 
@@ -280,4 +280,29 @@ $ctData = ctData($mysqli,$id,$cid,$tid);
     ></script>
   </body>
 </html>
+
+<script>
+    $(document).ready(function() {
+    // Function to toggle fields based on Carrier Payment Status
+    function toggleFields() {
+        var status = $('#truckerpaymentstatus').val();
+        if (status === 'Cancelled') {
+            // Hide the fields if status is Cancelled
+            $('#shipperpaidamount, #modeofpayment, #shippperpaymentdate, #carriernextpaymentdate').closest('.form-group').hide();
+        } else {
+            // Show the fields for other statuses
+            $('#shipperpaidamount, #modeofpayment, #shippperpaymentdate, #carriernextpaymentdate').closest('.form-group').show();
+        }
+    }
+
+    // Call the function initially on page load
+    toggleFields();
+
+    // Bind change event to Carrier Payment Status select element
+    $('#truckerpaymentstatus').change(function() {
+        // Call toggleFields function whenever the select value changes
+        toggleFields();
+    });
+});
+</script>
 

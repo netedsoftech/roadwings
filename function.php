@@ -1171,9 +1171,9 @@ function ctData($mysqli,$id,$cid,$tid){
 
 
 
-function addcarrierPayment($mysqli,$truckercost,$truckerpaymentstatus,$shipperpaidamount,$shippperpaymentdate,$id,$cid,$tid,$sessionid,$modeofpayment){
+function addcarrierPayment($mysqli,$truckercost,$truckerpaymentstatus,$shipperpaidamount,$shippperpaymentdate,$id,$cid,$tid,$sessionid,$modeofpayment,$carriernextpaymentdate){
     $date = date('Y-m-d');
-    $query = "insert into carrierpaymentdetail (truckercost,truckerpaymentstatus,shipperpaidamount,shippperpaymentdate,companyid,loadid,truckerid,addedby,createdat,paymentmode)VALUES('$truckercost','$truckerpaymentstatus','$shipperpaidamount','$shippperpaymentdate','$cid','$id','$tid','$sessionid','$date','$modeofpayment')";
+    $query = "insert into carrierpaymentdetail (truckercost,truckerpaymentstatus,shipperpaidamount,shippperpaymentdate,companyid,loadid,truckerid,addedby,createdat,paymentmode,carriernextpaymentdate)VALUES('$truckercost','$truckerpaymentstatus','$shipperpaidamount','$shippperpaymentdate','$cid','$id','$tid','$sessionid','$date','$modeofpayment','$carriernextpaymentdate')";
     if($mysqli->query($query)){
         return "Payment submit";
     }else{
@@ -1191,10 +1191,6 @@ function carrierData($mysqli,$id,$cid,$tid){
     //echo "<pre>"; print_r($data); die;
     $res->free();
     return $data;
-}
-
-function addcompanyPayment($mysqli,$companypaymentstatus,$companypaidamount,$companypaymentdate,$id,$cid,$tid){
-    /*here will be code for add payemnt of company*/
 }
 
 function calculateleftlimit($mysqli,$urlid){
@@ -1271,86 +1267,133 @@ WHERE
 }
 
 function getLoad1($mysqli){
-    /*$sql = "select loadinfo.*,company.companyname,login.agentname from loadinfo left join company on loadinfo.companyid = company.id left join login on loadinfo.addedby = login.id";*/
- /*   $sql = "select loadinfo.*,company.id as cid,company.companyname,company.paymentterm,login.agentname,truckerdata.id as tid,truckerdata.carrierpaymentterm from loadinfo left join company on loadinfo.companyid=company.id left join login on loadinfo.addedby=login.id left join truckerdata on loadinfo.truckerid = truckerdata.id ";*/
-//  $sql = "SELECT 
-//     loadinfo.*, 
-//     company.id AS cid, 
-//     company.companyname, 
-//     company.paymentterm, 
-//     login.agentname, 
-//     truckerdata.id AS tid, 
-//     truckerdata.carrierpaymentterm,
-//     COALESCE(SUM(companypaymentdetail.companypaidamount), 0) AS total_companypaidamount,
-//     CASE 
-//         WHEN SUM(companypaymentdetail.companypaidamount) >= loadinfo.customerrate THEN 'Paid' 
-//         ELSE 'Due' 
-//     END AS companypaymentstatus,
-//     COALESCE(SUM(carrierpaymentdetail.shipperpaidamount), 0) AS total_shipperpaidamount,
-//     CASE 
-//         WHEN SUM(carrierpaymentdetail.shipperpaidamount) >= loadinfo.carrierrate THEN 'Paid' 
-//         WHEN MAX(carrierpaymentdetail.truckerpaymentstatus) = 'cancelled' THEN 'Cancelled' 
-//         ELSE 'Due' 
-//     END AS carrierpaymentstatus
-// FROM 
-//     loadinfo 
-// LEFT JOIN 
-//     company ON loadinfo.companyid = company.id 
-// LEFT JOIN 
-//     login ON loadinfo.addedby = login.id 
-// LEFT JOIN 
-//     truckerdata ON loadinfo.truckerid = truckerdata.id
-// LEFT JOIN
-//     companypaymentdetail ON loadinfo.id = companypaymentdetail.loadid
-// LEFT JOIN
-//     carrierpaymentdetail ON loadinfo.id = carrierpaymentdetail.loadid
-// GROUP BY 
-//     loadinfo.id";
- $sql = "SELECT 
- loadinfo.*, 
- company.id AS cid, 
- company.companyname, 
- company.paymentterm, 
- login.agentname, 
- truckerdata.id AS tid, 
- truckerdata.carrierpaymentterm,
- COALESCE(SUM(companypaymentdetail.companypaidamount), 0) AS total_companypaidamount,
- CASE 
-     WHEN SUM(companypaymentdetail.companypaidamount) >= loadinfo.customerrate THEN 'Paid' 
-     ELSE 'Due' 
- END AS companypaymentstatus,
- (loadinfo.customerrate - COALESCE(SUM(companypaymentdetail.companypaidamount), 0)) AS company_payment_left,
- COALESCE(SUM(carrierpaymentdetail.shipperpaidamount), 0) AS total_shipperpaidamount,
- CASE 
-     WHEN SUM(carrierpaymentdetail.shipperpaidamount) >= loadinfo.carrierrate THEN 'Paid' 
-     WHEN MAX(carrierpaymentdetail.truckerpaymentstatus) = 'cancelled' THEN 'Cancelled' 
-     ELSE 'Due' 
- END AS carrierpaymentstatus,
- (loadinfo.carrierrate - COALESCE(SUM(carrierpaymentdetail.shipperpaidamount), 0)) AS carrier_payment_left,
- (SELECT MAX(shippperpaymentdate) 
-  FROM carrierpaymentdetail 
-  WHERE loadid = loadinfo.id) AS shippperpaymentdate
-FROM 
- loadinfo 
-LEFT JOIN 
- company ON loadinfo.companyid = company.id 
-LEFT JOIN 
- login ON loadinfo.addedby = login.id 
-LEFT JOIN 
- truckerdata ON loadinfo.truckerid = truckerdata.id
-LEFT JOIN
- companypaymentdetail ON loadinfo.id = companypaymentdetail.loadid
-LEFT JOIN
- carrierpaymentdetail ON loadinfo.id = carrierpaymentdetail.loadid
-GROUP BY 
- loadinfo.id;";
-    $res = $mysqli->query($sql);
-    $data = array();
-    while($row=$res->fetch_assoc()){
-        $data[] = $row;
+  $role = $_SESSION['agentrole'];
+  $sessionid = $_SESSION['id'];
+  if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER" || $_SESSION['agentrole'] == "ACCOUNTS"){  
+    $sqlLoadInfo = "SELECT loadinfo.*, 
+    company.id AS cid, 
+    company.companyname, 
+    company.paymentterm, 
+    login.agentname, 
+    truckerdata.carrierpaymentterm,
+    truckerdata.id AS tid
+    FROM 
+    loadinfo 
+    LEFT JOIN 
+    company ON loadinfo.companyid = company.id 
+    LEFT JOIN 
+    login ON loadinfo.addedby = login.id 
+    LEFT JOIN 
+    truckerdata ON loadinfo.truckerid = truckerdata.id";
+    $resultLoadInfo = $mysqli->query($sqlLoadInfo);
+    $loadInfoData = array();
+    while ($row = $resultLoadInfo->fetch_assoc()) {
+    $loadInfoData[] = $row;
     }
-    $res->free();
-    return $data;
+
+    // Retrieve company payment details
+    $sqlCompanyPayment = "SELECT loadid, companypaymentstatus, COALESCE(SUM(companypaidamount), 0) AS total_companypaidamount, MAX(companypaymentdate) AS companypaymentdate, MAX(nextpaymentdate) AS nextpaymentdate FROM companypaymentdetail GROUP BY loadid";
+    $resultCompanyPayment = $mysqli->query($sqlCompanyPayment);
+    $companyPaymentData = array();
+    while ($row = $resultCompanyPayment->fetch_assoc()) {
+    $companyPaymentData[$row['loadid']] = $row;
+    }
+
+    // Retrieve carrier payment details
+    $sqlCarrierPayment = "SELECT 
+        loadid,
+        truckerpaymentstatus,
+        COALESCE(SUM(shipperpaidamount), 0) AS total_shipperpaidamount,
+        MAX(shippperpaymentdate) AS shippperpaymentdate,
+        MAX(carriernextpaymentdate) AS carriernextpaymentdate
+        
+    FROM 
+        carrierpaymentdetail 
+    GROUP BY 
+        loadid";
+        $resultCarrierPayment = $mysqli->query($sqlCarrierPayment);
+        $carrierPaymentData = array();
+        while ($row = $resultCarrierPayment->fetch_assoc()) {
+            $carrierPaymentData[$row['loadid']] = $row;
+        }
+  }else{
+    $sqlLoadInfo = "SELECT loadinfo.*, 
+    company.id AS cid, 
+    company.companyname, 
+    company.paymentterm, 
+    login.agentname, 
+    truckerdata.carrierpaymentterm,
+    truckerdata.id AS tid
+    FROM 
+    loadinfo 
+    LEFT JOIN 
+    company ON loadinfo.companyid = company.id 
+    LEFT JOIN 
+    login ON loadinfo.addedby = login.id 
+    LEFT JOIN 
+    truckerdata ON loadinfo.truckerid = truckerdata.id where loadinfo.addedby='$sessionid'";
+    $resultLoadInfo = $mysqli->query($sqlLoadInfo);
+    $loadInfoData = array();
+    while ($row = $resultLoadInfo->fetch_assoc()) {
+    $loadInfoData[] = $row;
+    }
+
+    // Retrieve company payment details
+    $sqlCompanyPayment = "SELECT loadid, companypaymentstatus, COALESCE(SUM(companypaidamount), 0) AS total_companypaidamount, MAX(companypaymentdate) AS companypaymentdate, MAX(nextpaymentdate) AS nextpaymentdate FROM companypaymentdetail GROUP BY loadid";
+    $resultCompanyPayment = $mysqli->query($sqlCompanyPayment);
+    $companyPaymentData = array();
+    while ($row = $resultCompanyPayment->fetch_assoc()) {
+    $companyPaymentData[$row['loadid']] = $row;
+    }
+
+    // Retrieve carrier payment details
+    $sqlCarrierPayment = "SELECT 
+        loadid,
+        truckerpaymentstatus,
+        COALESCE(SUM(shipperpaidamount), 0) AS total_shipperpaidamount,
+        MAX(shippperpaymentdate) AS shippperpaymentdate,
+        MAX(carriernextpaymentdate) AS carriernextpaymentdate
+        
+    FROM 
+        carrierpaymentdetail 
+    GROUP BY 
+        loadid";
+        $resultCarrierPayment = $mysqli->query($sqlCarrierPayment);
+        $carrierPaymentData = array();
+        while ($row = $resultCarrierPayment->fetch_assoc()) {
+            $carrierPaymentData[$row['loadid']] = $row;
+        }
+  }
+  $mergedData = array();
+  foreach ($loadInfoData as $load) {
+      $loadId = $load['id'];
+      $mergedData[$loadId] = $load;
+      
+      // Add company payment data if available
+      if (isset($companyPaymentData[$loadId])) {
+          $mergedData[$loadId]['company_payment_data'] = $companyPaymentData[$loadId];
+          // Calculate company payment left
+          $mergedData[$loadId]['company_payment_left'] = $load['customerrate'] - $companyPaymentData[$loadId]['total_companypaidamount'];
+      }
+      
+      // Add carrier payment data or set as empty if not available
+      if (isset($carrierPaymentData[$loadId])) {
+          $mergedData[$loadId]['carrier_payment_data'] = $carrierPaymentData[$loadId];
+          // Calculate carrier payment left
+          $mergedData[$loadId]['carrier_payment_left'] = $load['carrierrate'] - $carrierPaymentData[$loadId]['total_shipperpaidamount'];
+      } else {
+          // Set carrier payment data as empty
+          $mergedData[$loadId]['carrier_payment_data'] = array();
+          // Set carrier payment left as the full carrier rate
+          $mergedData[$loadId]['carrier_payment_left'] = $load['carrierrate'];
+      }
+  }
+
+  // Convert merged data to a simple array
+  $finalData = array_values($mergedData);
+  //echo "<pre>"; print_r($finalData);die;
+  // Return finalData
+  return $finalData;
 }
 
 function getcarrierpaymentdata($mysqli,$id){
@@ -1372,8 +1415,19 @@ function editPayment($mysqli,$truckercost,$truckerpaymentstatus,$shipperpaidamou
     return "Payment Update fail";
   }
 }
+
+function addcompanyPayment($mysqli,$companycost,$companypaymentstatus,$companypaidamount,$companypaymentdate,$id,$cid,$tid,$companymodeofpayment,$nextpaymentdate){
+  $date = date('Y-m-d');
+  $sessionid = $_SESSION['id'];
+  $query = "insert into companypaymentdetail (companycost,companypaymentstatus,companypaidamount,companypaymentdate,loadid,companyid,truckerid,paymentmode,addedby,createdat,nextpaymentdate)values('$companycost','$companypaymentstatus','$companypaidamount','$companypaymentdate','$id','$cid','$tid','$companymodeofpayment','$sessionid','$date','$nextpaymentdate')";
+  if($mysqli->query($query)){
+      return "Payment submit";
+  }else{
+      return "Payment faild";
+  }
+}
 function getcompanypaymentdata($mysqli,$id){
-    $sql = "select * companypaymentdetail where id='$id'";
+    $sql = "select companypaymentdetail.*,login.agentname  from companypaymentdetail left join login on companypaymentdetail.addedby = login.id  where loadid='$id'";
     $res  = $mysqli->query($sql);
     $data = array();
     while($row = $res->fetch_assoc()){
@@ -1381,6 +1435,26 @@ function getcompanypaymentdata($mysqli,$id){
     }
     $res->free();
     return $data;
+}
+
+function geteditcompanypaymentdata($mysqli,$id){
+  $sql = "select * from companypaymentdetail where id='$id'";
+  $res = $mysqli->query($sql);
+  $data = array();
+  while($row = $res->fetch_assoc()){
+    $data[] = $row;
+  }
+  $res->free();
+  return $data;
+}
+
+function editcpayment($mysqli,$companypaymentstatus,$companypaidamount,$companypaymentdate,$id,$companymodeofpayment){
+  $update = "update companypaymentdetail set companypaymentstatus='$companypaymentstatus',companypaidamount='$companypaidamount',companypaymentdate='$companypaymentdate',paymentmode='$companymodeofpayment' where id='$id' ";
+  if($mysqli->query($update)){
+    return "Payment Update";
+  }else{
+    return "Faild to update payment";
+  }
 }
 
 

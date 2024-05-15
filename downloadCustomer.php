@@ -5,15 +5,22 @@ include("config.php");
 header('Content-Type: text/csv; charset=utf-8');
 header('Content-Disposition: attachment; filename=data.csv');
 $output = fopen("php://output", "w");
-fputcsv($output, array("Company Name", "Contact Person", "Email", "State", "City", "Credit Limit", "Date", "Status"));
-
+fputcsv($output, array("Company Name", "Contact Person", "Email", "State", "City", "Credit Limit", "Date", "Status", "Agent Name"));
 
 $sessionid = $_SESSION['id'];
 $role = $_SESSION['agentrole'];
+
 if($role == "Admin" || $role == "MANAGER"){
-    $query = "SELECT companyname, contactperson, emailaddress, state, city, creditlimit, createdat, companystatus FROM company ORDER BY id ASC";
-}else{
-    $query = "SELECT companyname, contactperson, emailaddress, state, city, creditlimit, createdat, companystatus FROM company where createdby = '$sessionid' ORDER BY id ASC";
+    $query = "SELECT c.companyname, c.contactperson, c.emailaddress, c.state, c.city, c.creditlimit, c.createdat, c.companystatus, l.agentname 
+              FROM company c 
+              LEFT JOIN login l ON c.createdby = l.id 
+              ORDER BY c.id ASC";
+} else {
+    $query = "SELECT c.companyname, c.contactperson, c.emailaddress, c.state, c.city, c.creditlimit, c.createdat, c.companystatus, l.agentname 
+              FROM company c 
+              LEFT JOIN login l ON c.createdby = l.id 
+              WHERE c.createdby = '$sessionid' 
+              ORDER BY c.id ASC";
 }
 
 $result = mysqli_query($mysqli, $query);
