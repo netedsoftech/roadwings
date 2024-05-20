@@ -1494,5 +1494,18 @@ function countcustomers($mysqli){
   }
 }
 
+function currentyearsale($mysqli){
+  $sql = "SELECT 
+  SUM(companypaidamount) AS total_sale
+  FROM 
+  companypaymentdetail
+  WHERE 
+  YEAR(companypaymentdate) = YEAR(CURRENT_DATE()) AND companypaymentstatus = 'Recieved';";
+  $res = $mysqli->query($sql);
+  while($row = $res->fetch_assoc()){
+    return $row;
+  }
+}
+
 
 ?>
