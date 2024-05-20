@@ -615,17 +615,17 @@ $getCarrier = getAllCarrier($mysqli);
                                         
                                         
                   
-                                         <td class="align-middle">  
-                                          <a href="javascript:;" title="Edit" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                         <!-- <td class="align-middle">  
+                                          <a href="javascript:;" title="Edit" atrid="<?php //echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                           <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design"/>
                                           </a>
                                           <?php 
-                                            if($_SESSION['agentrole'] == "Admin"):
+                                            //if($_SESSION['agentrole'] == "Admin"):
                                           ?>
-                                           <a href="deletecompany.php?id=<?php echo $row['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs" ><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"/></a>
+                                           <a href="deletecompany.php?id=<?php //echo $row['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs" ><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"/></a>
                                          
-                                           <?php endif; ?>
-                                         </td>
+                                           <?php //endif; ?>
+                                         </td> -->
                                          <?php endif; ?>
                                         
                                       </tr>

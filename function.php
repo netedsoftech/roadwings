@@ -1459,5 +1459,40 @@ function editcpayment($mysqli,$companypaymentstatus,$companypaidamount,$companyp
   }
 }
 
+function getmonthalyearning($mysqli){
+  $sql = "SELECT 
+          SUM(cp.companypaidamount) AS company_earnings, 
+          SUM(cr.shipperpaidamount) AS carrier_earnings 
+        FROM 
+          companypaymentdetail cp 
+        JOIN 
+          carrierpaymentdetail cr ON cp.companypaymentdate = cr.shippperpaymentdate 
+        WHERE 
+          cp.companypaymentstatus = 'Recieved' 
+          AND cr.truckerpaymentstatus = 'paid' 
+          AND MONTH(cp.companypaymentdate) = MONTH(CURRENT_DATE()) 
+          AND YEAR(cr.shippperpaymentdate) = YEAR(CURRENT_DATE());";
+  $res = $mysqli->query($sql);
+  while($row = $res->fetch_assoc()){
+    return $row;
+  }
+}
+
+function counttotaluser($mysqli){
+  $sql = "SELECT COUNT(*) AS total_users FROM login WHERE agentrole != 'Admin';";
+  $res = $mysqli->query($sql);
+  while($row = $res->fetch_assoc()){
+    return $row;
+  }
+}
+
+function countcustomers($mysqli){
+  $sql = "SELECT COUNT(*) AS total_customers FROM company";
+  $res = $mysqli->query($sql);
+  while($row=$res->fetch_assoc()){
+    return $row;
+  }
+}
+
 
 ?>
