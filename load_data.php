@@ -127,20 +127,23 @@ $getCarrier = getAllCarrier($mysqli);
                    <div class="row">
                     <div class="col-md-3">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" id="fromInput" name="from" type="text" placeholder="From *" required>
+                        <label for="fromInput">From *</label>
+                        <input class="form-control" id="fromInput" name="from" type="text"  required>
                       </div>
                     </div>
 
                     <div class="col-md-3">
                     <div class="form-group mb-4 ">
-                        <input class="form-control" id="toInput" name="to" type="text" placeholder="To *" required>
+                      <label for="toInput">To *</label>
+                        <input class="form-control" id="toInput" name="to" type="text"  required>
                       </div>
                     </div>
 
 
                     <div class="col-md-3">
                       <div class="form-group mb-4 ">
-                        <input id="startDate" class="form-control icons_search_input click"  name="sDate" type="text" onfocus="(this.type='date')" placeholder="Booking Date *" required autocomplete="off">
+                        <label for="startDate">Booking Date *</label>
+                        <input id="startDate" class="form-control icons_search_input click"  name="sDate" type="text" onfocus="(this.type='date')" required autocomplete="off">
                       </div>
                     </div>
 
@@ -148,7 +151,8 @@ $getCarrier = getAllCarrier($mysqli);
                     <div class="col-md-3">
                     
                     <div class="form-group mb-4 ">
-                        <input id="endDate" class="form-control icons_search_input click" name="deliveryDate"type="text" onfocus="(this.type='date')" placeholder="Delivery Date *" required autocomplete="off">
+                      <label for="deliveryDate">Delivery Date *</label>
+                        <input id="endDate" class="form-control icons_search_input click" name="deliveryDate"type="text" onfocus="(this.type='date')" required autocomplete="off">
                       </div>
                     </div>
 
@@ -189,13 +193,15 @@ $getCarrier = getAllCarrier($mysqli);
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" id="lengthInput" required name="length" type="text" placeholder="Length">
+                        <label for="lengthInput">Length</label>
+                        <input class="form-control" id="lengthInput" required name="length" type="text" >
                       </div>
 
                     </div>
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" id="weightInput" required name="weight" type="text" placeholder="Weight">
+                        <label for="weightInput">Weight</label>
+                        <input class="form-control" id="weightInput" required name="weight" type="text">
                       </div>
 
                     </div>
@@ -203,7 +209,8 @@ $getCarrier = getAllCarrier($mysqli);
 
                      <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required id="commodity" name="commodity" type="text" placeholder="Commodity (goods)">
+                        <label for="commodity">Commodity (goods)</label>
+                        <input class="form-control" required id="commodity" name="commodity" type="text" >
                       </div>
 
                     </div>
@@ -212,35 +219,40 @@ $getCarrier = getAllCarrier($mysqli);
 
                     <div class="col-md-4 d-none">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="datrate" type="text" placeholder="dat rate" hidden>
+                        <label for="datrate">Dat Rate</label>
+                        <input class="form-control" name="datrate" type="text"  hidden>
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required id="customerrateInput" name="customerrate" type="text" placeholder="Customer Rate">
+                        <label for="customerrateInput">Customer Rate</label>
+                        <input class="form-control" required id="customerrateInput" name="customerrate" type="text" >
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required id="carrierrrateInput" name="carrierrate" type="tel" placeholder="Carrier Rate">
+                        <label for="carrierrrateInput">Carrier Rate</label>
+                        <input class="form-control" required id="carrierrrateInput" name="carrierrate" type="tel" >
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <textarea class="form-control" name="notes" id="notes" placeholder="Notes " cols="30" rows="1"></textarea>
+                        <label for="notes">Notes</label>
+                        <textarea class="form-control" name="notes" id="notes" cols="30" rows="1"></textarea>
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input type="date" class="form-control" name="loaddatacompanypaymentdate" id="loaddatacompanypaymentdate" placeholder="Company Payment Date " >
+                        <label for="loaddatacompanypaymentdate">Company Payment Date</label>
+                        <input type="date" class="form-control" name="loaddatacompanypaymentdate" id="loaddatacompanypaymentdate"  >
                       </div>
 
                     </div>
@@ -265,20 +277,23 @@ $getCarrier = getAllCarrier($mysqli);
                    <div class="row">
                     <div class="col-md-3">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="from" id="fromInputSecond" type="text" placeholder="From *" required readonly value="">
+                        <label for="fromInputSecond">From *</label>
+                        <input class="form-control" name="from" id="fromInputSecond" type="text"  required readonly value="">
                       </div>
                     </div>
 
                     <div class="col-md-3">
                     <div class="form-group mb-4 ">
-                        <input class="form-control" name="to" id="toInputSecond" type="text" placeholder="To *" required readonly value="">
+                      <label for="toInputSecond">To *</label>
+                        <input class="form-control" name="to" id="toInputSecond" type="text"  required readonly value="">
                       </div>
                     </div>
 
 
                     <div class="col-md-3">
                       <div class="form-group mb-4 ">
-                        <input id="sDateInputSecond" class="form-control icons_search_input click"  name="sDate" type="text" placeholder="Start Date *" required readonly value="">
+                        <label for="sDateInputSecond">Start Date *</label>
+                        <input id="sDateInputSecond" class="form-control icons_search_input click"  name="sDate" type="text" required readonly value="">
                       </div>
                     </div>
 
@@ -286,7 +301,8 @@ $getCarrier = getAllCarrier($mysqli);
                     <div class="col-md-3">
                     
                     <div class="form-group mb-4 ">
-                        <input id="deliveryDateInputSecond" class="form-control icons_search_input click" name="deliveryDate" type="text" placeholder="Delivery Date *" required readonly value="">
+                      <label for="deliveryDateInputSecond">Delivery Date *</label>
+                        <input id="deliveryDateInputSecond" class="form-control icons_search_input click" name="deliveryDate" type="text"  required readonly value="">
                       </div>
                     </div>
 
@@ -294,15 +310,17 @@ $getCarrier = getAllCarrier($mysqli);
                     
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                       <input type="text" id="trucker_typeSecond" class="form-control icons_search_input click" name="trucker_type" placeholder="Delivery trucker_type *" required readonly value="">
+                        <label for="trucker_typeSecond">Delivery trucker_type *</label>
+                       <input type="text" id="trucker_typeSecond" class="form-control icons_search_input click" name="trucker_type"  required readonly value="">
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
+                        <label for="load_typeSecond">Load Type *</label>
                        
-                        <input type="text" id="load_typeSecond" class="form-control icons_search_input click" name="loadtype" placeholder="Load Type *" required readonly value="">
+                        <input type="text" id="load_typeSecond" class="form-control icons_search_input click" name="loadtype"  required readonly value="">
 
                       </div>
 
@@ -310,13 +328,15 @@ $getCarrier = getAllCarrier($mysqli);
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input id="lengthInputSecond" class="form-control" required name="length" type="text" placeholder="Length" readonly value="">
+                        <label for="lengthInputSecond">Length</label>
+                        <input id="lengthInputSecond" class="form-control" required name="length" type="text"  readonly value="">
                       </div>
 
                     </div>
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input id="weightInputSecond" class="form-control" required name="weight" type="text" placeholder="Weight" readonly value="">
+                        <label for="weightInputSecond">Weight</label>
+                        <input id="weightInputSecond" class="form-control" required name="weight" type="text"  readonly value="">
                       </div>
 
                     </div>
@@ -324,7 +344,8 @@ $getCarrier = getAllCarrier($mysqli);
 
                      <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input  class="form-control" required id="commodityInputSecond" name="commodity" type="text" placeholder="Commodity (goods)" readonly value="">
+                        <label for="commodityInputSecond">Commodity (goods)</label>
+                        <input  class="form-control" required id="commodityInputSecond" name="commodity" type="text"  readonly value="">
                       </div>
 
                     </div>
@@ -333,21 +354,24 @@ $getCarrier = getAllCarrier($mysqli);
 
                     <div class="col-md-4 d-none">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="dat rate" type="text" placeholder="dat rate" hidden>
+                        <label for="dat rate">Dat Rate</label>
+                        <input class="form-control" name="dat rate" type="text"  hidden>
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input id="customerInputSecond" class="form-control" required name="customerrate" type="text" placeholder="Customer Rate" readonly value="">
+                        <label for="customerInputSecond">Customer Rate</label>
+                        <input id="customerInputSecond" class="form-control" required name="customerrate" type="text"  readonly value="">
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input  id="carrierInputSecond" class="form-control" required name="carrierrate" type="tel" placeholder="Carrier Rate" readonly value="">
+                        <label for="carrierInputSecond">Carrier Rate</label>
+                        <input  id="carrierInputSecond" class="form-control" required name="carrierrate" type="tel"  readonly value="">
                       </div>
 
                     </div>
@@ -384,13 +408,15 @@ $getCarrier = getAllCarrier($mysqli);
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                      <input  id="truckerNo" class="form-control" required name="truckerNo" type="tel" placeholder="Contact Number"  value="">
+                        <label for="truckerNo">Company Number</label>
+                      <input  id="truckerNo" class="form-control" required name="truckerNo" type="tel" value="">
                       </div>
 
                     </div>
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                      <input  id="truckerEmail" class="form-control" required name="truckerEmail" type="tel" placeholder="Email Address"  value="">
+                        <label for="truckerEmail">Email Address</label>
+                      <input  id="truckerEmail" class="form-control" required name="truckerEmail" type="tel"   value="">
                       </div>
 
                     </div>
@@ -398,7 +424,8 @@ $getCarrier = getAllCarrier($mysqli);
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                      <input  id="mcnumber" class="form-control" required name="mcnumber" type="tel" placeholder="MC Number"  value="">
+                        <label for="mcnumber">MC Number</label>
+                      <input  id="mcnumber" class="form-control" required name="mcnumber" type="tel"  value="">
                       <input  id="truckerid" class="form-control" required name="truckerid" type="hidden" >
                       </div>
 
@@ -407,7 +434,8 @@ $getCarrier = getAllCarrier($mysqli);
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                      <textarea class="form-control" required name="truckerAddress" type="tel" placeholder="Trucker Address"  value="" id="truckerAddress" cols="30" rows="1"></textarea>
+                        <label for="truckerAddress">Trucker Address</label>
+                      <textarea class="form-control" required name="truckerAddress" type="tel"   value="" id="truckerAddress" cols="30" rows="1"></textarea>
                       </div>
 
                     </div>
@@ -416,13 +444,15 @@ $getCarrier = getAllCarrier($mysqli);
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <textarea class="form-control" name="notes1" id="notes1" placeholder="Notes " cols="30" rows="1"></textarea>
+                      <label for="notes1">Notes</label>
+                        <textarea class="form-control" name="notes1" id="notes1" cols="30" rows="1"></textarea>
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
+                        <label for="loaddatacompanypaymentdate1">Company Payment Date</label>
                         <input type="date" class="form-control" name="loaddatacompanypaymentdate" id="loaddatacompanypaymentdate1" placeholder="Company Payment Date ">
                       </div>
                       
@@ -430,6 +460,7 @@ $getCarrier = getAllCarrier($mysqli);
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
+                        <label for="loadcarrierpaymentdate">Carrier Payment Date</label>
                         <input type="date" class="form-control" name="loadcarrierpaymentdate" id="loadcarrierpaymentdate" placeholder="Carrier Payment Date" >
                       </div>
 

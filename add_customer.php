@@ -87,11 +87,13 @@ if(!($_SESSION)){
                    <div class="row">
                     <div class="col-md-6">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="comapnyname" type="text" placeholder="Company Name *" required >
+                      <label for="comapnyname">Company Name *</label>
+                        <input class="form-control" name="comapnyname" type="text"  required >
                       </div>
 
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="contactperson" type="text" placeholder="Contact Person *" required>
+                      <label for="contactperson">Contact Person *</label>
+                        <input class="form-control" name="contactperson" type="text"  required>
                       </div>
 
                      
@@ -99,31 +101,36 @@ if(!($_SESSION)){
 
                     <div class="col-md-6">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="emailaddress" type="email" placeholder="E-mail ID *" required>
+                      <label for="emailaddress">E-mail ID *</label>
+                        <input class="form-control" name="emailaddress" type="email"  required>
                       </div>
 
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required name="companycontactno" type="tel" minlength="12" maxlength="12" placeholder="Contact Number *">
+                      <label for="companycontactno">Contact Number *</label>
+                        <input class="form-control" required name="companycontactno" type="tel" minlength="12" maxlength="12">
                       </div>
                     </div>
                     <span class="aside-hr mt-3 mb-4"></span>
                     
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required name="address" type="text"  placeholder="Address *">
+                      <label for="address">Address *</label>
+                        <input class="form-control" required name="address" type="text"  >
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required name="zipcode" type="text" placeholder="Zip Code">
+                      <label for="zipcode">Zip Code</label>
+                        <input class="form-control" required name="zipcode" type="text" >
                       </div>
 
                     </div>
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required name="city" type="text" placeholder="City">
+                      <label for="city">City</label>
+                        <input class="form-control" required name="city" type="text" >
                       </div>
 
                     </div>
@@ -131,7 +138,8 @@ if(!($_SESSION)){
 
                      <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required name="state" type="text" placeholder="State">
+                      <label for="state">State</label>
+                        <input class="form-control" required name="state" type="text" >
                       </div>
 
                     </div>
@@ -145,21 +153,24 @@ if(!($_SESSION)){
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="mailingaddress" type="text" placeholder="Mailiing Address">
+                      <label for="mailingaddress">Mailiing Address</label>
+                        <input class="form-control" name="mailingaddress" type="text" >
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required name="accountPayable" type="text" placeholder="Account Payable">
+                      <label for="accountPayable">Account Payable</label>
+                        <input class="form-control" required name="accountPayable" type="text" >
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required name="accountPayableEmail" type="text" placeholder="Account Payable Email">
+                      <label for="accountPayableEmail">Account Payable Email</label>
+                        <input class="form-control" required name="accountPayableEmail" type="text" >
                       </div>
 
                     </div>
@@ -167,7 +178,8 @@ if(!($_SESSION)){
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required name="accountPayableNumber" type="tel" placeholder="Account Payable Number">
+                      <label for="accountPayableNumber">Account Payable Number</label>
+                        <input class="form-control" required name="accountPayableNumber" type="tel" >
                       </div>
 
                     </div>
@@ -193,8 +205,8 @@ if(!($_SESSION)){
 
                    <div class="col-md-4">
                       <div class="form-group mb-4 ">
+                      <label for="paymentterm">Payment Terms ( 1 - 50 days)</label>
                         <select name="paymentterm"  class="form-control">
-                          <option selected>Payment Terms ( 1 - 50 days)</option>
                           <option value="1">1</option>
                           <option value="10">10</option>
                           <option value="15">15</option>
@@ -213,7 +225,8 @@ if(!($_SESSION)){
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required name="creditlimit" type="tel" minlength="2" maxlength="4" placeholder="Credit Limit">
+                      <label for="creditlimit">Credit Limit</label>
+                        <input class="form-control" required name="creditlimit" type="tel" minlength="2" maxlength="4" >
                       </div>
                     </div>
 

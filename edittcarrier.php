@@ -89,11 +89,13 @@ $getcarrier = getcarrier($mysqli,$id);
                    <div class="row">
                     <div class="col-md-6">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="tname" type="text" placeholder="Trucker Name *" value="<?php echo $getcarrier[0]['tname']?>" required="">
+                        <label for="tname">Trucker Name *</label>
+                        <input class="form-control" name="tname" type="text" value="<?php echo $getcarrier[0]['tname']?>" required="">
                       </div>
 
                       <div class="form-group mb-4 ">
-                        <input class="form-control" name="temail" type="email" placeholder="E-mail ID *" value="<?php echo $getcarrier[0]['temail']?>" required="">
+                        <label for="temail">E-mail ID *</label>
+                        <input class="form-control" name="temail" type="email" value="<?php echo $getcarrier[0]['temail']?>" required="">
                       </div>
 
                      
@@ -101,24 +103,28 @@ $getcarrier = getcarrier($mysqli,$id);
 
                     <div class="col-md-6">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required name="tphoneno" type="tel" minlength="12" value="<?php echo $getcarrier[0]['tphoneno']?>" maxlength="12" placeholder="Contact Number *">
+                        <label for="tphoneno">Contact Number *</label>
+                        <input class="form-control" required name="tphoneno" type="tel" minlength="12" value="<?php echo $getcarrier[0]['tphoneno']?>" maxlength="12" >
                       </div>
 
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required name="taddress" type="text" value="<?php echo $getcarrier[0]['taddress']?>"  placeholder="Address *">
+                        <label for="taddress">Address *</label>
+                        <input class="form-control" required name="taddress" type="text" value="<?php echo $getcarrier[0]['taddress']?>"  >
                       </div>
                     </div>
                     <span class="aside-hr mt-3 mb-4"></span>
                     
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
-                        <input class="form-control" required name="tmcno" type="text" value="<?php echo $getcarrier[0]['tmcno']?>" placeholder="MC Number">
+                        <label for="tmcno">MC Number</label>
+                        <input class="form-control" required name="tmcno" type="text" value="<?php echo $getcarrier[0]['tmcno']?>" >
                       </div>
 
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
+                        <label for="loadcarrierpaymentdate">Carrier Payment Date</label>
                         <input class="form-control" equired name="lane" type="text" value="<?php echo $getcarrier[0]['lane']?>" placeholder="Lane">
                       </div>
 

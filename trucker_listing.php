@@ -121,7 +121,7 @@ include('function.php');
                     <th class="text-start text-uppercase text-th sorting_disabled">Added Date</th>
                     <th class="text-start text-uppercase text-th sorting_disabled">Added By</th>
                     <?php if($role == "Admin" || $role == "MANAGER"){?>
-                    <th class="text-start text-uppercase text-th sorting_disabled">Action</th>
+                    <th class="text-start text-uppercase text-th sorting_disabled ">Action</th>
                   <?php } ?>
                     
                 
@@ -137,7 +137,7 @@ include('function.php');
                       <div class="d-flex px-2 py-1">
                         
                         <div class="d-flex flex-column justify-content-center companyname">
-                          <a title="Load Data" href="load_data.php" class="mb-0 text-xs"><?php echo $load['tname']?></a>
+                          <a title="Load Data" class="mb-0 text-xs"><?php echo $load['tname']?></a>
                           
                         </div>
 
@@ -189,11 +189,11 @@ include('function.php');
                                           
                     
                     <?php if($role == "Admin" || $role == "MANAGER"){?>
-                     <td class="align-middle">  
-                      <a href="editload.php?id=<?php echo $load['id']?>" title="Edit" atrid="4"  class="text-secondary font-weight-bold text-xs editlink">
+                     <td class="align-middle ">  
+                      <a href="edittcarrier.php?id=<?php echo $load['id']?>" title="Edit" atrid="4"  class="text-secondary font-weight-bold text-xs editlink">
                       <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design">
                       </a>
-                       <a href="deleteload.php?id=<?php echo $load['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs"><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"></a>
+                       <a href="deletetrucker.php?id=<?php echo $load['id']?>" onclick="return confirm('Are you sure?')" title="Delete" class="text-secondary font-weight-bold text-xs"><img width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"></a>
 
                       </td>
                     <?php }?>
@@ -265,11 +265,11 @@ background: #fff!important;
   <form method="post">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header di-flex justify-content-between">
         <h5 class="modal-title">Add Trucker</h5>
-        <button type="button" class="close" data-dismiss="modal" id="closeModalBtn" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        
+          <span aria-hidden="true"><img class="close" data-dismiss="modal" id="closeModalBtn" aria-label="Close" width="30" height="30" src="https://img.icons8.com/fluency/30/cancel.png" alt="cancel"></span>
+       
       </div>
     
         <div class="col-md-12">

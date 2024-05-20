@@ -69,7 +69,7 @@ include('function.php');
 
         <?php //include("rightbar.php");?>
         <div class="col-lg-12">
-          <div class="table-responsive p-0 mt-3 main-header main-three p-3">
+          <div class="table-responsive p-0 mt-3 main-header main-three p-3" >
            <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
@@ -182,8 +182,8 @@ include('function.php');
                        <a href="editload.php?id=<?php echo $row['id']?>" title="Edit" atrid="<?php echo $row['id']; ?>" id="editlink" class="text-secondary font-weight-bold text-xs editlink" >
                        <img width="30" height="30" src="https://img.icons8.com/external-others-inmotus-design/30/external-Edit-vkontakte-others-inmotus-design.png" alt="external-Edit-vkontakte-others-inmotus-design"/>
                        </a>
-                       <a title="Load Data" href="carrierpayment.php?loadid=<?php echo $row['id']?>&cid=<?php echo $row['cid']?>&tid=<?php echo $row['tid']?>" class="mb-0 text-xs" >Carrier Payment</a>
-                       <a title="Load Data" href="companypayment.php?loadid=<?php echo $row['id']?>&cid=<?php echo $row['cid']?>&tid=<?php echo $row['tid']?>" class="mb-0 text-xs" >Company Payment</a>
+                       <a title="Carrier Payment" href="carrierpayment.php?loadid=<?php echo $row['id']?>&cid=<?php echo $row['cid']?>&tid=<?php echo $row['tid']?>" class="mb-0 text-xs" ><img width="30" height="30" src="https://img.icons8.com/fluency/30/interstate-truck--v1.png" alt="interstate-truck--v1"/></a>
+                       <a title="Company Payment" href="companypayment.php?loadid=<?php echo $row['id']?>&cid=<?php echo $row['cid']?>&tid=<?php echo $row['tid']?>" class="mb-0 text-xs" ><img width="30" height="30" src="https://img.icons8.com/color/30/company.png" alt="company"/></a>
                        <?php 
                          if($_SESSION['agentrole'] == "Admin"):
                        ?>
