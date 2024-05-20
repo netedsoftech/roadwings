@@ -81,6 +81,22 @@ $ctData = ctData($mysqli,$id,$cid,$tid);
               });
             </script>
           <?php echo $error; }?>
+          <span>
+            <?php
+            
+            $lcd = $ctData[0]['loaddatacompanypaymentdate'];
+            $paymentTimestamp = strtotime($lcd);
+            $currentTimestamp = time();
+                // Check if payment date has passed
+                if ($paymentTimestamp < $currentTimestamp) {
+                  // Payment date has passed, show in red color
+                  echo "<span style='color: red;'>Payment date has passed: $lcd</span>";
+              } else {
+                  // Payment date is in the future, show in green color
+                  echo "<span style='color: green;'>Payment date is: $lcd</span>";
+              }
+            ?>
+          </span>
           <span class="rounded-pill shadow text-white">Assembly</span>
         </div>
 

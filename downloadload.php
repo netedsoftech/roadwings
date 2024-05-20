@@ -5,7 +5,7 @@ include("config.php");
 header('Content-Type: text/csv; charset=utf-8');
 header('Content-Disposition: attachment; filename=load.csv');
 $output = fopen("php://output", "w");
-fputcsv($output, array("From", "To", "Start Date", "Delivery Date", "Company Payments Terms", "CARRIER PAYMENT TERMS", "Company Name", "CUSTOMER RATE", "CARRIER RATE", "ADDED DATE", "ADDED BY", "Company Payment", "Carrier Payment", "Company Payment Date", "Carrier Payment Date", "Company Payment Left", "Carrier Payment Left", "Total Company Paid Amount", "Next Payment Date", "Total Carrier Paid Amount", "Carrier Next Payment Date", "Total Profit"));
+fputcsv($output, array("From", "To", "Start Date", "Delivery Date", "Company Payments Terms", "CARRIER PAYMENT TERMS", "Company Name", "CUSTOMER RATE", "CARRIER RATE", "ADDED DATE", "ADDED BY", "Company Payment", "Carrier Payment", "Company Payment Date", "Carrier Payment Date", "Company Payment Left", "Carrier Payment Left", "Total Company Paid Amount", "Next Payment Date", "Total Carrier Paid Amount", "Carrier Next Payment Date", "Total Profit", "Load Status"));
 
 $sqlLoadInfo = "SELECT loadinfo.*, 
     company.id AS cid, 
@@ -79,6 +79,9 @@ foreach ($loadInfoData as $load) {
         $mergedData[$loadId]['carrier_payment_left'] = $load['carrierrate'];
     }
 
+    // Determine status
+    $status = $load['status'] == 1 ? 'Delivered' : 'Pending';
+
     // Calculate total profit
     $totalProfit = $load['customerrate'] - $load['carrierrate'];
 
@@ -105,7 +108,8 @@ foreach ($loadInfoData as $load) {
         isset($companyPaymentData[$loadId]) ? $companyPaymentData[$loadId]['nextpaymentdate'] : '', // Next Payment Date
         isset($carrierPaymentData[$loadId]) ? $carrierPaymentData[$loadId]['total_shipperpaidamount'] : '', // Total Shipper Paid Amount
         isset($carrierPaymentData[$loadId]) ? $carrierPaymentData[$loadId]['carriernextpaymentdate'] : '', // Carrier Next Payment Date
-        $totalProfit // Total Profit
+        $totalProfit, // Total Profit
+        $status // Load Status
     ));
 }
 

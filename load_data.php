@@ -18,7 +18,7 @@ $calculatetotalbusiness = calculatetotalbusiness($mysqli,$urlid);
 $usedlitmit = calculateusedlimit($mysqli,$urlid);
 //echo "<pre>"; print_r($calculate);die;
 if(isset($_POST['submit'])){
-  //echo "<pre>"; print_r($_POST);die;
+    //echo "<pre>"; print_r($_POST);die;
   function generateUniqueRBLNumbers($count) {
     $uniqueNumbers = [];
     while (count($uniqueNumbers) < $count) {
@@ -54,8 +54,10 @@ foreach ($uniqueNumbers as $number) {
   $customerrate = $_POST['customerrate'];
   $trucksubcategorytype = $_POST['trucksubcategorytype'];
   $truckerid = $_POST['truckerid'];
+  $loadcarrierpaymentdate = $_POST['loadcarrierpaymentdate'];
+  $loaddatacompanypaymentdate = $_POST['loaddatacompanypaymentdate'];
   
-  $addLoadAndCarrier =  addLoadAndCarrier($mysqli,$from,$to,$sDate,$deliveryDate,$trucker_type,$loadtype,$length,$weight,$commodity,$carrier_rate,$truckerNo,$truckerEmail,$truckerAddress,$notes,$companyid,$trucksubcategorytype,$customerrate,$truckerid,$uid);
+  $addLoadAndCarrier =  addLoadAndCarrier($mysqli,$from,$to,$sDate,$deliveryDate,$trucker_type,$loadtype,$length,$weight,$commodity,$carrier_rate,$truckerNo,$truckerEmail,$truckerAddress,$notes,$companyid,$trucksubcategorytype,$customerrate,$truckerid,$uid,$loaddatacompanypaymentdate,$loadcarrierpaymentdate);
   $error = '';
   $msg = '';
   if($addLoadAndCarrier == "Loadadded"){
@@ -236,6 +238,13 @@ $getCarrier = getAllCarrier($mysqli);
 
                     </div>
 
+                    <div class="col-md-4">
+                      <div class="form-group mb-4 ">
+                        <input type="date" class="form-control" name="loaddatacompanypaymentdate" id="loaddatacompanypaymentdate" placeholder="Company Payment Date " >
+                      </div>
+
+                    </div>
+
                     <!-- <div class="col-lg-4"></div>
                     <div class="col-lg-4"></div> -->
                     <div class="col-lg-4 text-end">
@@ -408,6 +417,20 @@ $getCarrier = getAllCarrier($mysqli);
                     <div class="col-md-4">
                       <div class="form-group mb-4 ">
                         <textarea class="form-control" name="notes1" id="notes1" placeholder="Notes " cols="30" rows="1"></textarea>
+                      </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group mb-4 ">
+                        <input type="date" class="form-control" name="loaddatacompanypaymentdate" id="loaddatacompanypaymentdate1" placeholder="Company Payment Date ">
+                      </div>
+                      
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group mb-4 ">
+                        <input type="date" class="form-control" name="loadcarrierpaymentdate" id="loadcarrierpaymentdate" placeholder="Carrier Payment Date" >
                       </div>
 
                     </div>
@@ -623,6 +646,7 @@ $getCarrier = getAllCarrier($mysqli);
         var commodity = document.getElementById("commodity").value;
         var customerValue = document.getElementById("customerrateInput").value;
         var carrierValue = document.getElementById("carrierrrateInput").value;
+        var loaddatacompanypaymentdate = document.getElementById("loaddatacompanypaymentdate").value;
         // Retrieve corresponding fields in the second form
         var fromInputSecond = document.getElementById("fromInputSecond");
         var toInputSecond = document.getElementById("toInputSecond");
@@ -648,6 +672,7 @@ $getCarrier = getAllCarrier($mysqli);
         customerInputSecond.value = customerValue;
         carrierInputSecond.value = carrierValue;
         notes1.value =  notes; 
+        loaddatacompanypaymentdate1.value = loaddatacompanypaymentdate;
     }
 
     return false;

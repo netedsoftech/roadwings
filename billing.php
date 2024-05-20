@@ -95,6 +95,7 @@ include('function.php');
                        
                       <th class="text-start text-uppercase text-th sorting_disabled">Carrier Next Date</th>
                       <th class="text-start text-uppercase text-th sorting_disabled">Company Next Date</th>
+                      <th class="text-start text-uppercase text-th sorting_disabled">Load Status</th>
                       <th class="text-start text-uppercase text-th sorting_disabled">Added By</th>
                       
                   
@@ -170,7 +171,7 @@ include('function.php');
     }
     ?>
 </td>
-
+<td><?php echo $row['status'] == 1 ? 'Delivered' : 'Pending'; ?></td>
 
                 <td><?php echo ucfirst($row['agentname']); ?></td>
                 <?php if($_SESSION['agentrole'] == "Admin" || $_SESSION['agentrole'] == "MANAGER"): ?>

@@ -645,7 +645,7 @@ function rejectedCount($mysqli){
     return $rCount; 
 }
 
-function addLoadAndCarrier($mysqli,$from,$to,$sDate,$deliveryDate,$trucker_type,$loadtype,$length,$weight,$commodity,$carrier_rate,$truckerno,$truckerEmail,$truckerAddress,$notes,$companyid,$trucksubcategorytype,$customerrate,$truckerid,$uid){
+function addLoadAndCarrier($mysqli,$from,$to,$sDate,$deliveryDate,$trucker_type,$loadtype,$length,$weight,$commodity,$carrier_rate,$truckerno,$truckerEmail,$truckerAddress,$notes,$companyid,$trucksubcategorytype,$customerrate,$truckerid,$uid,$loaddatacompanypaymentdate,$loadcarrierpaymentdate){
     $from = mysqli_real_escape_string($mysqli, $from);
     $to = mysqli_real_escape_string($mysqli, $to);
     $sDate = mysqli_real_escape_string($mysqli, $sDate);
@@ -670,7 +670,7 @@ function addLoadAndCarrier($mysqli,$from,$to,$sDate,$deliveryDate,$trucker_type,
     $companyid = mysqli_real_escape_string($mysqli,$companyid);
     $trucksubcategorytype = mysqli_real_escape_string($mysqli,$trucksubcategorytype);
     /*echo "insert into loadinfo (locationfrom,locationto,startdate,deliverydate,trucktype,length,weight,commodity,customerrate,carrierrate,truckerNo,truckerEmail,truckerAddress,notes,addeddate,addedby,companyid,trucksubcategorytype) VALUES('$from','$to','$sDate','$deliveryDate','$trucker_type','$lenght','$weight','$commodity','$customer_rate','$carrier_rate','$truckerno','$truckerEmail','$truckerAddress','$notes','$addeddate','$addedby','$companyid','$trucksubcategorytype')";die;*/
-    $sql = "insert into loadinfo (locationfrom,locationto,startdate,deliverydate,trucktype,length,weight,commodity,customerrate,carrierrate,truckerNo,truckerEmail,truckerAddress,notes,addeddate,addedby,companyid,trucksubcategorytype,truckerid,status,carrierinvoiceno) VALUES('$from','$to','$sDate','$deliveryDate','$trucker_type','$lenght','$weight','$commodity','$customer_rate','$carrier_rate','$truckerno','$truckerEmail','$truckerAddress','$notes','$addeddate','$addedby','$companyid','$trucksubcategorytype','$truckerid','0','$uid')";
+    $sql = "insert into loadinfo (locationfrom,locationto,startdate,deliverydate,trucktype,length,weight,commodity,customerrate,carrierrate,truckerNo,truckerEmail,truckerAddress,notes,addeddate,addedby,companyid,trucksubcategorytype,truckerid,status,carrierinvoiceno,loaddatacompanypaymentdate,loadcarrierpaymentdate) VALUES('$from','$to','$sDate','$deliveryDate','$trucker_type','$lenght','$weight','$commodity','$customer_rate','$carrier_rate','$truckerno','$truckerEmail','$truckerAddress','$notes','$addeddate','$addedby','$companyid','$trucksubcategorytype','$truckerid','0','$uid','$loaddatacompanypaymentdate','$loadcarrierpaymentdate')";
     if(mysqli_query($mysqli,$sql)){
         return "Loadadded";
     }else{
@@ -1182,7 +1182,7 @@ function addcarrierPayment($mysqli,$truckercost,$truckerpaymentstatus,$shipperpa
 }
 
 function carrierData($mysqli,$id,$cid,$tid){
-    $sql = "select carrierpaymentdetail.*,login.agentname  from carrierpaymentdetail left join login on carrierpaymentdetail.addedby = login.id  where loadid='$id'";
+    $sql = "select carrierpaymentdetail.*,login.agentname,loadinfo.loadcarrierpaymentdate  from carrierpaymentdetail left join login on carrierpaymentdetail.addedby = login.id left join loadinfo on carrierpaymentdetail.loadid=loadinfo.id  where loadid='$id'";
     $res = $mysqli->query($sql);
     $data = array();
     while($row = $res->fetch_assoc()){
@@ -1387,6 +1387,8 @@ function getLoad1($mysqli){
           // Set carrier payment left as the full carrier rate
           $mergedData[$loadId]['carrier_payment_left'] = $load['carrierrate'];
       }
+
+      
   }
 
   // Convert merged data to a simple array
@@ -1426,7 +1428,7 @@ function addcompanyPayment($mysqli,$companycost,$companypaymentstatus,$companypa
       return "Payment faild";
   }
 }
-function getcompanypaymentdata($mysqli,$id){
+function getcompanypaymentdata($mysqli,$id,$cid,$tid){
     $sql = "select companypaymentdetail.*,login.agentname  from companypaymentdetail left join login on companypaymentdetail.addedby = login.id  where loadid='$id'";
     $res  = $mysqli->query($sql);
     $data = array();
