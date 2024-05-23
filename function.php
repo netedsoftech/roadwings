@@ -1459,19 +1459,54 @@ function editcpayment($mysqli,$companypaymentstatus,$companypaidamount,$companyp
   }
 }
 
-function getmonthalyearning($mysqli){
+function getcompanymonthalyearning($mysqli){
   $sql = "SELECT 
-          SUM(cp.companypaidamount) AS company_earnings, 
-          SUM(cr.shipperpaidamount) AS carrier_earnings 
+          SUM(companypaidamount) AS company_earnings 
         FROM 
-          companypaymentdetail cp 
-        JOIN 
-          carrierpaymentdetail cr ON cp.companypaymentdate = cr.shippperpaymentdate 
+          companypaymentdetail 
         WHERE 
-          cp.companypaymentstatus = 'Recieved' 
-          AND cr.truckerpaymentstatus = 'paid' 
-          AND MONTH(cp.companypaymentdate) = MONTH(CURRENT_DATE()) 
-          AND YEAR(cr.shippperpaymentdate) = YEAR(CURRENT_DATE());";
+          companypaymentstatus = 'Recieved' 
+          
+          AND MONTH(companypaymentdate) = MONTH(CURRENT_DATE())"; 
+          
+  $res = $mysqli->query($sql);
+  while($row = $res->fetch_assoc()){
+    return $row;
+  }
+}
+
+function getcarriermonthalyearning($mysqli){
+  $sql = "SELECT
+  SUM(shipperpaidamount) AS carrier_earnings 
+FROM 
+carrierpaymentdetail
+WHERE 
+   truckerpaymentstatus = 'paid'
+  AND YEAR(shippperpaymentdate) = YEAR(CURRENT_DATE());"; 
+          
+  $res = $mysqli->query($sql);
+  while($row = $res->fetch_assoc()){
+    return $row;
+  }
+}
+
+function getpendingpayment($mysqli){
+  $sql = "SELECT 
+          SUM(companypaidamount) AS company_earnings 
+        FROM 
+          companypaymentdetail
+        WHERE 
+          companypaymentstatus = 'Due' 
+          AND MONTH(companypaymentdate) = MONTH(CURRENT_DATE()) 
+          AND YEAR(companypaymentdate) = YEAR(CURRENT_DATE());";
+  $res = $mysqli->query($sql);
+  while($row = $res->fetch_assoc()){
+    return $row;
+  }
+}
+
+function getpendingpaymentforcarrier($mysqli){
+  $sql = "select SUM(shipperpaidamount) as shipper_pending_payment from carrierpaymentdetail where truckerpaymentstatus='Due'";
   $res = $mysqli->query($sql);
   while($row = $res->fetch_assoc()){
     return $row;
@@ -1501,6 +1536,26 @@ function currentyearsale($mysqli){
   companypaymentdetail
   WHERE 
   YEAR(companypaymentdate) = YEAR(CURRENT_DATE()) AND companypaymentstatus = 'Recieved';";
+  $res = $mysqli->query($sql);
+  while($row = $res->fetch_assoc()){
+    return $row;
+  }
+}
+
+function calculateprofit($mysqli){
+  $sql = "SELECT 
+  SUM(cr.shipperpaidamount) AS carrier_earnings,
+  (SELECT SUM(cp2.companypaidamount) FROM companypaymentdetail cp2 WHERE cp2.companypaymentstatus = 'Recieved' AND MONTH(cp2.companypaymentdate) = MONTH(CURRENT_DATE()) AND YEAR(cp2.companypaymentdate) = YEAR(CURRENT_DATE())) AS total_company_earnings,
+  (SELECT SUM(cp2.companypaidamount) FROM companypaymentdetail cp2 WHERE cp2.companypaymentstatus = 'Recieved' AND MONTH(cp2.companypaymentdate) = MONTH(CURRENT_DATE()) AND YEAR(cp2.companypaymentdate) = YEAR(CURRENT_DATE())) - SUM(cr.shipperpaidamount) AS total_profit
+FROM 
+  companypaymentdetail cp 
+JOIN 
+  carrierpaymentdetail cr ON cp.companypaymentdate = cr.shippperpaymentdate 
+WHERE 
+  cp.companypaymentstatus = 'Recieved' 
+  AND cr.truckerpaymentstatus = 'paid' 
+  AND MONTH(cp.companypaymentdate) = MONTH(CURRENT_DATE()) 
+  AND YEAR(cr.shippperpaymentdate) = YEAR(CURRENT_DATE());";
   $res = $mysqli->query($sql);
   while($row = $res->fetch_assoc()){
     return $row;
