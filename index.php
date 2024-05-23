@@ -163,11 +163,11 @@ include('function.php');
                           </p> -->
                         </div>
                       </div>
-                      <div class="col-4 text-end">
+                      <!-- <div class="col-4 text-end">
                         <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
                           <img width="60" height="60" src="https://img.icons8.com/color/60/coins.png" alt="coins"/>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -188,11 +188,11 @@ include('function.php');
                           </p> -->
                         </div>
                       </div>
-                      <div class="col-4 text-end">
+                      <!-- <div class="col-4 text-end">
                         <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
                           <img width="60" height="60" src="https://img.icons8.com/matisse/60/gender-neutral-user--v1.png" alt="gender-neutral-user--v1"/>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -213,11 +213,11 @@ include('function.php');
                           </p> -->
                         </div>
                       </div>
-                      <div class="col-4 text-end">
+                      <!-- <div class="col-4 text-end">
                         <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
                           <img width="60" height="60" src="https://img.icons8.com/doodle/60/certificate.png" alt="certificate"/>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -237,11 +237,11 @@ include('function.php');
                           </p> -->
                         </div>
                       </div>
-                      <div class="col-4 text-end">
+                      <!-- <div class="col-4 text-end">
                         <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
                           <img width="60" height="60" src="https://img.icons8.com/pulsar-line/60/fast-cart.png" alt="fast-cart"/>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
