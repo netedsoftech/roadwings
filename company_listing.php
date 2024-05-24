@@ -110,6 +110,7 @@ background: #fff!important;
               <?php if($getrole == "Admin" || $getrole == "MANAGER") { ?>
               <span class="rounded-pill shadow text-white"><span class="text-white" id="downloadBtn">Download CSV</span></span>
             <?php } ?>
+            <a href="approve.php" class="rounded-pill shadow text-white">Approved All Companies</a>
              </div>
 
              <div class="row mt-4 ">
